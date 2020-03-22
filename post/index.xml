@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Ícaro Agostino</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Ícaro Agostino</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Prevendo o futuro com modelos ARIMA</title>
+      <link>/post/arima/</link>
+      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/arima/</guid>
+      <description>ARIMA Aplicações em R para previsão de séries temporais utilizando modelagem ARIMA a partir do pacote forecast.
+Aplicação As bibliotecas forecast e ggplot2 são necessárias, utilize os comandos install.packages(&#39;nome da biblioteca&#39;) e library(nome da biblioteca) para instalar e carregar as bibliotecas.
+library(forecast) #Modelos de previsão (Hyndman and Khandakar, 2008)library(ggplot2) #Elegant Graphics (Wickham, 2009)Para este exemplo vamos importar um banco direto da internet que está hospedado aqui, são dados mensais do saldo de emprego do estado do Maranhão.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Prevendo o futuro com modelos ARIMA :: Ícaro Agostino — Forecasting, Simulção e Otimização</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="ARIMA Aplicações em R para previsão de séries temporais utilizando modelagem ARIMA a partir do pacote forecast.
+Aplicação As bibliotecas forecast e ggplot2 são necessárias, utilize os comandos install.packages(&#39;nome da biblioteca&#39;) e library(nome da biblioteca) para instalar e carregar as bibliotecas.
+library(forecast) #Modelos de previsão (Hyndman and Khandakar, 2008)library(ggplot2) #Elegant Graphics (Wickham, 2009)Para este exemplo vamos importar um banco direto da internet que está hospedado aqui, são dados mensais do saldo de emprego do estado do Maranhão."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/post/arima/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Prevendo o futuro com modelos ARIMA"/>
+<meta name="twitter:description" content="Aplicações em R para previsão de séries temporais utilizando modelagem ARIMA a partir do pacote forecast."/>
+
+
+
+<meta property="og:title" content="Prevendo o futuro com modelos ARIMA" />
+<meta property="og:description" content="Aplicações em R para previsão de séries temporais utilizando modelagem ARIMA a partir do pacote forecast." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/arima/" />
+<meta property="article:published_time" content="2020-03-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-03-22T00:00:00+00:00" /><meta property="og:site_name" content="Ícaro Agostino" />
+
+
+
+
+
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="http://icaroagostino.github.io" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Ícaro Agostino</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/sobre">Sobre Mim</a></li>
+        
+      
+        
+          <li><a href="/curriculum"> Curriculum</a></li>
+        
+      
+        
+          <li><a href="/archive">  Archive</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/sobre">Sobre Mim</a></li>
+      
+    
+      
+        <li><a href="/curriculum"> Curriculum</a></li>
+      
+    
+      
+        <li><a href="/archive">  Archive</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h2 class="post-title"><a href="/post/arima/">Prevendo o futuro com modelos ARIMA</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-03-22
+        </span>
+
+        
+          
+        
+      
+
+      <span class="post-author">— Written by Ícaro</span>
+      
+        <span class="post-read-time">— 3 min read</span>
+      
+    </div>
+
+    
+
+    
+      
+        <img src="/img/ARIMA.jpg" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      <h1 id="arima"><strong>ARIMA</strong></h1>
+<p>Aplicações em R para previsão de séries temporais utilizando modelagem ARIMA a partir do pacote <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a>.</p>
+<h2 id="aplicação">Aplicação</h2>
+<p>As bibliotecas <a href="https://cran.r-project.org/web/packages/forecast/"><strong>forecast</strong></a> e <a href="https://cran.r-project.org/web/packages/ggplot2/"><strong>ggplot2</strong></a> são necessárias, utilize os comandos <code>install.packages('nome da biblioteca')</code> e <code>library(nome da biblioteca)</code> para instalar e carregar as bibliotecas.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">library(forecast) #Modelos de previsão (Hyndman and Khandakar, 2008)
+library(ggplot2) #Elegant Graphics (Wickham, 2009)
+</code></pre><p>Para este exemplo vamos importar um banco direto da internet que está hospedado <a href="https://github.com/icaroagostino/ARIMA/blob/master/dados/MA.txt">aqui</a>, são dados mensais do saldo de emprego do estado do Maranhão.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">dados &lt;- read.table(&quot;https://raw.githubusercontent.com/icaroagostino/ARIMA/master/dados/MA.txt&quot;, header=T)
+attach(dados) #tranformando em objeto
+MA &lt;- ts(MA, start = 2007, frequency = 12) #tranformando em Séries Temporal
+</code></pre><h3 id="visualização">Visualização</h3>
+<pre><code class="language-visual-basic" data-lang="visual-basic">ggtsdisplay(MA, main=&quot;Saldo de emprego - MA&quot;)
+</code></pre><p><img src="graff.png" alt=""></p>
+<p>A série possui caracteristicas de sazonalidade aditiva com tendência moderada negativa, além disso a análise ACF permite evidenciar a presença de autocorrelação temporal entre as observações.</p>
+<h2 id="ajuste-do-modelo">Ajuste do modelo</h2>
+<p>Para a estimação dos parametros e ajuste do modelo será utilizado a função <code>auto.arima()</code>, que utiliza o algoritimo desenvolvido e publicado por Hyndman e Khandakar (2008) que combina a aplicação de testes de raízes unitarias, minimização do AIC e MLE utilizando o procedimento stepwise. A função pertence a biblioteca <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a> que atualmente é mais completa para previsão de séries temporais com aplicações em R. O modelo ajustado terá a notação usual <code>ARIMA(p,d,q)(P,D,Q)[m]</code> sendo que <code>p</code> representa o número de parâmetros autorregressivos, <code>d</code> a ordem de integração, <code>q</code> o número de parâmetros de médias móveis. Caso a série possua sazonalidade, além dos parâmetros já citados ainda terão <code>P</code> para o número de parâmetros autorregressivos sazonais, <code>D</code> a ordem de integração sazonal, <code>Q</code> o número de parâmetros de médias móveis sazonais, e <code>[m]</code> a ordem sazonal.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">ARIMA_fit &lt;- auto.arima(MA)
+ARIMA_fit #sai o modelo ajustado
+</code></pre><pre><code class="language-visual-basic" data-lang="visual-basic">## Series: MA 
+## ARIMA(1,0,1)(2,1,0)[12] with drift 
+##
+## Coefficients:
+##          ar1      ma1     sar1     sar2     drift
+##       0.7076  -0.3409  -0.7236  -0.4268  -24.3796
+## s.e.  0.1315   0.1734   0.0875   0.0862   13.9307
+##
+## sigma^2 estimated as 2708743:  log likelihood=-1025.46
+## AIC=2062.91   AICc=2063.68   BIC=2079.43
+</code></pre><p>O modelo ajustado automaticamente considerou 1 parâmetro autorregressivo, 1 parâmetro de médias móveis, 2 parâmetros sazonais autorregressivos e 1 diferença sazonal de ordem 12 (meses), tais parâmetross podem e devem ser alterados a fim de buscar um melhor ajuste do modelo a partir do comando <code>Arima(x, order = c(0, 0, 0), seasonal = c(0, 0, 0))</code>, informe os parâmetros a serem estimados nos argumentos <code>order</code> e <code>seasonal</code>, lembrando que é possivel estimar diversos modelos concorrentes e decidir o melhor modelo pelos critérios de AIC e BIC.</p>
+<h2 id="verificação-dos-résiduos">Verificação dos résiduos</h2>
+<pre><code class="language-visual-basic" data-lang="visual-basic">checkresiduals(ARIMA_fit)
+</code></pre><p><img src="res.png" alt=""></p>
+<p>Os resíduos gerados pelo modelo apresentaram caracteristicas de ruído branco.</p>
+<h2 id="previsão">Previsão</h2>
+<pre><code class="language-visual-basic" data-lang="visual-basic">autoplot(forecast(ARIMA_fit, h = 12))
+</code></pre><p><img src="prev.png" alt=""></p>
+<h2 id="obs">Obs.:</h2>
+<p>Os dados utilizados nesse exemplo são públicos, para mais detalhes baixe o script <a href="https://github.com/icaroagostino/ARIMA/edit/master/ARIMA.R">ARIMA.R</a> que está <a href="https://github.com/icaroagostino/ARIMA/">neste</a> repositório.</p>
+<p>contato: <a href="mailto:icaroagostino@gmail.com">icaroagostino@gmail.com</a></p>
+
+    </div>
+    
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="http://icaroagostino.github.io" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Ícaro Agostino</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme: <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+        </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

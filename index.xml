@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ícaro Agostino</title>
+    <link>/</link>
+    <description>Recent content on Ícaro Agostino</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 22 Mar 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Curriculum</title>
+      <link>/curriculum/</link>
+      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/curriculum/</guid>
+      <description>Em construção&amp;hellip;[o texto abaixo é um exemplo] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec interdum metus. Aenean rutrum ligula sodales ex auctor, sed tempus dui mollis. Curabitur ipsum dui, aliquet nec commodo at, tristique eget ante. Donec quis dolor nec nunc mollis interdum vel in purus. Sed vitae leo scelerisque, sollicitudin elit sed, congue ante. In augue nisl, vestibulum commodo est a, tristique porttitor est. Proin laoreet iaculis ornare.</description>
+    </item>
+    
+    <item>
+      <title>Prevendo o futuro com modelos ARIMA</title>
+      <link>/post/arima/</link>
+      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/arima/</guid>
+      <description>ARIMA Aplicações em R para previsão de séries temporais utilizando modelagem ARIMA a partir do pacote forecast.
+Aplicação As bibliotecas forecast e ggplot2 são necessárias, utilize os comandos install.packages(&#39;nome da biblioteca&#39;) e library(nome da biblioteca) para instalar e carregar as bibliotecas.
+library(forecast) #Modelos de previsão (Hyndman and Khandakar, 2008)library(ggplot2) #Elegant Graphics (Wickham, 2009)Para este exemplo vamos importar um banco direto da internet que está hospedado aqui, são dados mensais do saldo de emprego do estado do Maranhão.</description>
+    </item>
+    
+    <item>
+      <title>Sobre Mim</title>
+      <link>/sobre/</link>
+      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sobre/</guid>
+      <description>Olá, Meu nome é Ícaro, atualmente sou Doutorando em Eng. de Produção pela UFSC, Pesquisador no Laboratório de Sistemas Produtivos e Logísticos Inteligentes (ProLogIS) e estou em período sanduíche como Pesquisador Visitante no Bremer Institut für Produktion und Logistik GmbH (BIBA) na Alemanha.
+Sou grande entusiasta da linguagem R e tenho desenvolvido diversas aplicações em Simulação, Forecasting, Construção de API&#39;s e Modelagem estatística em geral. Você pode encontrar alguns dos meus projetos no github.</description>
+    </item>
+    
+    <item>
+      <title>Archive</title>
+      <link>/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/archive/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
