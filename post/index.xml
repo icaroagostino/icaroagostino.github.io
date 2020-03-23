@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Mar 2023 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,13 +14,12 @@
     <item>
       <title>Prevendo o futuro com modelos ARIMA</title>
       <link>/post/arima/</link>
-      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 22 Mar 2023 00:00:00 +0000</pubDate>
       
       <guid>/post/arima/</guid>
       <description>Cover Photo by Lum3n.com from Pexels
-Previsão com modelos ARIMA Nesse post vamos demonstrar de forma simplicada como ajustar um modelo de previsão utilizando a família de modelos Autorregressivos Integrados de Médias Móveis (ARIMA) em R para para previsão de séries temporais utilizando o pacote forecast.
- R é uma linguagem de programação open source. Todos os recursos, bibliotecas, dados e implementações são gratuitos e desenvolvidos pela comunidade.
-Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo sugiro o tutorial básico desenvolvido pelo pessoal do curso-r: http://material.</description>
+Previsão com modelos ARIMA Existem muitos conceitos relacionados a previsão, cientificamente falando uma das formas mais bem fundamentadas é a previsão baseada em séries temporais, em que você observa uma variável ao longo do tempo, em intervalos constantes, a partir disso consegue extrair padrões e extrapolar esses padrões para o futuro.
+Nesse post vamos demonstrar de forma simplificada como ajustar um modelo de previsão utilizando a família de modelos Autorregressivos Integrados de Médias Móveis (ARIMA) em R para para previsão de séries temporais utilizando o pacote forecast.</description>
     </item>
     
   </channel>
