@@ -6,9 +6,9 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="ARIMA Aplicações em R para previsão de séries temporais utilizando modelagem ARIMA a partir do pacote forecast.
-Aplicação As bibliotecas forecast e ggplot2 são necessárias, utilize os comandos install.packages(&#39;nome da biblioteca&#39;) e library(nome da biblioteca) para instalar e carregar as bibliotecas.
-library(forecast) #Modelos de previsão (Hyndman and Khandakar, 2008)library(ggplot2) #Elegant Graphics (Wickham, 2009)Para este exemplo vamos importar um banco direto da internet que está hospedado aqui, são dados mensais do saldo de emprego do estado do Maranhão."/>
+<meta name="description" content="Previsão com modelos ARIMA Nesse post vamos demonstrar de forma simplicada como ajustar um modelo de previsão utilizando a família de modelos Autorregressivos Integrados de Médias Móveis (ARIMA) em R para para previsão de séries temporais utilizando o pacote forecast.
+ R é uma linguagem de programação open source. Todos os recursos, bibliotecas, dados e implementações são gratuitos e desenvolvidos pela comunidade.
+Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo sugiro o tutorial básico desenvolvido pelo pessoal do curso-r: http://material."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/post/arima/" />
@@ -140,7 +140,7 @@ library(forecast) #Modelos de previsão (Hyndman and Khandakar, 2008)library(gg
 
       <span class="post-author">— Written by Ícaro</span>
       
-        <span class="post-read-time">— 3 min read</span>
+        <span class="post-read-time">— 4 min read</span>
       
     </div>
 
@@ -153,22 +153,30 @@ library(forecast) #Modelos de previsão (Hyndman and Khandakar, 2008)library(gg
     
 
     <div class="post-content">
-      <h1 id="arima"><strong>ARIMA</strong></h1>
-<p>Aplicações em R para previsão de séries temporais utilizando modelagem ARIMA a partir do pacote <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a>.</p>
+      <h1 id="previsão-com-modelos-arima"><strong>Previsão com modelos ARIMA</strong></h1>
+<p>Nesse post vamos demonstrar de forma simplicada como ajustar um modelo de previsão utilizando a família de modelos <strong>Autorregressivos Integrados de Médias Móveis (ARIMA)</strong> em <code>R</code> para para previsão de séries temporais utilizando o pacote <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a>.</p>
+<blockquote>
+<p><code>R</code> é uma linguagem de programação open source. Todos os recursos, bibliotecas, dados e implementações são gratuitos e desenvolvidos pela comunidade.</p>
+<p>Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo sugiro o tutorial básico desenvolvido pelo pessoal do <a href="https://www.curso-r.com/">curso-r</a>: <a href="http://material.curso-r.com/instalacao/">http://material.curso-r.com/instalacao/</a></p>
+</blockquote>
+<p><em>Vamos começar&hellip;</em></p>
+<p><img src="https://media3.giphy.com/media/VMmRM3EjhjBII/giphy-downsized.gif#center" alt=""></p>
 <h2 id="aplicação">Aplicação</h2>
 <p>As bibliotecas <a href="https://cran.r-project.org/web/packages/forecast/"><strong>forecast</strong></a> e <a href="https://cran.r-project.org/web/packages/ggplot2/"><strong>ggplot2</strong></a> são necessárias, utilize os comandos <code>install.packages('nome da biblioteca')</code> e <code>library(nome da biblioteca)</code> para instalar e carregar as bibliotecas.</p>
+<p>Para este exemplo vamos importar um banco direto da internet que está hospedado <a href="https://github.com/icaroagostino/ARIMA/blob/master/dados/MA.txt">aqui</a>, são dados mensais do saldo de emprego do estado do Maranhão.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">library(forecast) #Modelos de previsão (Hyndman and Khandakar, 2008)
 library(ggplot2) #Elegant Graphics (Wickham, 2009)
-</code></pre><p>Para este exemplo vamos importar um banco direto da internet que está hospedado <a href="https://github.com/icaroagostino/ARIMA/blob/master/dados/MA.txt">aqui</a>, são dados mensais do saldo de emprego do estado do Maranhão.</p>
-<pre><code class="language-visual-basic" data-lang="visual-basic">dados &lt;- read.table(&quot;https://raw.githubusercontent.com/icaroagostino/ARIMA/master/dados/MA.txt&quot;, header=T)
+dados &lt;- read.table(&quot;https://raw.githubusercontent.com/icaroagostino/ARIMA/master/dados/MA.txt&quot;, header=T)
 attach(dados) #tranformando em objeto
 MA &lt;- ts(MA, start = 2007, frequency = 12) #tranformando em Séries Temporal
 </code></pre><h3 id="visualização">Visualização</h3>
 <pre><code class="language-visual-basic" data-lang="visual-basic">ggtsdisplay(MA, main=&quot;Saldo de emprego - MA&quot;)
-</code></pre><p><img src="graff.png" alt=""></p>
+</code></pre><p><img src="graff.png#center" alt=""></p>
 <p>A série possui caracteristicas de sazonalidade aditiva com tendência moderada negativa, além disso a análise ACF permite evidenciar a presença de autocorrelação temporal entre as observações.</p>
 <h2 id="ajuste-do-modelo">Ajuste do modelo</h2>
-<p>Para a estimação dos parametros e ajuste do modelo será utilizado a função <code>auto.arima()</code>, que utiliza o algoritimo desenvolvido e publicado por Hyndman e Khandakar (2008) que combina a aplicação de testes de raízes unitarias, minimização do AIC e MLE utilizando o procedimento stepwise. A função pertence a biblioteca <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a> que atualmente é mais completa para previsão de séries temporais com aplicações em R. O modelo ajustado terá a notação usual <code>ARIMA(p,d,q)(P,D,Q)[m]</code> sendo que <code>p</code> representa o número de parâmetros autorregressivos, <code>d</code> a ordem de integração, <code>q</code> o número de parâmetros de médias móveis. Caso a série possua sazonalidade, além dos parâmetros já citados ainda terão <code>P</code> para o número de parâmetros autorregressivos sazonais, <code>D</code> a ordem de integração sazonal, <code>Q</code> o número de parâmetros de médias móveis sazonais, e <code>[m]</code> a ordem sazonal.</p>
+<p>Para a estimação dos parametros e ajuste do modelo será utilizado a função <code>auto.arima()</code>, que utiliza o algoritimo desenvolvido e publicado por Hyndman e Khandakar (2008) que combina a aplicação de testes de raízes unitarias, minimização do AIC e MLE utilizando o procedimento stepwise.</p>
+<p>A função pertence a biblioteca <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a> que atualmente é mais completa para previsão de séries temporais com aplicações em R. O modelo ajustado terá a notação usual <code>ARIMA(p,d,q)(P,D,Q)[m]</code> sendo que <code>p</code> representa o número de parâmetros autorregressivos, <code>d</code> a ordem de integração, <code>q</code> o número de parâmetros de médias móveis.</p>
+<p>Caso a série possua sazonalidade, além dos parâmetros já citados ainda terão <code>P</code> para o número de parâmetros autorregressivos sazonais, <code>D</code> a ordem de integração sazonal, <code>Q</code> o número de parâmetros de médias móveis sazonais, e <code>[m]</code> a ordem sazonal.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">ARIMA_fit &lt;- auto.arima(MA)
 ARIMA_fit #sai o modelo ajustado
 </code></pre><pre><code class="language-visual-basic" data-lang="visual-basic">## Series: MA 
@@ -181,17 +189,45 @@ ARIMA_fit #sai o modelo ajustado
 ##
 ## sigma^2 estimated as 2708743:  log likelihood=-1025.46
 ## AIC=2062.91   AICc=2063.68   BIC=2079.43
-</code></pre><p>O modelo ajustado automaticamente considerou 1 parâmetro autorregressivo, 1 parâmetro de médias móveis, 2 parâmetros sazonais autorregressivos e 1 diferença sazonal de ordem 12 (meses), tais parâmetross podem e devem ser alterados a fim de buscar um melhor ajuste do modelo a partir do comando <code>Arima(x, order = c(0, 0, 0), seasonal = c(0, 0, 0))</code>, informe os parâmetros a serem estimados nos argumentos <code>order</code> e <code>seasonal</code>, lembrando que é possivel estimar diversos modelos concorrentes e decidir o melhor modelo pelos critérios de AIC e BIC.</p>
+</code></pre><p>O modelo ajustado automaticamente considerou 1 parâmetro autorregressivo, 1 parâmetro de médias móveis, 2 parâmetros sazonais autorregressivos e 1 diferença sazonal de ordem 12 (meses).</p>
+<p>Tais parâmetross podem e devem ser alterados a fim de buscar um melhor ajuste do modelo a partir do comando <code>Arima(x, order = c(0, 0, 0), seasonal = c(0, 0, 0))</code>, informe os parâmetros a serem estimados nos argumentos <code>order</code> e <code>seasonal</code>, lembrando que é possivel estimar diversos modelos concorrentes e decidir o melhor modelo pelos critérios de AIC e BIC.</p>
 <h2 id="verificação-dos-résiduos">Verificação dos résiduos</h2>
 <pre><code class="language-visual-basic" data-lang="visual-basic">checkresiduals(ARIMA_fit)
-</code></pre><p><img src="res.png" alt=""></p>
+</code></pre><p><img src="res.png#center" alt=""></p>
 <p>Os resíduos gerados pelo modelo apresentaram caracteristicas de ruído branco.</p>
 <h2 id="previsão">Previsão</h2>
 <pre><code class="language-visual-basic" data-lang="visual-basic">autoplot(forecast(ARIMA_fit, h = 12))
-</code></pre><p><img src="prev.png" alt=""></p>
-<h2 id="obs">Obs.:</h2>
+</code></pre><p><img src="prev.png#center" alt=""></p>
+<p>Como podemos ver, a previsão parece seguir o comportamento esperado para a série, sendo capaz de capturar o comportamento de tendência e sazionalidade dos dados.</p>
+<h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
+<p>Nesse tutorial vimos de forma simplicada a utilização de modelos ARIMA para previsão de séries temporais, o exemplo demonstrado acima é totalmente reproduzével, basta instalar as bibliotecas necessárias e copiar os códigos acima para o seu Rstudio.</p>
+<p>Se usar algum dos pacotes aqui demonstrados não esqueça de citar a publicação:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">
+  citation(&quot;forecast&quot;)
+  
+  ##
+  ## To cite the forecast package in
+  ## publications, please use:
+  ##   
+  ## To cite the forecast package in publications, please use:
+  ##
+  ## Hyndman R, Athanasopoulos G, Bergmeir C, Caceres G, Chhay L,
+  ## O'Hara-Wild M, Petropoulos F, Razbash S, Wang E, Yasmeen F
+  ## (2019). _forecast: Forecasting functions for time series and
+  ## linear models_. R package version 8.9, &lt;URL:
+  ## http://pkg.robjhyndman.com/forecast&gt;.
+  ## 
+  ## Hyndman RJ, Khandakar Y (2008). “Automatic time series
+  ## forecasting: the forecast package for R.” _Journal of
+  ## Statistical Software_, *26*(3), 1-22. &lt;URL:
+  ## http://www.jstatsoft.org/article/view/v027i03&gt;.
+  ##
+</code></pre><h2 id="obs">Obs.:</h2>
 <p>Os dados utilizados nesse exemplo são públicos, para mais detalhes baixe o script <a href="https://github.com/icaroagostino/ARIMA/edit/master/ARIMA.R">ARIMA.R</a> que está <a href="https://github.com/icaroagostino/ARIMA/">neste</a> repositório.</p>
 <p>contato: <a href="mailto:icaroagostino@gmail.com">icaroagostino@gmail.com</a></p>
+<hr>
+<p>Até o próximo post, bons estudos em <code>R</code> :D</p>
+<p><img src="https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif#center" alt=""></p>
 
     </div>
     
