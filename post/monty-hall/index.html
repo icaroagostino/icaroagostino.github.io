@@ -156,7 +156,7 @@ Para demonstrar os conceitos discutidos aqui vamos simular alguns cenários util
       <p><a href="https://www.pexels.com/photo/person-about-to-catch-four-dices-1111597/">Cover Photo by fotografierende from Pexels</a></p>
 <h1 id="o-problema-de-monty-hall"><strong>O Problema de Monty Hall</strong></h1>
 <p>Nesse post vamos abordar um aspecto interessante sobre probabilidades, especificamente o problema de Monty Hall, também conhecido por paradoxo de <strong>Monty Hall</strong>, trata-se de um problema matemático e um paradoxo que surgiu a partir de um concurso televisivo dos Estados Unidos chamado <em>Let’s Make a Deal</em>, exibido na década de 1970.<a href="https://brilliant.org/wiki/monty-hall-problem/">[1]</a></p>
-<p>Para demonstrar os conceitos discutidos aqui vamos simular alguns cenários utilizando funções básicas em <code>R</code>. Se você já conhece <code>R</code> pode simplesmente ir copiando e colando no seu script os códigos, que o exemplo é totalmente reproduzível <code>:)</code>. No final desse post você vai achar links para o código usado, assim como links sobre como começar a utilizar <code>R</code>.</p>
+<p>Para demonstrar os conceitos discutidos aqui vamos simular alguns cenários utilizando funções básicas em <code>R</code>. Se você já conhece <code>R</code> pode simplesmente ir copiando e colando no seu script os códigos, o exemplo é totalmente reproduzível <code>:)</code>. No final desse post você vai achar links para o código usado, assim como links sobre como começar a utilizar <code>R</code>.</p>
 <p><em>Vamos começar&hellip;</em></p>
 <p><img src="https://media.giphy.com/media/CjmvTCZf2U3p09Cn0h/giphy.gif#center" alt=""></p>
 <h2 id="o-problema-escolha-a-sua-sorte">O problema: escolha a sua sorte</h2>
@@ -179,8 +179,8 @@ Para demonstrar os conceitos discutidos aqui vamos simular alguns cenários util
 <p>Agora vem um <strong>spoiler</strong>: A chances não são 50%, mas sim <strong>~33.3% se você não mudar</strong> de porta e <strong>~66.6% se você mudar</strong>.</p>
 <p><img src="https://media1.giphy.com/media/qvWavuCEwjEPu/giphy.gif#center" alt=""></p>
 <h2 id="o-físico-turista-e-o-twitter">O Físico Turista e o twitter</h2>
-<p>Esse problema veio até mim por meio do vídeo do canal Físico Turista do <a href="https://twitter.com/caiocgomes"><strong>Caio Gomes</strong></a>, após assistir esse vídeo fiquei pensativo sobre o assunto e resolvi implementar uma simulação em <code>R</code> para ver se de fato as coisas ocorriam como descritos pelo <strong>Caio</strong>.</p>
-<p>Na época divulguei a implementação no twitter e o próprio <strong>Caio</strong> de reply <code>:)</code></p>
+<p>Esse problema veio até mim por meio do vídeo (link no fim do post) do canal Físico Turista do <a href="https://twitter.com/caiocgomes"><strong>Caio Gomes</strong></a>, após assistir esse vídeo fiquei pensativo sobre o assunto e resolvi implementar uma simulação em <code>R</code> para ver se de fato as coisas ocorriam como descritos pelo <strong>Caio</strong>.</p>
+<p>Na época divulguei a implementação no twitter e o próprio <strong>Caio</strong> deu reply <code>:)</code></p>
 <blockquote class="twitter-tweet"><p lang="pt" dir="ltr">Depois do último vídeo do <a href="https://twitter.com/caiocgomes?ref_src=twsrc%5Etfw">@caiocgomes</a> eu implementei em R uma demonstração do problema de Monty Hall, simulei as 2 estratégias 10 mil vezes. Os resultados batem perfeitamente.<br><br>Link para o código: <a href="https://t.co/R8EPbaOx7D">https://t.co/R8EPbaOx7D</a><br><br>Eixo X = probabilidade acumulada<br>Eixo Y = nº de repetições <a href="https://t.co/4hyF4XbSZK">pic.twitter.com/4hyF4XbSZK</a></p>&mdash; Ícaro Agostino (@icaroagostino) <a href="https://twitter.com/icaroagostino/status/1216493961935757324?ref_src=twsrc%5Etfw">January 12, 2020</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -265,7 +265,7 @@ data_estrategia2 &lt;-
   data.frame(rodada = c(1:n),
              perc.ganha = cumsum(vitorias)/c(1:n))
 </code></pre><h2 id="resultados-contra-intuitivos">Resultados contra intuitivos?</h2>
-<p>Chegou a hora de ver o resultados das nossas simulações, vamos plotar ambas as estratégias, vamos utilizar o pacote <code>ggplot2</code>.</p>
+<p>Chegou a hora de ver os resultados das simulações, para plotar ambas as estratégias, vamos utilizar o pacote <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
 <p><strong>Estratégia 1</strong> - Não muda de porta.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">library(ggplot2)
 
@@ -280,11 +280,11 @@ ggplot(data_estrategia1, aes(x = rodada, y = perc.ganha)) +
   geom_hline(yintercept=2/3,
              color = &quot;red&quot;)
 </code></pre><p><img src="e2.png#center" alt=""></p>
-<p>Mas o que aconteceu? por que mudar sempre de portar parece ser a melhor escolha?</p>
+<p>Mas o que aconteceu? por que mudar sempre de porta parece ser a melhor escolha?</p>
 <blockquote>
-<p>A verdade é que estatisticamente falando, a estratégia 2 sim é a melhor, ela não garante a vitoria, mas te dar a maior probabilidade de ganhar o jogo, agora vamos tentar entender porque isso acontece.</p>
+<p>A verdade é que estatisticamente falando, a estratégia 2 <strong>sim</strong> é a melhor, ela não garante a vitória, mas têm a maior probabilidade de ganhar o jogo, agora vamos tentar entender porque isso acontece.</p>
 </blockquote>
-<p>Uma informação que não levamos em consideração, e que muda a &ldquo;sorte&rdquo; é que quando o apresentador, após a primeira escolha, revela a uma das portas que não foi escolhida ele possui uma informação: <strong>ele sabe onde está o prêmio</strong>. Mas o que isso muda?</p>
+<p>Uma informação que não levamos em consideração, e que muda a &ldquo;sorte&rdquo;, é que quando o apresentador revela uma das portas que não foi escolhida ele possui uma informação: <strong>ele sabe onde está o prêmio</strong>. Mas o que isso muda?</p>
 <h2 id="sorte-ou-chance">Sorte ou chance?</h2>
 <p>Como o show deve continuar o apresentador ao revelar umas das portas restantes ele sempre abrirá a porta onde o prêmio não está, assim o suspense continua e o jogo passa para a fase 2.</p>
 <p>Sabendo disso quando analisamos novamente o cenário, temos duas possibilidades:</p>
@@ -302,7 +302,7 @@ ggplot(data_estrategia1, aes(x = rodada, y = perc.ganha)) +
 <p><strong>Estratégia 1</strong>: se você escolher de primeira a porta certa, somente nesse caso você ganha, logo espera-se que isso ocorra em um terço das vezes (~33.3%).</p>
 </li>
 <li>
-<p><strong>Estratégia 2</strong>: se você não escolher de primeira a porta certa, você ganhará, pois o apresentador eliminará uma porta errada e como você escolheu uma errada inicialmente você muda e ganha o jogo, como a chance inicial de escolher a porta errada é maior espera-se que isso ocorra em um terço das vezes (~66,6%).</p>
+<p><strong>Estratégia 2</strong>: se você não escolher de primeira a porta certa, você ganhará, pois o apresentador eliminará uma porta errada e como você escolheu uma errada inicialmente você muda e ganha o jogo, como a chance inicial de escolher a porta errada é maior, espera-se que isso ocorra em um dois terços das vezes (~66,6%).</p>
 </li>
 </ul>
 <p><img src="https://i.pinimg.com/originals/e4/5f/ec/e45fec5478e45d2668062daf8fd2dd5b.jpg#center" alt=""></p>
