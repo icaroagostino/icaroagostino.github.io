@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>O Problema de Monty Hall :: Ícaro Agostino — Forecasting, Simulção e Otimização</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Cover Photo by fotografierende from Pexels
+O Problema de Monty Hall Nesse post vamos abordar um aspecto interessante sobre probabilidades, especificamente o problema de Monty Hall, também conhecido por paradoxo de Monty Hall, trata-se de um problema matemático e um paradoxo que surgiu a partir de um concurso televisivo dos Estados Unidos chamado Let’s Make a Deal, exibido na década de 1970.[1]
+Para demonstrar os conceitos discutidos aqui vamos simular alguns cenários utilizando funções básicas em R."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/post/monty-hall/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="O Problema de Monty Hall"/>
+<meta name="twitter:description" content="Probabilidades são contraintuitivas."/>
+
+
+
+<meta property="og:title" content="O Problema de Monty Hall" />
+<meta property="og:description" content="Probabilidades são contraintuitivas." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/monty-hall/" />
+<meta property="article:published_time" content="2020-03-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-03-27T00:00:00+00:00" /><meta property="og:site_name" content="Ícaro Agostino" />
+
+
+
+
+
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="http://icaroagostino.github.io" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Ícaro Agostino</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/sobre">Sobre Mim</a></li>
+        
+      
+        
+          <li><a href="/curriculum"> Curriculum</a></li>
+        
+      
+        
+          <li><a href="/archive">  Archive</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/sobre">Sobre Mim</a></li>
+      
+    
+      
+        <li><a href="/curriculum"> Curriculum</a></li>
+      
+    
+      
+        <li><a href="/archive">  Archive</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h2 class="post-title"><a href="/post/monty-hall/">O Problema de Monty Hall</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-03-27
+        </span>
+
+        
+          
+        
+      
+
+      <span class="post-author">— Written by Ícaro</span>
+      
+        <span class="post-read-time">— 7 min read</span>
+      
+    </div>
+
+    
+
+    
+      
+        <img src="/img/monty_hall.jpg" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      <p><a href="https://www.pexels.com/photo/person-about-to-catch-four-dices-1111597/">Cover Photo by fotografierende from Pexels</a></p>
+<h1 id="o-problema-de-monty-hall"><strong>O Problema de Monty Hall</strong></h1>
+<p>Nesse post vamos abordar um aspecto interessante sobre probabilidades, especificamente o problema de Monty Hall, também conhecido por paradoxo de <strong>Monty Hall</strong>, trata-se de um problema matemático e um paradoxo que surgiu a partir de um concurso televisivo dos Estados Unidos chamado <em>Let’s Make a Deal</em>, exibido na década de 1970.<a href="https://brilliant.org/wiki/monty-hall-problem/">[1]</a></p>
+<p>Para demonstrar os conceitos discutidos aqui vamos simular alguns cenários utilizando funções básicas em <code>R</code>. Se você já conhece <code>R</code> pode simplemente ir copiando e colando no seu script os códigos que o exemplo é totoalmente reproduzivel <code>:)</code>. No final desse post você vai achar links para o código usado, assim como links sobre como começar a utilizar <code>R</code>.</p>
+<p><em>Vamos começar&hellip;</em></p>
+<p><img src="https://media.giphy.com/media/CjmvTCZf2U3p09Cn0h/giphy.gif#center" alt=""></p>
+<h2 id="o-problema-escolha-a-sua-sorte">O problema: escolha a sua sorte</h2>
+<p>O jogo consistia no seguinte: Monty Hall, o apresentador, apresentava três portas aos concorrentes. Atrás de uma delas estava um prêmio (um carro) e, atrás das outras duas, dois bodes.</p>
+<ul>
+<li>
+<p>Na 1ª etapa o concorrente escolhe uma das três portas (que ainda não é aberta)</p>
+</li>
+<li>
+<p>Na 2ª etapa, Monty abre uma das outras duas portas que o concorrente não escolheu, revelando que o carro não se encontra nessa porta e revelando um dos bodes</p>
+</li>
+<li>
+<p>Na 3ª etapa Monty pergunta ao concorrente se quer decidir permanecer com a porta que escolheu no início do jogo ou se ele pretende mudar para a outra porta que ainda está fechada para então a abrir. Agora, com duas portas apenas para escolher — pois uma delas já se viu, na 2.ª etapa, que não tinha o prêmio — e sabendo que o carro está atrás de uma das restantes duas, o concorrente tem que tomar a decisão.</p>
+</li>
+</ul>
+<p><img src="https://brilliant-staff-media.s3-us-west-2.amazonaws.com/tiffany-wang/gWotbuEdYC.png#center" alt=""></p>
+<p><a href="https://brilliant.org/wiki/monty-hall-problem/">Photo by brilliant.org</a></p>
+<p>Qual é a estratégia mais lógica? Ficar com a porta escolhida inicialmente ou mudar de porta? Com qual das duas portas ainda fechadas o concorrente tem mais probabilidades de ganhar? Por quê?</p>
+<p>Intuitivamente pensamos que tanto faz mudar ou não, afinal temos duas portas, logo as chances são 50% para cada uma.</p>
+<p>Agora vem um <strong>spoiler</strong>: A chances não são 50%, mas sim <strong>~33.3% se você não mudar</strong> de porta e <strong>~66.6% se você mudar</strong>.</p>
+<p><img src="https://media1.giphy.com/media/qvWavuCEwjEPu/giphy.gif#center" alt=""></p>
+<h2 id="o-físico-turista-e-o-twitter">O Físico Turista e o twitter</h2>
+<p>Esse problema veio até mim por meio do vídeo do canal Físico Turista do <a href="https://twitter.com/caiocgomes"><strong>Caio Gomes</strong></a>, após assitir esse vídeo fiquei pensativo sobre o assunto e resolvi implementar uma simulação em <code>R</code> para ver se de fato as coisas ocorriam como descritos pelo <strong>Caio</strong>.</p>
+<p>Na época divulguei a implementação no twitter e o propior <strong>Caio</strong> de reply <code>:)</code></p>
+<blockquote class="twitter-tweet"><p lang="pt" dir="ltr">Depois do último vídeo do <a href="https://twitter.com/caiocgomes?ref_src=twsrc%5Etfw">@caiocgomes</a> eu implementei em R uma demonstração do problema de Monty Hall, simulei as 2 estratégias 10 mil vezes. Os resultados batem perfeitamente.<br><br>Link para o código: <a href="https://t.co/R8EPbaOx7D">https://t.co/R8EPbaOx7D</a><br><br>Eixo X = probabilidade acumulada<br>Eixo Y = nº de repetições <a href="https://t.co/4hyF4XbSZK">pic.twitter.com/4hyF4XbSZK</a></p>&mdash; Ícaro Agostino (@icaroagostino) <a href="https://twitter.com/icaroagostino/status/1216493961935757324?ref_src=twsrc%5Etfw">January 12, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<h2 id="simulando-a-sorte">Simulando a sorte?</h2>
+<p>Quando estudamos probabilidade, a ideia é sempre pensar o que é mais provavel acontecer, <strong>empiricamente</strong> podemos fazer esse tipo análise repetindo de forma aleatória muitas vezes um experimento e no fim analisar como em média os resultados se comportam.</p>
+<p>Aqui vamos tratar cada decisão como uma estrategia, e implementar ambas utilizando funções de probabilidades, cada estrategia será simulada <strong>10 mil vezes</strong>, no final vamos comparar os resultados graficamente.</p>
+<ul>
+<li><strong>Estrategia 1</strong> - Não muda de porta</li>
+<li><strong>Estrategia 2</strong> - Muda de porta</li>
+</ul>
+<p>Primeiro vamos criar algumas variáveis do experimento:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">n &lt;- 10000 # Numero de repeticoes
+vitorias &lt;- c() # Vetor onde serao gravadas as vitorias
+portas &lt;- c(1:3) # Vetor de portas
+</code></pre><h3 id="estrategia-1---não-muda-de-porta"><strong>Estrategia 1</strong> - Não muda de porta.</h3>
+<p>Aqui de uma forma simples, apenas utilizando funções básicas do <code>R</code> vamos criar um loop com o número de repetições definidas anteriormente.</p>
+<p>Vamos aleatoriamente sortear a <code>porta_premio</code> e depois a <code>escolha</code> do jogador. Depois comparamos se o jogador acertou de primeira, se sim computamos uma vitoria, se não computamos a derrota de forma direta, já que nesse caso o jogador não mudará nunca de porta.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">
+###################################
+# Estrategia 1 - Nao muda a porta #
+###################################
+
+for (i in 1:n){
+  
+  porta_premio &lt;- sample(x = portas, size = 1) # porta com premio
+  escolha &lt;- sample(x = portas, size = 1) # escolha do jogador
+  
+  # Se a escolha for igual a porta premiada vence [1]
+  if (porta_premio == escolha){
+    
+    vitorias &lt;- c(vitorias, 1)
+    
+  # Se a escolha for diferente da porta premiada perde [0]
+  } else {
+    
+    vitorias &lt;- c(vitorias, 0)
+    
+  }
+}
+</code></pre><p>Agora vamos salvar esses resultados para comparar no final.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic"># Computa resultados
+data_estrategia1 &lt;-
+  data.frame(rodada = c(1:n),
+             perc.ganha = cumsum(vitorias)/c(1:n))
+</code></pre><h3 id="estrategia-2---muda-de-porta"><strong>Estrategia 2</strong> - Muda de porta.</h3>
+<p>Assim como no caso anterior vamos criar um loop com o número de repetições definidas anteriormente.</p>
+<p>Vamos novamente aleatoriamente sortear a <code>porta_premio</code> e depois a <code>escolha1</code> do jogador. Depois vamos excluir o apresentador vai exluir uma das protar diferente da escolha do jogador.</p>
+<p>Agora o jogador tem a <code>escolha1</code> e a porta que sobrou, nessa estrategia ele sempre muda para a que sobrou., aqui representada pela <code>escolha2</code>. Por fim, comparamos se a nova escolha é a <code>porta_premio</code>, se sim computamos uma vitoria, se não computamos.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">###############################
+# Estrategia 2 - Muda a porta #
+###############################
+
+vitorias &lt;- c() # Vetor onde serao gravadas as vitorias
+
+for (i in 1:n){
+  
+  porta_premio &lt;- sample(x = portas, size = 1) # porta com premio
+  escolha1 &lt;- sample(x = portas, size = 1) # primeira escolha do jogador
+  
+  x &lt;- portas[-c(porta_premio, escolha1)] # variavel auxliar
+  
+  porta_eliminada &lt;- if(length(x) &gt; 1) sample(x, size = 1) else x # elimina
+  
+  escolha2 &lt;- portas[-c(escolha1,porta_eliminada)] # jogador muda de porta
+  
+  # Se a escolha 2 for igual a porta premiada vence [1]
+  if (porta_premio == escolha2){
+    
+    vitorias &lt;- c(vitorias, 1)
+    
+  # Se a escolha 2 for diferente da porta premiada perde [0]
+  } else {
+    
+    vitorias &lt;- c(vitorias, 0)
+    
+  }
+  
+}
+</code></pre><p>Agora vamos salvar esses resultados para comparar no final.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic"># Computa resultados
+data_estrategia2 &lt;-
+  data.frame(rodada = c(1:n),
+             perc.ganha = cumsum(vitorias)/c(1:n))
+</code></pre><h2 id="resultados-contra-intuitivos">Resultados contra intuitivos?</h2>
+<p>Chegou a hora de ver o resultados das nossas simulações, vamos plotar ambas as estrategias, vamos utilizar o pacote <code>ggplot2</code>.</p>
+<p><strong>Estrategia 1</strong> - Não muda de porta.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">library(ggplot2)
+
+ggplot(data_estrategia1, aes(x = rodada, y = perc.ganha)) +
+  geom_line() +
+  geom_hline(yintercept=1/3,
+             color = &quot;red&quot;)
+</code></pre><p><img src="e1.png#center" alt=""></p>
+<p><strong>Estrategia 2</strong> - Muda de porta.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">ggplot(data_estrategia2, aes(x = rodada, y = perc.ganha)) +
+  geom_line() +
+  geom_hline(yintercept=2/3,
+             color = &quot;red&quot;)
+</code></pre><p><img src="e2.png#center" alt=""></p>
+<p>Mas o que aconteceu? por que mudar sempre de portar parece ser a melhor escolha?</p>
+<blockquote>
+<p>A verdade é que estatisticamente falando, a estrategia 2 simé a melhor, ela não garante a vitoria, mas te dar a maior probabilidade de ganhar o jogo, agora vamos tentar entender porque isso acontece.</p>
+</blockquote>
+<p>Uma informação que não levamos em consideração, e que muda a &ldquo;sorte&rdquo; é que quando o apresentador, após a primeira escolha, revela a uma das portas que não foi escolhida ele possui uma informação: <strong>ele sabe onde está o premio</strong>. Mas o que isso muda?</p>
+<h2 id="sorte-ou-chance">Sorte ou chance?</h2>
+<p>Como o show deve continuar o apresentador ao revelar umas das portas restantes ele sempre abrirá a porta onde o premio não está, assim o suspense continua e o jogo passa para a fase 2.</p>
+<p>Sabendo disso quando analisamos novamente o cenário, temos duas possiblidades:</p>
+<ul>
+<li>
+<p><strong>Cenário 1</strong>: voce escolhe a porta certa de primeira (nesse caso a chance é de um terço), e o para o aprensetador tanto faz qual ele revelará.</p>
+</li>
+<li>
+<p><strong>Cenário 2</strong>: você escolha aporta errada de primeira (nesse caso a chance é dois terços), e o apresentador será forçado a abrir uma porta onde o premio não está, logo sobra a sua escolha inicial e mais uma porta possivel.</p>
+</li>
+</ul>
+<p>Sabendo disso quando aplicamos as duas estrategias temos o seguinte resultado:</p>
+<ul>
+<li>
+<p><strong>Estrategia 1</strong>: se você escolher de primeira a porta certa, somente nesse caso você ganha, logo espera-se que isso ocorra em um terço das vezes (~33.3%).</p>
+</li>
+<li>
+<p><strong>Estrategia 2</strong>: se você não escolher de primeira a porta certa, você ganhará, pois o apresentador eliminará uma porta errada e como você escolheu uma errada incialmente você muda e ganha o jogo, como a chance inicial de escolher a porta errada é maior espera-se que isso ocorra em um terço das vezes (~66,6%).</p>
+</li>
+</ul>
+<p><img src="https://i.pinimg.com/originals/e4/5f/ec/e45fec5478e45d2668062daf8fd2dd5b.jpg#center" alt=""></p>
+<p>Se você estiver enteressado em uma solução analitica para o problema pode encontrar <a href="https://brilliant.org/wiki/monty-hall-problem/">aqui</a>.</p>
+<h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
+<p>Espero que tenha gostado desse problema, se quiser acessar o script completo para reproduzir o exemplo basta clicar <a href="https://github.com/icaroagostino/fun/blob/master/Monty_Hall.R">aqui</a>.</p>
+<blockquote>
+<p><code>R</code> é uma linguagem de programação open source. Todos os recursos, bibliotecas, dados e implementações são gratuitos e desenvolvidos pela comunidade.</p>
+<p>Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo sugiro o tutorial básico desenvolvido pelo pessoal do <a href="https://www.curso-r.com/">curso-r</a>: <a href="http://material.curso-r.com/instalacao/">http://material.curso-r.com/instalacao/</a></p>
+</blockquote>
+<p>Parte do texto inicial utilizado nesse post foi retirado da wikipedia, link <a href="https://pt.wikipedia.org/wiki/Problema_de_Monty_Hall">aqui</a></p>
+<p>Se você quiser ver o vídeo original do <strong>Caio</strong>, fica aqui o link:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/nWYeCX4V5lM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Até o próximo post, bons estudos em <code>R</code> :D</p>
+<p>você pode compartilhar esse post nas redes sociais utilizando os botões no fim dessa página.</p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/post/arima/">
+                  <span class="button__text">Prevendo o futuro com modelos ARIMA</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        
+
+
+<style>
+#share-buttons {text-align:center;}
+#share-buttons > div {
+  display:inline-block;
+  margin:1px 10px;
+  padding:3px;
+}
+
+#share-buttons > div > svg {height: 16px; fill: #5e5d5d; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+</style>
+
+<span style="color: #5e5d5d;">Compartilhe em: </span><div id="share-buttons">
+
+<div class="twitter" title="Compartilhe no Twitter" onclick="window.open('http://twitter.com/share?url=https://icaroagostino.github.io\/post\/monty-hall\/&text=O Problema de Monty Hall');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+
+<div class="linkedin" title="Compartilhe no Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=https://icaroagostino.github.io\/post\/monty-hall\/&title=O Problema de Monty Hall');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+
+<div class="facebook" title="Compartilhe no Facebook" onclick="window.open('http://www.facebook.com/share.php?u=https://icaroagostino.github.io\/post\/monty-hall\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+</div>
+
+
+<footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="http://icaroagostino.github.io" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Ícaro Agostino</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme: <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+        </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
