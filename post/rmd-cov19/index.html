@@ -277,19 +277,19 @@ graph_rec &lt;- cov_br %&gt;%
 <p>Antes de prosseguir crie uma pasta no seu computador e salve a rotina que criamos (exclua a última parte onde plotamos os gráficos, isso será feito direto no relatório), se você quer baixar direto essa rotina clique <a href="https://github.com/icaroagostino/API_cov19/blob/master/tutorial/cov19.R">aqui</a>.</p>
 <h2 id="criando-um-relatório-dinâmico-com-rmarkdown">Criando um relatório dinâmico com Rmarkdown</h2>
 <p><code>Markdown</code> é uma linguagem simples de marcação, em que podemos escrever documentos que são renderizados em diversos formatos como <code>.pdf</code>, <code>.html</code> e até <code>.docx</code>.</p>
-<p>Já o <code>Rmarkdown</code> é uma ferramenta que permite que códigos em <code>R</code> possam ser executados junto de documentos, evitando que você precise rodar sua análise salvar gráficos e resultados no seu computador e depois copiar esses resultados para seu relatório. Com <code>Rmarkdown</code> seu código em <code>R</code> é executado junto com a renderização do documento em um único arquivo.</p>
-<p>A IDE <a href="https://rstudio.com/">RStudio</a> possui suporte nativo para <code>Rmardown</code>, baste clicar no botão de criação de um novo documento e a opção estará lá:</p>
+<p>Já o <code>Rmarkdown</code> é uma ferramenta que permite que códigos em <code>R</code> possam ser executados junto de documentos, evitando que você precise rodar sua análise, salvar gráficos e resultados no seu computador e depois copiar esses resultados para seu relatório. Com <code>Rmarkdown</code> seu código em <code>R</code> é executado junto com a renderização do documento em um único arquivo.</p>
+<p>A IDE <a href="https://rstudio.com/">RStudio</a> possui suporte nativo para <code>Rmardown</code>, basta clicar no botão de criação de um novo documento e a opção estará lá:</p>
 <p><img src="f6.png#center" alt=""></p>
 <p>Agora temos que escolher o formato do nosso relatório, nesse caso vamos selecionar <code>.html</code>, posteriormente podemos trocar o formato de saída sem problemas.</p>
 <p><img src="f7.png#center" alt=""></p>
-<p>No cabeçalho em cima podemos adicionar algumas informações básicas do para o relatório, como título, autor, data e etc. Ao criarmos o documentos alguns códigos de exemplo virão juntos, podemos excluir esses códigos e deixar nosso arquivo desta forma:</p>
+<p>No cabeçalho em cima podemos adicionar algumas informações básicas para o relatório, como título, autor, data e etc. Ao criarmos o documentos alguns códigos de exemplo virão juntos, podemos excluir esses códigos e deixar nosso arquivo desta forma:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">---
 title: &quot;Casos de COVID-19 no Brasil&quot;
 author: &quot;Ícaro Agostino&quot;
 date: &quot;29/03/2020&quot;
 output: html_document
 ---
-</code></pre><p>Para incluir nosso códigos em <code>R</code> podemos utilizar o atalho <code>Ctrl</code>+<code>Alt</code>+<code>i</code> ou apertar o botão insert. Perceba que é possível incluir não somente códigos em <code>R</code> como também <code>python</code>, <code>SQL</code> dentre outras linguagens.</p>
+</code></pre><p>Para incluir nosso código em <code>R</code> podemos utilizar o atalho <code>Ctrl</code>+<code>Alt</code>+<code>i</code> ou apertar o botão insert. Perceba que é possível incluir não somente códigos em <code>R</code> como também <code>python</code>, <code>SQL</code> dentre outras linguagens.</p>
 <p><img src="f8.png#center" alt=""></p>
 <p>Após criar nosso <code>chunk</code> podemos chamar a nossa rotina em <code>R</code>, utilizando a função <code>source</code>. Aqui é importante incluir <code>include=FALSE</code> ao lada do <code>r</code> no topo do <code>chunk</code>, isso garante que o código seja executado sem mostrar nenhum resultado no nosso relatório.</p>
 <p><em>Obs.: se você estiver copiando os códigos para seu exemplo, exclua a <code>#</code> no começo e final de cada <code>chunk</code>.</em></p>
