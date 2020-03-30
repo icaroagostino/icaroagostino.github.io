@@ -7,8 +7,8 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="Cover Photo by Lukas from Pexels
-Criando relatórios dinâmicos em R Nesse post vamos aprender a criar relatórios dinâmicos em R utilizando Rmarkdown. Para isso vamos consultar dados online utilizando uma API externa e utilizar esses dados para de forma automatica gerar um relatório em .html ou .pdf.
-Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vendas semanais, usar o Rmarkdown para gerar relatórios dinâmicos pode facilitar sua vida, mesmo que você não tenha uma API para consultar os dados automaticamente, é possivel automatizar da mesma forma leitura de planilhas e outros tipos de arquivos."/>
+Criando relatórios dinâmicos em R Nesse post vamos aprender a criar relatórios dinâmicos em R utilizando Rmarkdown. Para isso vamos consultar dados online utilizando uma API externa e utilizar esses dados para de forma automática gerar um relatório em .html ou .pdf.
+Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vendas semanais, usar o Rmarkdown para gerar relatórios dinâmicos pode facilitar sua vida, mesmo que você não tenha uma API para consultar os dados automaticamente, é possível automatizar da mesma forma leitura de planilhas e outros tipos de arquivos."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/post/rmd-cov19/" />
@@ -29,12 +29,12 @@ Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vend
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Relatório dinâmico com Rmarkdown: COVID-19 no Brasil"/>
-<meta name="twitter:description" content="Nesse post aprendemos a criar relatórios denâmicos em Rmarkdown utilizando como exemplo dados do COVID-19 no Brasil"/>
+<meta name="twitter:description" content="Nesse post aprendemos a criar relatórios dinâmicos em Rmarkdown utilizando como exemplo dados do COVID-19 no Brasil"/>
 
 
 
 <meta property="og:title" content="Relatório dinâmico com Rmarkdown: COVID-19 no Brasil" />
-<meta property="og:description" content="Nesse post aprendemos a criar relatórios denâmicos em Rmarkdown utilizando como exemplo dados do COVID-19 no Brasil" />
+<meta property="og:description" content="Nesse post aprendemos a criar relatórios dinâmicos em Rmarkdown utilizando como exemplo dados do COVID-19 no Brasil" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/rmd-cov19/" />
 <meta property="article:published_time" content="2020-03-29T00:00:00+00:00" />
@@ -155,14 +155,14 @@ Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vend
     <div class="post-content">
       <p><a href="https://www.pexels.com/photo/person-writing-on-notebook-669615/">Cover Photo by Lukas from Pexels</a></p>
 <h1 id="criando-relatórios-dinâmicos-em-r"><strong>Criando relatórios dinâmicos em R</strong></h1>
-<p>Nesse post vamos aprender a criar relatórios dinâmicos em <code>R</code> utilizando <code>Rmarkdown</code>. Para isso vamos consultar dados online utilizando uma API externa e utilizar esses dados para de forma automatica gerar um relatório em <code>.html</code> ou <code>.pdf</code>.</p>
-<p>Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vendas semanais, usar o Rmarkdown para gerar relatórios dinâmicos pode <strong>facilitar sua vida</strong>, mesmo que você não tenha uma API para consultar os dados automaticamente, é possivel automatizar da mesma forma leitura de planilhas e outros tipos de arquivos.</p>
+<p>Nesse post vamos aprender a criar relatórios dinâmicos em <code>R</code> utilizando <code>Rmarkdown</code>. Para isso vamos consultar dados online utilizando uma API externa e utilizar esses dados para de forma automática gerar um relatório em <code>.html</code> ou <code>.pdf</code>.</p>
+<p>Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vendas semanais, usar o Rmarkdown para gerar relatórios dinâmicos pode <strong>facilitar sua vida</strong>, mesmo que você não tenha uma API para consultar os dados automaticamente, é possível automatizar da mesma forma leitura de planilhas e outros tipos de arquivos.</p>
 <p><img src="f1.png#center" alt=""></p>
 <blockquote>
 <p><code>R</code> é uma linguagem de programação open source. Todos os recursos, bibliotecas, dados e implementações são gratuitos e desenvolvidos pela comunidade.</p>
 <p>Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo sugiro o tutorial básico desenvolvido pelo pessoal do <a href="https://www.curso-r.com/">curso-r</a>: <a href="http://material.curso-r.com/instalacao/">http://material.curso-r.com/instalacao/</a></p>
 </blockquote>
-<p>Para esse exemplo vamos utilizar dados relativos a casos do COVID-19 no Brasil, coletar esses dados online e depois gerar gráficos automaticamente e criar um reltório.</p>
+<p>Para esse exemplo vamos utilizar dados relativos a casos do COVID-19 no Brasil, coletar esses dados online e depois gerar gráficos automaticamente e criar um relatório.</p>
 <p><em>Vamos começar&hellip;</em></p>
 <p><img src="https://media.giphy.com/media/AElZM8kDYlxHGGQ6kB/giphy.gif#center" alt=""></p>
 <h2 id="dados-online-do-covid-19">Dados online do COVID-19</h2>
@@ -191,12 +191,12 @@ library(jsonlite) # Manipualcao de .json
 library(ggplot2)  # graficos
 library(plotly)   # graficos interativos
 </code></pre><p>Agora vamos consultar os dados na plataforma, vamos utilizar a consulta por país utilizando as 3 opções: Nº de casos, Nº de mortes e Nº de recuperados.</p>
-<p>Para isso vamos utilziar a função <code>GET</code> da biblioteca <code>httr</code>. A url básica para acessar esses dados é:</p>
+<p>Para isso vamos utilizar a função <code>GET</code> da biblioteca <code>httr</code>. A url básica para acessar esses dados é:</p>
 <ul>
 <li><code>api.covid19api.com/country/{país}/status/{tipo de dado}</code></li>
 </ul>
 <p>(substitua no link o nome do país e o tipo de dados para: confirmed, recovered ou deaths)</p>
-<p>Aa três consultas serão realizadas com os códigos abaixo, após receber os dados vamos fazer a conversão utilizando funções da biblioteca <code>jasonlite</code> que vai nos retornar um <code>data.frame</code>.</p>
+<p>As três consultas serão realizadas com os códigos abaixo, após receber os dados vamos fazer a conversão utilizando funções da biblioteca <code>jasonlite</code> que vai nos retornar um <code>data.frame</code>.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic"># Consultando dados de nº de casos confirmados
 cov_br_conf &lt;- GET(url = &quot;https://api.covid19api.com/country/brazil/status/confirmed&quot;,
                    encode = 'json') %&gt;%
@@ -217,7 +217,7 @@ cov_br_dt &lt;- GET(url = &quot;https://api.covid19api.com/country/brazil/status
   content %&gt;%
   toJSON %&gt;%
   fromJSON
-</code></pre><p>Agora vamos converter as datas para um formato que o <code>R</code> entende, depois vamos criar um <code>data.frame</code> unificado e remover a primeira linha (a consulta retorna como primeira linha o dia 23 de janeiro quando não tinhamos casos no Brasil ainda):</p>
+</code></pre><p>Agora vamos converter as datas para um formato que o <code>R</code> entende, depois vamos criar um <code>data.frame</code> unificado e remover a primeira linha (a consulta retorna como primeira linha o dia 23 de janeiro quando não tínhamos casos no Brasil ainda):</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic"># Converte as datas
 datas &lt;- cov_br_conf$Date %&gt;% unlist %&gt;% as.Date()
 
@@ -236,7 +236,7 @@ cov_br &lt;- cov_br[-1,]
 </code></pre><p>Vamos ter uma tabela final assim:</p>
 <p><img src="f2.png#center" alt=""></p>
 <p>Agora vamos gerar nossos gráficos utilizando <code>ggplot2</code>. Aqui não vou entrar em muitas explicações de como criar os gráficos, mudar cores e etc, sugiro esse <a href="https://r4ds.had.co.nz/data-visualisation.html">link</a> caso você estiver interessado em aprender a usar o <code>ggplot</code>.</p>
-<p>Outro link útil é a <a href="https://www.r-graph-gallery.com/">The R Graph Gallery</a>, lá você tem vários templates de gráficos prontos com o código disponpivel, foi lá que peguei o modelo dos gráficos desse tutorial.</p>
+<p>Outro link útil é a <a href="https://www.r-graph-gallery.com/">The R Graph Gallery</a>, lá você tem vários templates de gráficos prontos com o código disponível, foi lá que peguei o modelo dos gráficos desse tutorial.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic"># Grafico do nº de casos confirmados
 graph_conf &lt;- cov_br %&gt;%
   ggplot(aes(x=dia)) +
@@ -264,8 +264,8 @@ graph_rec &lt;- cov_br %&gt;%
 </code></pre><p><img src="f4.png#center" alt=""></p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">graph_rec
 </code></pre><p><img src="f5.png#center" alt=""></p>
-<p>O nosso código em <code>R</code> está pronto, estamos consultando dados online, tranformando os dados e gerando automaticamente gráficos. Agora podemos contruir nosso relatório, a seguir vou criar um exemplo bem simples utilizando o código acima para consultar os dados.</p>
-<p>Lembrando que aqui está tudo <strong>automatizado</strong>, essa rotina sempre vai buscar os <strong>últimos dados atualizados</strong>, você não precisa se preucupar em modificar manualmente esse código, desde que a API contunue nos fornecendo os mesmos padrões de dados, a rotina funcionará perfeitamente.</p>
+<p>O nosso código em <code>R</code> está pronto, estamos consultando dados online, transformando os dados e gerando automaticamente gráficos. Agora podemos construir nosso relatório, a seguir vou criar um exemplo bem simples utilizando o código acima para consultar os dados.</p>
+<p>Lembrando que aqui está tudo <strong>automatizado</strong>, essa rotina sempre vai buscar os <strong>últimos dados atualizados</strong>, você não precisa se preocupar em modificar manualmente esse código, desde que a API continue nos fornecendo os mesmos padrões de dados, a rotina funcionará perfeitamente.</p>
 <p>Antes de prosseguir crie uma pasta no seu computador e salve a rotina que criamos (exclua a última parte onde plotamos os gráficos, isso será feito direto no relatório), se você quer baixar direto essa rotina clique <a href="https://github.com/icaroagostino/API_cov19/blob/master/cov19.R">aqui</a>.</p>
 <h2 id="criando-um-relatório-dinâmico-com-rmarkdown">Criando um relatório dinâmico com Rmarkdown</h2>
 <p><code>Markdown</code> é uma linguagem simples de marcação, em que podemos escrever documentos que são renderizados em diversos formatos como <code>.pdf</code>, <code>.html</code> e até <code>.docx</code>.</p>
@@ -274,7 +274,7 @@ graph_rec &lt;- cov_br %&gt;%
 <p><img src="f6.png#center" alt=""></p>
 <p>Agora temos que escolher o formato do nosso relatório, nesse caso vamos selecionar <code>.html</code>, posteriormente podemos trocar o formato de saída sem problemas.</p>
 <p><img src="f7.png#center" alt=""></p>
-<p>No cabeçario em cima podemos adicionar algumas informações básícas do para o relatório, como título, autor, data e etc. Ao criarmos o documentos alguns códigos de exemplo virão juntos, podemos excluir esses códigos e deixar nosso arquivo desta forma:</p>
+<p>No cabeçalho em cima podemos adicionar algumas informações básicas do para o relatório, como título, autor, data e etc. Ao criarmos o documentos alguns códigos de exemplo virão juntos, podemos excluir esses códigos e deixar nosso arquivo desta forma:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">---
 title: &quot;Casos de COVID-19 no Brasil&quot;
 author: &quot;Ícaro Agostino&quot;
@@ -292,7 +292,7 @@ source(&quot;cov19.R&quot;)
 <pre><code class="language-visual-basic" data-lang="visual-basic">#```{r include=FALSE}
 source(&quot;https://raw.githubusercontent.com/icaroagostino/API_cov19/master/cov19.R&quot;)
 #```
-</code></pre><p>Nos podemos escrever livremente o texto que deve ir no relátorio, podemos destacar títulos de seções utilizando <code>#</code> para seções primarias, <code>##</code> para secundarias e assim por diante. Para inserir link no nosso relatório basta escrever <code>[texto aqui](link aqui)</code>.</p>
+</code></pre><p>Nos podemos escrever livremente o texto que deve ir no relatório, podemos destacar títulos de seções utilizando <code>#</code> para seções primarias, <code>##</code> para secundarias e assim por diante. Para inserir link no nosso relatório basta escrever <code>[texto aqui](link aqui)</code>.</p>
 <p>Vamos começar com um título e algumas informações básicas:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">## Número de casos de COVID-19 no Brasil
 
@@ -302,8 +302,8 @@ que utiliza como fonte dados da
 [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19).
 
 Ultima atualização: **`r cov_br$dia[NROW(cov_br)] %&gt;% format(format=&quot;%d/%m/%Y&quot;)`**.
-</code></pre><p>Perceba que na última linha, para a última atualização da data, utilizei um pequeno código que vai consultar na nossa tabela a útima informação e automaticamente alterar no texto, automatizando esse passo.</p>
-<p>Agora vamos chamar nossos grafícos, para isso vamos converter os gráficos estáticos gerados pelo <code>ggplot2</code> em gráficos iterativos utilizando o pacote a função <code>ggplotly</code> do pacote <code>plotly</code>. Esse passo só é necessário caso você deseje renderezar seu relatório em <code>.html</code>, caso for renderizar em <code>.pdf</code> pode chamar direto os gráficos <code>graph_conf</code>, <code>graph_mort</code> e <code>graph_rec</code> dentro dos <code>chunks</code> abaixo.</p>
+</code></pre><p>Perceba que na última linha, para a última atualização da data, utilizei um pequeno código que vai consultar na nossa tabela a última informação e automaticamente alterar no texto, automatizando esse passo.</p>
+<p>Agora vamos chamar nossos gráficos, para isso vamos converter os gráficos estáticos gerados pelo <code>ggplot2</code> em gráficos iterativos utilizando o pacote a função <code>ggplotly</code> do pacote <code>plotly</code>. Esse passo só é necessário caso você deseje renderizar seu relatório em <code>.html</code>, caso for renderizar em <code>.pdf</code> pode chamar direto os gráficos <code>graph_conf</code>, <code>graph_mort</code> e <code>graph_rec</code> dentro dos <code>chunks</code> abaixo.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">### Evolução diária do número de casos confirmados no Brasil (COVID-19)
 
 #```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -323,7 +323,7 @@ ggplotly(graph_rec)
 #```
 </code></pre><p>Pronto, nosso relatório esta pronto, vamos pedir para renderizar clicando botão <code>Knit</code>.</p>
 <p><img src="f9.png#center" alt=""></p>
-<p>Todo o código para gerar esse raletório está <a href="https://github.com/icaroagostino/API_cov19/blob/master/cov19.Rmd">aqui</a>.</p>
+<p>Todo o código para gerar esse relatório está <a href="https://github.com/icaroagostino/API_cov19/blob/master/cov19.Rmd">aqui</a>.</p>
 <h2 id="vendo-os-resultados">Vendo os resultados</h2>
 <p>Aqui podemos ver como ficou a renderização do relatório em imagem, para ver a renderização em <code>.pdf</code> <a href="content/exemplo.pdf">clique aqui</a> e em <code>.html</code> <a href="content/exemplo.html">clique aqui</a>.</p>
 <hr>

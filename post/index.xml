@@ -18,8 +18,8 @@
       
       <guid>/post/rmd-cov19/</guid>
       <description>Cover Photo by Lukas from Pexels
-Criando relatórios dinâmicos em R Nesse post vamos aprender a criar relatórios dinâmicos em R utilizando Rmarkdown. Para isso vamos consultar dados online utilizando uma API externa e utilizar esses dados para de forma automatica gerar um relatório em .html ou .pdf.
-Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vendas semanais, usar o Rmarkdown para gerar relatórios dinâmicos pode facilitar sua vida, mesmo que você não tenha uma API para consultar os dados automaticamente, é possivel automatizar da mesma forma leitura de planilhas e outros tipos de arquivos.</description>
+Criando relatórios dinâmicos em R Nesse post vamos aprender a criar relatórios dinâmicos em R utilizando Rmarkdown. Para isso vamos consultar dados online utilizando uma API externa e utilizar esses dados para de forma automática gerar um relatório em .html ou .pdf.
+Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vendas semanais, usar o Rmarkdown para gerar relatórios dinâmicos pode facilitar sua vida, mesmo que você não tenha uma API para consultar os dados automaticamente, é possível automatizar da mesma forma leitura de planilhas e outros tipos de arquivos.</description>
     </item>
     
     <item>
