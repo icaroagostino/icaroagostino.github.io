@@ -227,7 +227,7 @@ data_estrategia1 &lt;-
              perc.ganha = cumsum(vitorias)/c(1:n))
 </code></pre><h3 id="estratégia-2---muda-de-porta"><strong>Estratégia 2</strong> - Muda de porta.</h3>
 <p>Assim como no caso anterior vamos criar um loop com o número de repetições definidas anteriormente.</p>
-<p>Vamos novamente aleatoriamente sortear a <code>porta_premio</code> e depois a <code>escolha1</code> do jogador. Depois vamos excluir o apresentador vai excluir uma das portas diferente da escolha do jogador.</p>
+<p>Vamos novamente aleatoriamente sortear a <code>porta_premio</code> e depois a <code>escolha1</code> do jogador. Depois o apresentador vai excluir uma das portas diferente da escolha do jogador.</p>
 <p>Agora o jogador tem a <code>escolha1</code> e a porta que sobrou, nessa estratégia ele sempre muda para a que sobrou, aqui representada pela <code>escolha2</code>. Por fim, comparamos se a nova escolha é a <code>porta_premio</code>, se sim computamos uma vitória.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">###############################
 # Estrategia 2 - Muda a porta #
@@ -302,7 +302,7 @@ ggplot(data_estrategia1, aes(x = rodada, y = perc.ganha)) +
 <p><strong>Estratégia 1</strong>: se você escolher de primeira a porta certa, somente nesse caso você ganha, logo espera-se que isso ocorra em um terço das vezes (~33.3%).</p>
 </li>
 <li>
-<p><strong>Estratégia 2</strong>: se você não escolher de primeira a porta certa, você ganhará, pois o apresentador eliminará uma porta errada e como você escolheu uma errada inicialmente você muda e ganha o jogo, como a chance inicial de escolher a porta errada é maior, espera-se que isso ocorra em um dois terços das vezes (~66,6%).</p>
+<p><strong>Estratégia 2</strong>: se você não escolher de primeira a porta certa, você ganhará, pois o apresentador eliminará uma porta errada e como você escolheu uma errada inicialmente você muda e ganha o jogo, como a chance inicial de escolher a porta errada é maior, espera-se que isso ocorra em dois terços das vezes (~66,6%).</p>
 </li>
 </ul>
 <p><img src="https://i.pinimg.com/originals/e4/5f/ec/e45fec5478e45d2668062daf8fd2dd5b.jpg#center" alt=""></p>
@@ -332,6 +332,13 @@ ggplot(data_estrategia1, aes(x = rodada, y = perc.ganha)) +
             <hr />
           </div>
           <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/post/rmd-cov19/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Relatório dinâmico com Rmarkdown: COVID-19 no Brasil</span>
+                </a>
+              </span>
             
             
               <span class="button next">

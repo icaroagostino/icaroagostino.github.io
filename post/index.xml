@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Relatório dinâmico com Rmarkdown: COVID-19 no Brasil</title>
+      <link>/post/rmd-cov19/</link>
+      <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rmd-cov19/</guid>
+      <description>Cover Photo by Lukas from Pexels
+Criando relatórios dinâmicos em R Nesse post vamos aprender a criar relatórios dinâmicos em R utilizando Rmarkdown. Para isso vamos consultar dados online utilizando uma API externa e utilizar esses dados para de forma automatica gerar um relatório em .html ou .pdf.
+Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vendas semanais, usar o Rmarkdown para gerar relatórios dinâmicos pode facilitar sua vida, mesmo que você não tenha uma API para consultar os dados automaticamente, é possivel automatizar da mesma forma leitura de planilhas e outros tipos de arquivos.</description>
+    </item>
     
     <item>
       <title>O Problema de Monty Hall</title>
