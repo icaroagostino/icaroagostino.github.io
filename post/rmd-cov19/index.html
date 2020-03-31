@@ -174,7 +174,7 @@ Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vend
 <p><em>Vamos começar&hellip;</em></p>
 <p><img src="https://media.giphy.com/media/AElZM8kDYlxHGGQ6kB/giphy.gif#center" alt=""></p>
 <h2 id="dados-online-do-covid-19">Dados online do COVID-19</h2>
-<p>Na data que esse post está sendo realizado passamos por um momento difícil no mundo, com uma pandemia global causada pelo novo Corona Vírus (COVID-19). Diversos esforços estão sendo realizados para disponibilizar dados para que cientistas possam estudar e enter o espalhamento dessa doença.</p>
+<p>Na data que esse post está sendo realizado passamos por um momento difícil no mundo, com uma pandemia global causada pelo novo Corona Vírus (COVID-19). Diversos esforços estão sendo realizados para disponibilizar dados para que cientistas possam estudar e entender o espalhamento dessa doença.</p>
 <p>Recentemente uma aplicação foi desenvolvida que permite acessar dados atualizados de casos no mundo inteiro, os dados são obtidos de forma dinâmica da API <a href="https://covid19api.com/">covid19api</a> que utiliza como fonte dados da <a href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins CSSE</a>.</p>
 <p>Essa API permite diversos tipos de consultas, aqui vamos utilizar a opção por país, consultando o número de casos confirmados, mortes e recuperados por dia. Para ver todas as opções de consultas dessa API clique <a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest">aqui</a></p>
 <h2 id="rotina-em-r-para-consultar-dados-via-api-e-gerar-gráficos">Rotina em <code>R</code> para consultar dados via API e gerar gráficos</h2>
@@ -243,14 +243,14 @@ cov_br &lt;- data.frame(
 cov_br &lt;- cov_br[-1,]
 </code></pre><p>Vamos ter uma tabela final assim:</p>
 <p><img src="f2.png#center" alt=""></p>
-<p>Agora vamos gerar nossos gráficos utilizando <code>ggplot2</code>. Aqui não vou entrar em muitas explicações de como criar os gráficos, mudar cores e etc, sugiro esse <a href="https://r4ds.had.co.nz/data-visualisation.html">link</a> caso você estiver interessado em aprender a usar o <code>ggplot</code>.</p>
+<p>Agora vamos gerar nossos gráficos utilizando <code>ggplot2</code>. Aqui não vou entrar em muitas explicações de como criar os gráficos, mudar cores e etc, sugiro esse <a href="https://r4ds.had.co.nz/data-visualisation.html">link</a> caso você estiver interessado em aprender a usar o <code>ggplot2</code>.</p>
 <p>Outro link útil é a <a href="https://www.r-graph-gallery.com/">The R Graph Gallery</a>, lá você tem vários templates de gráficos prontos com o código disponível, foi lá que peguei o modelo dos gráficos desse tutorial.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic"># Grafico do nº de casos confirmados
 graph_conf &lt;- cov_br %&gt;%
   ggplot(aes(x=dia)) +
   geom_area( aes(y = confirmados), fill  = &quot;#f25a5a&quot;, alpha = 0.4) +
-  geom_line( aes(y = confirmados), color = &quot;#f25a5a&quot;, size=1) +
-  geom_point(aes(y = confirmados), color = &quot;#f25a5a&quot;, size=2)
+  geom_line( aes(y = confirmados), color = &quot;#f25a5a&quot;, size = 1) +
+  geom_point(aes(y = confirmados), color = &quot;#f25a5a&quot;, size = 2)
 
 # Grafico do nº de mortes
 graph_mort &lt;- cov_br %&gt;%
@@ -278,6 +278,7 @@ graph_rec &lt;- cov_br %&gt;%
 <h2 id="criando-um-relatório-dinâmico-com-rmarkdown">Criando um relatório dinâmico com Rmarkdown</h2>
 <p><code>Markdown</code> é uma linguagem simples de marcação, em que podemos escrever documentos que são renderizados em diversos formatos como <code>.pdf</code>, <code>.html</code> e até <code>.docx</code>.</p>
 <p>Já o <code>Rmarkdown</code> é uma ferramenta que permite que códigos em <code>R</code> possam ser executados junto de documentos, evitando que você precise rodar sua análise, salvar gráficos e resultados no seu computador e depois copiar esses resultados para seu relatório. Com <code>Rmarkdown</code> seu código em <code>R</code> é executado junto com a renderização do documento em um único arquivo.</p>
+<p>Para aprender a utilizar o <code>Rmarkdown</code> sugiro o livro <a href="https://bookdown.org/yihui/rmarkdown/"><strong>R Markdown: The Definitive Guide</strong></a>, é dos criadores do pacote e 100% livre para ler online (como quase tudo em <code>R</code> :D). Outro material muito bom foi desenvolvido pelo pessoal do <a href="https://rmarkdown.rstudio.com/lesson-1.html">RStudio</a> e pode ser encontrado <a href="https://rmarkdown.rstudio.com/lesson-1.html">aqui</a>.</p>
 <p>A IDE <a href="https://rstudio.com/">RStudio</a> possui suporte nativo para <code>Rmardown</code>, basta clicar no botão de criação de um novo documento e a opção estará lá:</p>
 <p><img src="f6.png#center" alt=""></p>
 <p>Agora temos que escolher o formato do nosso relatório, nesse caso vamos selecionar <code>.html</code>, posteriormente podemos trocar o formato de saída sem problemas.</p>
@@ -309,9 +310,9 @@ os dados são obtidos de forma dinâmica da API [covid19api](https://covid19api.
 que utiliza como fonte dados da 
 [Johns Hopkins CSSE](https://github.com/CSSEGISandData/COVID-19).
 
-Ultima atualização: **`r cov_br$dia[NROW(cov_br)] %&gt;% format(format=&quot;%d/%m/%Y&quot;)`**.
+Última atualização: **`r cov_br$dia[NROW(cov_br)] %&gt;% format(format=&quot;%d/%m/%Y&quot;)`**.
 </code></pre><p>Perceba que na última linha, para a última atualização da data, utilizei um pequeno código que vai consultar na nossa tabela a última informação e automaticamente alterar no texto, automatizando esse passo.</p>
-<p>Agora vamos chamar nossos gráficos, para isso vamos converter os gráficos estáticos gerados pelo <code>ggplot2</code> em gráficos iterativos utilizando a função <code>ggplotly</code> do pacote <code>plotly</code>. Esse passo só é necessário caso você deseja renderizar seu relatório em <code>.html</code>, caso for renderizar em <code>.pdf</code> pode chamar direto os gráficos <code>graph_conf</code>, <code>graph_mort</code> e <code>graph_rec</code> dentro dos <code>chunks</code> abaixo.</p>
+<p>Agora vamos chamar nossos gráficos, para isso vamos converter os gráficos estáticos gerados pelo <code>ggplot2</code> em gráficos iterativos utilizando a função <code>ggplotly</code> do pacote <code>plotly</code>. Esse passo só é necessário caso você deseja renderizar seu relatório em <code>.html</code> para ter gráficos interativos, caso for renderizar em <code>.pdf</code> pode chamar direto os gráficos <code>graph_conf</code>, <code>graph_mort</code> e <code>graph_rec</code> dentro dos <code>chunks</code> abaixo.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">### Evolução diária do número de casos confirmados no Brasil (COVID-19)
 
 #```{r echo=FALSE, message=FALSE, warning=FALSE}
