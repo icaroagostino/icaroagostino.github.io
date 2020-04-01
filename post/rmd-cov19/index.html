@@ -212,14 +212,14 @@ cov_br_conf &lt;- GET(url = &quot;https://api.covid19api.com/country/brazil/stat
   toJSON %&gt;%
   fromJSON
 
-# Consultando dados de nº de mortes
+# Consultando dados de nº de recuperados
 cov_br_rec &lt;- GET(url = &quot;https://api.covid19api.com/country/brazil/status/recovered&quot;,
                   encode = 'json') %&gt;%
   content %&gt;%
   toJSON %&gt;%
   fromJSON
 
-# Consultando dados de nº de recuperados
+# Consultando dados de nº de mortes
 cov_br_dt &lt;- GET(url = &quot;https://api.covid19api.com/country/brazil/status/deaths&quot;,
                  encode = 'json') %&gt;%
   content %&gt;%
