@@ -12,14 +12,14 @@
     
     
     <item>
-      <title>Prevendo o futuro com Redes Neurais Artificais</title>
+      <title>Prevendo o futuro com Redes Neurais Artificiais</title>
       <link>/post/ann/</link>
       <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/post/ann/</guid>
       <description>Photo by Soumil Kumar from Pexels
 Previsão com Redes Neurais Artificiais Uma das abordagens que mais tem despertado interesse para previsão são as Redes Neurais Artificiais, em que você treina um modelo bio-inspirado capaz de aprender padrões não lineares e fazer predições.
-Nesse post vamos demonstrar de forma simplificada como treinar um modelo de previsão utilizando Redes Neurais Artificais Autorregressivas (NNAR) em R para para previsão de séries temporais. Existem diversas arquiteruras de Redes Neurais disponíveis, nesse tutorial vamos utilizar a implementação feed-forward utilizando o pacote forecast.</description>
+Nesse post vamos demonstrar de forma simplificada como treinar um modelo de previsão utilizando Redes Neurais Artificiais Autorregressivas (NNAR) em R para para previsão de séries temporais. Existem diversas arquiteturas de Redes Neurais disponíveis, nesse tutorial vamos utilizar a implementação feed-forward utilizando o pacote forecast.</description>
     </item>
     
     <item>

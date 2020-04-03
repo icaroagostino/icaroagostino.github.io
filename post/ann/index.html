@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     
-      <title>Prevendo o futuro com Redes Neurais Artificais :: Ícaro Agostino — Forecasting, Simulção e Otimização</title>
+      <title>Prevendo o futuro com Redes Neurais Artificiais :: Ícaro Agostino — Forecasting, Simulção e Otimização</title>
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="Photo by Soumil Kumar from Pexels
 Previsão com Redes Neurais Artificiais Uma das abordagens que mais tem despertado interesse para previsão são as Redes Neurais Artificiais, em que você treina um modelo bio-inspirado capaz de aprender padrões não lineares e fazer predições.
-Nesse post vamos demonstrar de forma simplificada como treinar um modelo de previsão utilizando Redes Neurais Artificais Autorregressivas (NNAR) em R para para previsão de séries temporais. Existem diversas arquiteruras de Redes Neurais disponíveis, nesse tutorial vamos utilizar a implementação feed-forward utilizando o pacote forecast."/>
+Nesse post vamos demonstrar de forma simplificada como treinar um modelo de previsão utilizando Redes Neurais Artificiais Autorregressivas (NNAR) em R para para previsão de séries temporais. Existem diversas arquiteturas de Redes Neurais disponíveis, nesse tutorial vamos utilizar a implementação feed-forward utilizando o pacote forecast."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/post/ann/" />
@@ -28,12 +28,12 @@ Nesse post vamos demonstrar de forma simplificada como treinar um modelo de prev
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Prevendo o futuro com Redes Neurais Artificais"/>
+<meta name="twitter:title" content="Prevendo o futuro com Redes Neurais Artificiais"/>
 <meta name="twitter:description" content="Aplicações em R para previsão de séries temporais utilizando Redes Neurais Artificiais (partir do pacote forecast)."/>
 
 
 
-<meta property="og:title" content="Prevendo o futuro com Redes Neurais Artificais" />
+<meta property="og:title" content="Prevendo o futuro com Redes Neurais Artificiais" />
 <meta property="og:description" content="Aplicações em R para previsão de séries temporais utilizando Redes Neurais Artificiais (partir do pacote forecast)." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/ann/" />
@@ -134,7 +134,7 @@ Nesse post vamos demonstrar de forma simplificada como treinar um modelo de prev
   
 
   <div class="post">
-    <h2 class="post-title"><a href="/post/ann/">Prevendo o futuro com Redes Neurais Artificais</a></h2>
+    <h2 class="post-title"><a href="/post/ann/">Prevendo o futuro com Redes Neurais Artificiais</a></h2>
     <div class="post-meta">
       
         <span class="post-date">
@@ -164,7 +164,7 @@ Nesse post vamos demonstrar de forma simplificada como treinar um modelo de prev
       <p><a href="https://www.pexels.com/photo/photo-of-person-typing-on-computer-keyboard-735911/">Photo by Soumil Kumar from Pexels</a></p>
 <h1 id="previsão-com-redes-neurais-artificiais"><strong>Previsão com Redes Neurais Artificiais</strong></h1>
 <p>Uma das abordagens que mais tem despertado interesse para previsão são as Redes Neurais Artificiais, em que você treina um modelo bio-inspirado capaz de aprender padrões não lineares e fazer predições.</p>
-<p>Nesse post vamos demonstrar de forma simplificada como treinar um modelo de previsão utilizando <strong>Redes Neurais Artificais Autorregressivas (NNAR)</strong> em <code>R</code> para para previsão de séries temporais. Existem diversas arquiteruras de Redes Neurais disponíveis, nesse tutorial vamos utilizar a implementação feed-forward utilizando o pacote <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a>.</p>
+<p>Nesse post vamos demonstrar de forma simplificada como treinar um modelo de previsão utilizando <strong>Redes Neurais Artificiais Autorregressivas (NNAR)</strong> em <code>R</code> para para previsão de séries temporais. Existem diversas arquiteturas de Redes Neurais disponíveis, nesse tutorial vamos utilizar a implementação feed-forward utilizando o pacote <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a>.</p>
 <blockquote>
 <p><code>R</code> é uma linguagem de programação open source. Todos os recursos, bibliotecas, dados e implementações são gratuitos e desenvolvidos pela comunidade.</p>
 <p>Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo sugiro o tutorial básico desenvolvido pelo pessoal do <a href="https://www.curso-r.com/">curso-r</a>: <a href="http://material.curso-r.com/instalacao/">http://material.curso-r.com/instalacao/</a></p>
@@ -180,13 +180,13 @@ dados &lt;- read.table(&quot;https://raw.githubusercontent.com/icaroagostino/ARI
 attach(dados) #tranformando em objeto
 MA &lt;- ts(MA, start = 2007, frequency = 12) #tranformando em Séries Temporal
 </code></pre><h2 id="visualização">Visualização</h2>
-<p>Para uma visualização bastante completa de diversas características dos dados vamos usar a função <code>ggtsdisplay</code>, essa função vai plotar a série de dados e autocorrelação (AutoCorrelation Function - ACF) e autocorrelação parcial (Partial AutoCorrelation Function - PACF), ou seja, o quanto a variável está correlacionada com ela mesma em instantes passados do tempo.</p>
+<p>Para uma visualização bastante completa de diversas características dos dados vamos usar a função <code>ggtsdisplay</code>, essa função vai plotar a série de dados e autocorrelação (Auto Correlation Function - ACF) e autocorrelação parcial (Partial AutoCorrelation Function - PACF), ou seja, o quanto a variável está correlacionada com ela mesma em instantes passados do tempo.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">ggtsdisplay(MA, main=&quot;Saldo de emprego - MA&quot;)
 </code></pre><p><img src="graff.png#center" alt=""></p>
 <p>A série possui características de sazonalidade aditiva com tendência moderada negativa, além disso a análise ACF permite evidenciar a presença de autocorrelação temporal entre as observações.</p>
 <h2 id="ajuste-do-modelo">Ajuste do modelo</h2>
-<p>Para a estimação dos parâmetros e ajuste do modelo será utilizado a função <code>nnetar()</code>, que utiliza o algoritimo baseado na função <a href="https://cran.r-project.org/web/packages/nnet/">nnet()</a> desenvolvido e publicado por Venables e Ripley (2002). A função pertence a biblioteca <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a> que atualmente é mais completa para previsão de séries temporais com aplicações em R.</p>
-<p>Esta abordagem somente considera a arquitertura feed-forward networks com uma camada intermediária usando a notação <code>NNAR(p,k)</code> para séries sem sazonalidade e <code>NNAR(p,P,k)[m]</code> para séries com sazonalidade sendo que <code>p</code> representa o número de lags na camada de entrada, <code>k</code> o número de nós na camada intermediária da rede, <code>P</code> o número de lags sazonais e <code>[m]</code> a ordem sazonal.</p>
+<p>Para a estimação dos parâmetros e ajuste do modelo será utilizado a função <code>nnetar()</code>, que utiliza o algorítimo baseado na função <a href="https://cran.r-project.org/web/packages/nnet/">nnet()</a> desenvolvido e publicado por Venables e Ripley (2002). A função pertence a biblioteca <a href="https://pkg.robjhyndman.com/forecast/"><strong>forecast</strong></a> que atualmente é mais completa para previsão de séries temporais com aplicações em R.</p>
+<p>Esta abordagem somente considera a arquitetura feed-forward networks com uma camada intermediária usando a notação <code>NNAR(p,k)</code> para séries sem sazonalidade e <code>NNAR(p,P,k)[m]</code> para séries com sazonalidade sendo que <code>p</code> representa o número de lags na camada de entrada, <code>k</code> o número de nós na camada intermediária da rede, <code>P</code> o número de lags sazonais e <code>[m]</code> a ordem sazonal.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">NNAR_fit &lt;- nnetar(MA)
 NNAR_fit #sai o modelo ajustado
 </code></pre><pre><code class="language-visual-basic" data-lang="visual-basic">## Series: MA 
@@ -198,7 +198,7 @@ NNAR_fit #sai o modelo ajustado
 ## options were - linear output units 
 ## 
 ## sigma^2 estimated as 3022826
-</code></pre><p>O modelo ajustado automaticamente considerou 2 lags na camada de entrada, 1 lag sazonal de ordem 12 (meses) e 2 nós na camada intermediária, tais parâmetros podem e devem ser alterados a fim de buscar um melhor ajuste do modelo a partir do comando <code>nnetar(MA, p = 1, P = 1, size = 1)</code>, também é possível definir o número de repetições para o ajuste do modelo adicionando o argumento <code>repeats = 20</code>, o que acarretará em um provavél aumento da acurácia, mas também exigirá maior tempo para o ajuste da rede caso <code>repeats &gt; 20</code>.</p>
+</code></pre><p>O modelo ajustado automaticamente considerou 2 lags na camada de entrada, 1 lag sazonal de ordem 12 (meses) e 2 nós na camada intermediária, tais parâmetros podem e devem ser alterados a fim de buscar um melhor ajuste do modelo a partir do comando <code>nnetar(MA, p = 1, P = 1, size = 1)</code>, também é possível definir o número de repetições para o ajuste do modelo adicionando o argumento <code>repeats = 20</code>, o que acarretará em um provável aumento da acurácia, mas também exigirá maior tempo para o ajuste da rede caso <code>repeats &gt; 20</code>.</p>
 <h2 id="verificação-dos-resíduos">Verificação dos resíduos</h2>
 <p>A próxima etapa é verificar a qualidade do ajuste do modelo, para isso vamos analisar os resíduos do modelos, olhando para os erros gerados no processo de estimação, felizmente o pacote <strong>forecast</strong> fornece funções para esse fim.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">checkresiduals(NNAR_fit)
@@ -213,7 +213,8 @@ NNAR_fit #sai o modelo ajustado
 <p>O modelo que ajustamos nesse tutorial é bem simples e inicial, pode ser melhorado com a inclusões de mais variáveis (com o parâmetro <code>xreg</code>), com maior tempo de treinamento (<code>repeats</code>) e com diferentes arquiteturas, você pode consultar mais parâmetros possíveis na função <code>nnet()</code> do pacote de mesmo nome.</p>
 <p>Utilize esse tutorial como ponto de partida, crie modelos melhores e mais robustos e divirta-se no processo :)</p>
 <h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
-<p>Nesse tutorial vimos de forma simplificada a utilização de modelos ARIMA para previsão de séries temporais, o exemplo demonstrado acima é totalmente reproduzível, basta instalar as bibliotecas necessárias e copiar os códigos acima para o seu Rstudio.</p>
+<p>Nesse tutorial vimos de forma simplificada a utilização de Redes Neurais Artificiais para previsão de séries temporais, o exemplo demonstrado acima é totalmente reproduzível, basta instalar as bibliotecas necessárias e copiar os códigos acima para o seu Rstudio.</p>
+<p>Se você está interessado em outros modelos de previsão, nesse link você vai encontrar um tutorial para utilização de modelos <a href="https://icaroagostino.github.io/post/arima/">ARIMA</a>.</p>
 <p>Se usar algum dos pacotes aqui demonstrados não esqueça de citar a publicação:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">
   citation(&quot;forecast&quot;)
@@ -246,7 +247,7 @@ NNAR_fit #sai o modelo ajustado
   ##
   
 </code></pre><h2 id="obs">Obs.:</h2>
-<p>Os dados utilizados nesse exemplo são públicos, para mais detalhes baixe o script <a href="https://github.com/icaroagostino/ANN/blob/master/NNAR.R">ARIMA.R</a> que está <a href="https://github.com/icaroagostino/ANN/">neste</a> repositório.</p>
+<p>Os dados utilizados nesse exemplo são públicos, para mais detalhes baixe o script <a href="https://github.com/icaroagostino/ANN/blob/master/NNAR.R">ANN.R</a> que está <a href="https://github.com/icaroagostino/ANN/">neste</a> repositório.</p>
 <hr>
 <p>Até o próximo post, bons estudos em <code>R</code> :D</p>
 <p>Você pode compartilhar esse post nas redes sociais utilizando os botões no fim dessa página.</p>
@@ -311,9 +312,9 @@ NNAR_fit #sai o modelo ajustado
 
 <span style="color: #5e5d5d;">Compartilhe em: </span><div id="share-buttons">
 
-<div class="twitter" title="Compartilhe no Twitter" onclick="window.open('http://twitter.com/share?url=https://icaroagostino.github.io\/post\/ann\/&text=Prevendo o futuro com Redes Neurais Artificais');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="twitter" title="Compartilhe no Twitter" onclick="window.open('http://twitter.com/share?url=https://icaroagostino.github.io\/post\/ann\/&text=Prevendo o futuro com Redes Neurais Artificiais');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
 
-<div class="linkedin" title="Compartilhe no Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=https://icaroagostino.github.io\/post\/ann\/&title=Prevendo o futuro com Redes Neurais Artificais');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="linkedin" title="Compartilhe no Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=https://icaroagostino.github.io\/post\/ann\/&title=Prevendo o futuro com Redes Neurais Artificiais');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
 
 <div class="facebook" title="Compartilhe no Facebook" onclick="window.open('http://www.facebook.com/share.php?u=https://icaroagostino.github.io\/post\/ann\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
 </div>

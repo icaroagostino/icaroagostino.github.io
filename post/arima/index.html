@@ -180,7 +180,7 @@ dados &lt;- read.table(&quot;https://raw.githubusercontent.com/icaroagostino/ARI
 attach(dados) #tranformando em objeto
 MA &lt;- ts(MA, start = 2007, frequency = 12) #tranformando em Séries Temporal
 </code></pre><h2 id="visualização">Visualização</h2>
-<p>Para uma visualização bastante completa de diversas características dos dados vamos usar a função <code>ggtsdisplay</code>, essa função vai plotar a série de dados e autocorrelação (AutoCorrelation Function - ACF) e autocorrelação parcial (Partial AutoCorrelation Function - PACF), ou seja, o quanto a variável está correlacionada com ela mesma em instantes passados do tempo.</p>
+<p>Para uma visualização bastante completa de diversas características dos dados vamos usar a função <code>ggtsdisplay</code>, essa função vai plotar a série de dados e autocorrelação (Auto Correlation Function - ACF) e autocorrelação parcial (Partial AutoCorrelation Function - PACF), ou seja, o quanto a variável está correlacionada com ela mesma em instantes passados do tempo.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">ggtsdisplay(MA, main=&quot;Saldo de emprego - MA&quot;)
 </code></pre><p><img src="graff.png#center" alt=""></p>
 <p>A série possui características de sazonalidade aditiva com tendência moderada negativa, além disso a análise ACF permite evidenciar a presença de autocorrelação temporal entre as observações.</p>
@@ -215,6 +215,7 @@ ARIMA_fit #sai o modelo ajustado
 <p>Como podemos ver, a previsão parece seguir o comportamento esperado para a série, sendo capaz de capturar o comportamento de tendência e sazonalidade dos dados.</p>
 <h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
 <p>Nesse tutorial vimos de forma simplificada a utilização de modelos ARIMA para previsão de séries temporais, o exemplo demonstrado acima é totalmente reproduzível, basta instalar as bibliotecas necessárias e copiar os códigos acima para o seu Rstudio.</p>
+<p>Se você está interessado em outros modelos de previsão, nesse link você vai encontrar um tutorial para utilização de <a href="https://icaroagostino.github.io/post/ann/">Redes Neurais Artificais</a>.</p>
 <p>Se usar algum dos pacotes aqui demonstrados não esqueça de citar a publicação:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">
   citation(&quot;forecast&quot;)
