@@ -6,10 +6,21 @@
     <description>Recent content on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Prevendo o futuro com Redes Neurais Artificais</title>
+      <link>/post/ann/</link>
+      <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ann/</guid>
+      <description>Photo by Soumil Kumar from Pexels
+Previsão com Redes Neurais Artificiais Uma das abordagens que mais tem despertado interesse para previsão são as Redes Neurais Artificiais, em que você treina um modelo bio-inspirado capaz de aprender padrões não lineares e fazer predições.
+Nesse post vamos demonstrar de forma simplificada como treinar um modelo de previsão utilizando Redes Neurais Artificais Autorregressivas (NNAR) em R para para previsão de séries temporais. Existem diversas arquiteruras de Redes Neurais disponíveis, nesse tutorial vamos utilizar a implementação feed-forward utilizando o pacote forecast.</description>
+    </item>
     
     <item>
       <title>Relatório dinâmico com Rmarkdown: COVID-19 no Brasil</title>
