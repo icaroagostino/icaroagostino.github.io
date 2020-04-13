@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rodando modelos [R] na nuvem - parte 1: Criando APIs</title>
+      <link>/post/plumber/</link>
+      <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/plumber/</guid>
+      <description>Cover Photo by Lukas from Pexels
+Parte 1: Criando API&#39;s com o pacote plumber Esse sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&#39;s com o pacote plumeber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS).</description>
+    </item>
     
     <item>
       <title>Prevendo o futuro com Redes Neurais Artificiais</title>
