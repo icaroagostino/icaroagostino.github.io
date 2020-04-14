@@ -7,7 +7,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="Cover Photo by Lukas from Pexels
-Parte 1: Criando API&#39;s com o pacote plumber Esse sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&#39;s com o pacote plumeber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS)."/>
+Parte 1: Criando API&#39;s com o pacote plumber Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&#39;s com o pacote plumber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS)."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/post/plumber/" />
@@ -162,7 +162,7 @@ Parte 1: Criando API&#39;s com o pacote plumber Esse sequência de tutoriais vai
     <div class="post-content">
       <p><a href="https://www.pexels.com/photo/person-writing-on-notebook-669615/">Cover Photo by Lukas from Pexels</a></p>
 <h1 id="parte-1-criando-apis-com-o-pacote-plumber"><strong>Parte 1: Criando API's com o pacote plumber</strong></h1>
-<p>Esse sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API's com o pacote <code>plumeber</code>. <strong>Na parte 2</strong> vamos entender como colocar uma API dentro de um contêiner utilizando <code>docker</code>. E na <strong>parte final</strong> vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (<a href="https://aws.amazon.com/">AWS</a>).</p>
+<p>Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API's com o pacote <code>plumber</code>. <strong>Na parte 2</strong> vamos entender como colocar uma API dentro de um contêiner utilizando <code>docker</code>. E na <strong>parte final</strong> vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (<a href="https://aws.amazon.com/">AWS</a>).</p>
 <p><img src="fig1.jpg#center" alt=""></p>
 <p>Nesse post vamos aprender como transformar um modelo estatístico/ML em uma API utilizando <code>R</code> com o pacote <code>plumber</code>. Esse é um passo intermediário entre o desenvolvimento local de um modelo e a fase de produção, quando colocamos o modelo para rodar em um sistema real, ficando disponível para receber requisições de predições. Tudo que aprendermos aqui serve para outros tipos de aplicações, no futuro vou fazer um post para ensinar a rodar uma aplicação <code>shiny</code> na nuvem.</p>
 <p>Para esse exemplo vamos utilizar um modelo simples de regressão, com dados do próprio <code>R</code> base, a ideia aqui não é se aprofundar na modelagem, mas sim mostrar como colocar um modelo já treinado para funcionar no mundo real. Se você se interessa por previsão, tem dois posts aqui no blog sobre o assunto utilizando modelos <a href="https://icaroagostino.github.io/post/arima">ARIMA</a> e de <a href="https://icaroagostino.github.io/post/ann">Redes Neurais</a>. Se você ainda é iniciante em <code>R</code> e tiver dificuldades para executar o tutorial, no final dessa página tem uma indicação de por onde começar com os passos básicos de <code>R</code>.</p>
@@ -170,7 +170,7 @@ Parte 1: Criando API&#39;s com o pacote plumber Esse sequência de tutoriais vai
 <p><em>Vamos começar&hellip;</em></p>
 <p><img src="https://media.giphy.com/media/Lm63QU87HvgVEuTV63/giphy.gif#center" alt=""></p>
 <h2 id="ajustando-um-modelo-simples-de-regressão">Ajustando um modelo simples de regressão</h2>
-<p>Vamos agora ajustar um modelo linear de regressão, nessa parte do tutorial não vou entrar detalhes, pois o foco será as etapas seguintes. Vamos utilizar o dataset <code>airquality</code> disponível no <code>R</code> base. Usando <code>head()</code> podemos ver o início do <code>dataset</code>:</p>
+<p>Vamos agora ajustar um modelo linear de regressão, nessa parte do tutorial não vou entrar em detalhes, pois o foco será as etapas seguintes. Vamos utilizar o dataset <code>airquality</code> disponível no <code>R</code> base. Usando <code>head()</code> podemos ver o início do <code>dataset</code>:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">head(airquality)
 
 ##
@@ -182,7 +182,7 @@ Parte 1: Criando API&#39;s com o pacote plumber Esse sequência de tutoriais vai
 ## 5    NA      NA 14.3   56     5   5
 ## 6    28      NA 14.9   66     5   6
 ##
-</code></pre><p>Esse dataset têm 6 variáveis:</p>
+</code></pre><p>Esse dataset tem 6 variáveis:</p>
 <ul>
 <li><strong>Ozone</strong>: Ozônio médio em partes por bilhão</li>
 <li><strong>Solar.R</strong>: Radiação solar (frequência 4000&ndash;7700)</li>
@@ -191,7 +191,7 @@ Parte 1: Criando API&#39;s com o pacote plumber Esse sequência de tutoriais vai
 <li><strong>Month</strong>: Mês da medição (1-12)</li>
 <li><strong>Day</strong>: Dia da medição (1-31)</li>
 </ul>
-<p>Vamos estão construir nosso modelo, faremos a predição da variável <code>Ozonio</code> em função das variáveis <code>Wind</code>, <code>Temp</code> e <code>Month</code>. Para isso vamos utilizar a função <code>lm()</code> que ajusta modelos de regressão linear, precisamos passar a formula e o conjunto de dados para a função.</p>
+<p>Vamos estão construir nosso modelo, faremos a predição da variável <code>Ozone</code> em função das variáveis <code>Wind</code>, <code>Temp</code> e <code>Month</code>. Para isso vamos utilizar a função <code>lm()</code> que ajusta modelos de regressão linear, precisamos passar a formula e o conjunto de dados para a função.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">modelo &lt;- lm(Ozone ~ Wind + Temp + Month, data = airquality)
 
 summary(modelo) # Resumo do modelo
@@ -239,8 +239,7 @@ O RedHat fez uma postagem bastante completa sobre o funcionamento de APIs e um p
 <ul>
 <li><code>@apiTitle</code> para dar o título da aplicação</li>
 <li><code>@param</code> para nomear parâmetros</li>
-<li><code>@get</code> para utilizando o comando</li>
-<li><code>get</code> e/ou <code>@post</code> definir o tipo de comunicação</li>
+<li><code>@get</code> e/ou <code>@post</code> para definir o tipo de comunicação</li>
 </ul>
 <p><strong>GET</strong> e <strong>POST</strong> são comandos padrões para APIs que utilizam a arquitetura <code>REST</code>, ambos são utilizados para comunicação, a maior diferença entre eles é que com o <code>post</code> é possível especificar melhor os parâmetros, sendo mais indicados para aplicação com múltiplos parâmetros. Além disso é possível antes dos parâmetros definir um <code>Endpoint</code> que basicamente é uma das &lsquo;saídas&rsquo; da API, pois uma mesma API pode prover diferentes serviços com diferentes saídas.</p>
 <p>Por padrão o <code>plumber</code> transforma funções em <code>R</code> em APIs, dessa forma precisaremos escrever nossa função que ao receber os dados de entrada realizará a predição de <code>Ozonio</code>. Podemos apagar o exemplo pronto que veio na criação do arquivo e vamos colocar nosso modelo em API.</p>
@@ -283,7 +282,7 @@ function(Wind, Temp, Month) {
 <p><img src="fig7.png#center" alt=""></p>
 <p>Perceba que o <code>swagger</code> também nos fornece o código em <code>curl</code> para se comunicar com a API. Se você já tem algum conhecimento de linha de comando, pode copiar esse código e colar no <code>Prompt</code>. O valor retornado será o mesmo. Localmente nossa API já está funcionando, estamos utilizando nosso modelo para receber requisições do tipo <code>post</code> processar os dados de entrada e retornar uma predição :D</p>
 <p>Agora vamos aprender como usar o próprio <code>R</code> para se comunicar com a API que acabamos de criar e com outras APIs externas. Você pode parar sua API fechando a janela. Salve sua API como um arquivo <code>.R</code> normal, dentro de uma pasta do seu computador separada, sugiro usar o nome <code>modelo.R</code> para que possa acompanhar o restante do tutorial sem problemas.</p>
-<h2 id="se-comunicando-apis">Se comunicando API's</h2>
+<h2 id="se-comunicando-com-apis">Se comunicando com API's</h2>
 <p>Podemos abrir outra seção do <code>Rstudio</code> e utilizar a biblioteca <a href="https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html"><code>httr</code></a> para se comunicar com APIs que utilizam arquitetura <code>REST</code>. Antes de realizar as requisições vamos criar um novo <code>script</code> para chamar nossa API de forma mais fácil e endereçada. Crie um novo arquivo da seguinte forma:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">library(plumber)
 
