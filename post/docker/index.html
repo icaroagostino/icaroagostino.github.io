@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Rodando modelos [R] na nuvem - parte 2: Containers com Docker! :: Ícaro Agostino — Forecasting, Simulção e Otimização</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Parte 2: Rodando aplicações em containers Esse tutorial é a segunda parte da serie Rodando modelos [R] na nuvem, na primeira parte aprendemos como crias APIs com o pacote plumber (se você ainda não leu clique aqui). Nessa parte vamos aprender a como colocar nossa aplicação em containers utilizando Docker. E na parte final vamos subir esse container para a cloud da Amazon (AWS).
+O foco aqui será abordar o conceito de conteiner, assim como a parte prática."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/post/docker/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rodando modelos [R] na nuvem - parte 2: Containers com Docker!"/>
+<meta name="twitter:description" content="Nesse post aprendemos como colocar nossas aplicações em containers com o Docker."/>
+
+
+
+<meta property="og:title" content="Rodando modelos [R] na nuvem - parte 2: Containers com Docker!" />
+<meta property="og:description" content="Nesse post aprendemos como colocar nossas aplicações em containers com o Docker." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/docker/" />
+<meta property="article:published_time" content="2020-04-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-20T00:00:00+00:00" /><meta property="og:site_name" content="Ícaro Agostino" />
+
+
+
+
+
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="http://icaroagostino.github.io/blog" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Ícaro Agostino</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/post">Posts  </a></li>
+        
+      
+        
+          <li><a href="/sobre">Sobre</a></li>
+        
+      
+        
+          <li><a href="/curriculum"> Curriculum</a></li>
+        
+      
+        
+          <li><a href="/archive">  Archive</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/post">Posts  </a></li>
+      
+    
+      
+        <li><a href="/sobre">Sobre</a></li>
+      
+    
+      
+        <li><a href="/curriculum"> Curriculum</a></li>
+      
+    
+      
+        <li><a href="/archive">  Archive</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h2 class="post-title"><a href="/post/docker/">Rodando modelos [R] na nuvem - parte 2: Containers com Docker!</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-04-20
+        </span>
+
+        
+          
+        
+      
+
+      <span class="post-author">— Written by Ícaro</span>
+      
+        <span class="post-read-time">— 13 min read</span>
+      
+    </div>
+
+    
+
+    
+      
+        <img src="/img/docker.png" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      <h1 id="parte-2-rodando-aplicações-em-containers"><strong>Parte 2: Rodando aplicações em containers</strong></h1>
+<p>Esse tutorial é a segunda parte da serie <strong>Rodando modelos [R] na nuvem</strong>, na primeira parte aprendemos como crias APIs com o pacote <code>plumber</code> (se você ainda não leu clique <a href="https://icaroagostino.github.io/post/plumber">aqui</a>). Nessa parte vamos aprender a como colocar nossa aplicação em containers utilizando <code>Docker</code>. E na parte final vamos subir esse container para a cloud da Amazon (<a href="https://aws.amazon.com/">AWS</a>).</p>
+<p><img src="fig1.jpg#center" alt=""></p>
+<p>O foco aqui será abordar o conceito de conteiner, assim como a parte prática. Vamos entender como o Docker pode salvar nossa vida e simplificar muito o processo de subir uma aplicação para rodar em um servidor. Como falei na <a href="https://icaroagostino.github.io/post/plumber/">parte 1</a>, esse é um passo intermediário entre o desenvolvimento local de um modelo e a fase de produção, quando colocamos o modelo para rodar em um sistema real, ficando disponível para receber requisições de predições.</p>
+<p>Antes de tudo, um <em>disclaimer</em>, esse tutorial pode ser considerado mais avançado em relação aos anteriores, assim como mais longo com diversos detalhes e explicações. Vamos ter que operar o <code>Docker</code> direto de um terminal linux (<strong>não se preocupe se você usa windows ou mac, vamos chegar lá</strong>), não precisa ficar com receio caso você nunca tenha feito esse tipo de operação, só tenha paciência para fazer as coisas com calma e se atentar para os detalhes =)</p>
+<p>Se você ainda é iniciante em <code>R</code> e tiver dificuldades para executar o tutorial, no final dessa página tem uma indicação de por onde começar com os passos básicos de <code>R</code>.</p>
+<p>Todos os <code>scripts</code> desse tutorial estão hospedados no meu Github, clique <a href="https://github.com/icaroagostino/tutoriaisBlog/tree/master/docker">aqui</a> para acessar.</p>
+<p><em>Vamos começar&hellip;</em></p>
+<p><img src="https://media1.tenor.com/images/0e8e43de3db05b87ae105476796854ff/tenor.gif#center" alt=""></p>
+<h2 id="aplicações-em-containers-e-o-docker">Aplicações em containers e o Docker</h2>
+<p><code>Docker</code> é uma tecnologia muito interessante, que permite isolar uma aplicação dentro de um container, contendo o sistema operacional, os softwares instalados e claro a nossa aplicação. Essa tenologia fornece uma camada de abstração e automação para virtualização de máquinas, na prática após desenvolver seu modelo, você pode colocar ele em um container com tudo necessário para ele que funcione.</p>
+<p><img src="fig2.jpg#center" alt=""></p>
+<p><a href="https://docs.docker.com/">Photo by docker</a></p>
+<p>Esse tipo de tecnologia evita muitas dores de cabeça, quem já precisou configurar um servidor para rodar algo sabe a complicação. Modelos desenvolvidos em <code>R</code> dependem da linguagem instalada, assim como todos os pacotes nas versões corretas ou facilmente podem quebrar.</p>
+<p>Após a criação de um container é possível de forma muito simples colocar sua aplicação para rodar em um ambiente cloud, sem precisar se preocupar em instalar linguagens, pacotes ou nada disso no servidor, o container simplesmente possui tudo necessário para nossa aplicação, basta baixar o container criado e dar <em>play</em>, simples assim.</p>
+<p><img src="fig3.png#center" alt=""></p>
+<p><a href="https://www.docker.com/resources/what-container">Photo by Docker</a></p>
+<p>Além disso, usar <code>Docker</code> permite escalar uma aplicação, ou um conjunto de aplicações isoladas em diversos containers que podem conversar entre sí e serem orquestradas utilizando tecnologias como o <a href="https://docs.docker.com/compose/"><code>docker compose</code></a> ou <a href="https://kubernetes.io/"><code>kubernets</code></a>.</p>
+<h2 id="linux-mas-por-que">Linux, mas por que?</h2>
+<p><em>Se você é usuário de Linux ou Mac pode passar direto para o tópico <a href="#instalando-docker">instalando docker</a>.</em></p>
+<p>Bem, hoje nós temos 3 grandes sistemas operacionais (OS), ou pelo menos 3 grupos: Windows, MacOS e os vários OS baseados em <code>Linux</code>. O <code>Docker</code> não roda nativamente em todas as verões do Windows, apenas na versão Pro ou Enterprise, se você utiliza windows em uma dessas versões clique <a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows/">aqui</a> para baixar a versão do desktop. Porém se você, assim como eu, usa outras versões do Windows (como a home) ainda é possível utilizar o <code>Docker</code> utilizando máquinas virtuais =)</p>
+<p>Além disso, é importante destacar que apesar do Windows ser o OS predominante nos computadores pessoais, a esmagadora maioria dos servidores é em <code>Linux</code>, isso significa que se você está interessado em colocar seus modelos em <code>R</code> para rodar em ambientes clouds em produção, mais cedo ou mais tarde você vai esbarrar com a necessidade de aprender a mexer um pouco com <code>Linux</code>, não é nada muito complicado, também passei por essa experiencia de ser um usuário de Windows tendo que aprender <code>Linux</code> pra dar o próximo passo em direção ao ambiente cloud.</p>
+<p><img src="fig4.png#center" alt=""></p>
+<p>Para rodar um OS tipo <code>Linux</code> vamos utilizar <strong>VirtualBox</strong> que é gratuito, esse programa vai permitir rodar um sistema <code>Linux</code> virtualizado sem a necessidade de sair do windows, basicamente a máquina virtual vai ser um programa como outro qualquer em que você roda um sistema operacional inteiro dentro dela. Como distribuição, nesse tutorial vamos utilizar o OS <strong>Ubuntu</strong>, sendo um dos amigáveis para quem não é usuário de <code>Linux</code>. Aqui eu vou sugerir seguir o tutorial da WikiHow: <a href="https://pt.wikihow.com/Instalar-o-Ubuntu-no-VirtualBox">Instalando Ubuntu no Windows</a>. Nesse tutorial você vai ver todos os passos de como virtualizar uma máquina Ubuntu.</p>
+<p>Esse tutorial vai seguir a linha principal da utilização do <em>VirtualBox</em>_ com <code>Ubuntu</code> rodando no Windows. Essa é uma ótima forma de aprender um pouco de <code>Linux</code> sem precisar migrar de sistema =)</p>
+<h2 id="instalando-docker">Instalando Docker</h2>
+<p>Se você está no Windows Pro ou Enterprise o docker deve ser instalado pelo link que indiquei acima ou <a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows/">aqui</a>. Se você usa Mac siga esse tutorial <a href="https://docs.docker.com/docker-for-mac/install/">aqui</a>. Como não uso nenhum desses sistemas, não tenho como indicar o passo a passo para a instalação nessas plataformas, mas pelo que vi é como instalar um programa comum.</p>
+<p>Após instalar o <code>Ubuntu</code> no VirtualBox e inicializar o sistema você estará num ambiente como esse:</p>
+<p><img src="ubuntu.png#center" alt=""></p>
+<p>No <code>Ubuntu</code> vamos instalar o <code>Docker</code> pelo terminal, para abrir basta apertar a tecla <code>Windows</code> ou <code>Super</code> que abrirá as aplicações, digite terminal e abra a aplicação.</p>
+<p><img src="fig5.png#center" alt=""></p>
+<p>Antes de instalar o <code>docker</code> vamos atualizar os pacotes do sistema, digite no terminal:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo apt update
+</code></pre><p>Obs.: Quando usamos <code>sudo</code> no começo de um comando estamos dando permissão de administrador pro sistema, se você instalou o sistema com senha será pedido para digitar antes da execução. Esses processos de instalação podem demorar um pouco, você verá vários <code>códigos</code> subindo no terminal, é só aguardar.</p>
+<p>Agora vamos instalar também o <code>git</code> que vai nos permitir baixar os arquivos diretos do <code>GitHub</code> na nossa máquina:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo apt install git-all
+</code></pre><p>Com o <code>git</code> instalado e os pacote atualizados podemos instalar o <code>docker</code>, para isso use o comando:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo apt install docker.io
+</code></pre><p>Pronto, você já está com tudo necessário para começar a criar containers =)</p>
+<h2 id="entendo-e-criando-containers">Entendo e criando containers</h2>
+<p>Agora com tudo instalado, podemos criar nossos containers. Para isso precisamos do nossos arquivos. Para evitar ter que configurar todo o <code>R</code> em um sistema que estamos usando apenas para criar o container, podemos baixar os arquivos do <strong>GitHub</strong> com nosso modelo desenvolvido na <a href="https://icaroagostino.github.io/post/plumber">parte 1</a>. Peguei o mesmo modelo que configuramos como uma API e deixei tudo pronto para a criação do container.</p>
+<p>Ainda com o terminal aberto digite o comando a seguir para baixar os arquivos:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo git clone https://github.com/icaroagostino/tutoriaisBlog
+</code></pre><p>Agora o <code>git</code> clonou os nossos arquivos para sua máquina pessoal provavelmente na sua pasta <code>/home</code>. Agora vamos navegar para a pasta que está os aquivos necessários, digite no terminal:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">cd tutoriaisBlog/docker
+</code></pre><p>Agora estamos no diretório correto, para entender quais arquivos vamos trabalhar abra o gerenciador de arquivos do <code>Ubuntu</code> entre na pasta <code>tutoriaisBlog -&gt; docker</code>, la teremos os seguintes arquivos:</p>
+<p><img src="fig6.png#center" alt=""></p>
+<p>Dois desses arquivos são da <a href="https://icaroagostino.github.io/post/plumber">parte 1</a> do nosso tutorial, a novidade aqui é o <code>Dockerfile</code>. Se abrirmos esse arquivo, vermos o seguinte:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">FROM rocker/r-ver:3.6.3
+
+RUN apt-get update -qq &amp;&amp; apt-get install -y \
+	libssl-dev \
+	libcurl4-gnutls-dev \
+	libxml2-dev
+
+RUN R -e &quot;install.packages('plumber')&quot;
+
+COPY API.R modelo.R ./
+
+EXPOSE 8080
+
+ENTRYPOINT [&quot;R&quot;, &quot;-e&quot;, &quot;source('API.R')&quot;]
+</code></pre><p>O <code>Dockerfile</code> é o arquivo que define a construção do nosso container, vamos passar por todas as linhas desse arquivo explicando para que fique claro a criação de container utilizando <code>Docker</code>. Não precisa executar nada nos próximos parágrafos, aqui vai ser só a explicação da estrutura desse arquivo para que você possa replicar no futuro, se quiser pular a criação direto clique <a href="#criando-o-container">aqui</a></p>
+<h3 id="entendendo-a-estrutura-de-um-container">Entendendo a estrutura de um container</h3>
+<p>A primeira linha é a imagem base pra criação do nosso container, aqui podemos começar com uma imagem básica de um sistema operacional e depois e instalando o que precisamos por cima. Pra nossa sorte temos diversas imagens já pronta contendo algumas ferramentas já instaladas. No nosso caso vamos instalar uma das imagens da <a href="https://hub.docker.com/u/rocker"><strong>rocker</strong></a>, que é comunidade que mantem imagens de container configuradas com diversas versões de <code>R</code> e pacotes já configuradas.</p>
+<p>Todas essas imagens de container ficam disponíveis gratuitamente para baixar no <code>docker hub</code>, que funciona como um <code>GitHub</code> só que para containers. Acesse a página do <code>rocker</code> no <code>docker hub</code> para ver as possibilidades:</p>
+<p>Link: <a href="https://hub.docker.com/u/rocker">https://hub.docker.com/u/rocker</a></p>
+<p><img src="rocker.png#center" alt=""></p>
+<p>Temos diversas imagens disponível, desde de <code>R</code> base com apenas a linguagem, imagens com <code>tidyverse</code>, <code>shiny</code> e outras versões. Aproveite que você esta na página do <code>docker hub</code> e faça um cadastro, vamos precisar no final para subir nosso container para o <code>docker hub</code>.</p>
+<p>Aqui vamos utilizar a imagem <code>r-ver:3.6.3</code> que vai nos permitir acessar imagem que sabemos que será compatível com o modelo que desenvolvemos na <a href="https://icaroagostino.github.io/post/plumber">parte 1</a>, por isso a primeira linha do nosso <code>Dockerfile</code> é:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">FROM rocker/r-ver:3.6.3
+</code></pre><p>Logo estamos falando pro <code>docker</code> criar nossa imagem com base na imagem já pronta da <code>rocker</code>, isso é um grande atalho, permitindo construir imagens com aplicações utilizando imagens já configuradas. E claro, temos containers com outras linguagem como <code>Python</code>, ou com aplicações já prontas como banco de dados.</p>
+<p>O comando seguinte do nosso <code>Dockerfile</code> é para instalar algumas dependências no <code>linux</code> que roda dentro do nosso container. Na sequencia vamos rodar um comando para instalar o pacote <code>plumber</code>:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">RUN R -e &quot;install.packages('plumber')&quot;
+</code></pre><p>O próximo passo é copiar os nossos arquivos para dentro do container:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">COPY API.R modelo.R ./
+</code></pre><p>Agora temos nossos arquivos dentro do container, vamos então expor uma porta para que possamos acessar nossa aplicação dentro do container (lembra que na <a href="https://icaroagostino.github.io/post/plumber">parte 1</a> desse tutorial escolhemos a porta 8080 para acessar nossa aplicação):</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">EXPOSE 8080
+</code></pre><p>E por fim vamos definir o que o container vai fazer quando ele for inciado:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">ENTRYPOINT [&quot;R&quot;, &quot;-e&quot;, &quot;source('API.R')&quot;]
+</code></pre><p>Ufa!, terminamos de entender o básico da estrutura de criação de containers, essa parte do tutorial poderia ser pulada, já que eu configurei esse arquivo previamente e apenas executar, mas acredito que essa breve explicação pode auxiliar você no futuro quando for criar seu próprio com outras necessidades, baseadas em outras imagens, com outras portas e etc.</p>
+<h3 id="criando-o-container">Criando o container</h3>
+<p>Finalmente vamos criar nosso container, e esse passo é realmente muito simples, de volta ao terminal (certifique-se que ele está rodando na pasta certa, se você fechou e reabriu deve usar o comando <code>cd tutoriaisBlog/docker</code>).</p>
+<p>Agora basta digitar o próximo comando (se atente para o ponto no final da linha):</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker build -t modelo-linear .
+</code></pre><p>Aqui o processo é simples de explicar, o <code>docker</code> vai utilizar o aquivo <code>Dockerfile</code> que está na pasta a acabamos de explicar. Esse arquivo passa uma sequencia de instruções para criação da imagem, esse processo pode demorar alguns minutos. Seja paciente, pois o tempo que gastamos aqui criando o container vamos poupar todas as vezes que precisarmos iniciar nossa aplicação que já vai estar pronta e configurada.</p>
+<p>O <code>docker</code> traz essa vantagem, pois aqui estamos isolando nossa aplicação em container com todas as dependências corretamente, sem sequer precisar instalar o <code>R</code> na máquina virtual, da mesma forma que não precisaremos instalar a linguagem e os pacotes na cloud na parte final.</p>
+<p>Após passar o processo de criação podemos ver nossa imagem e colocar ela para rodar. Para ver a lista de imagens use o comando:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker images
+</code></pre><p>Aqui podemos ver duas imagens, a nossa e a da <code>rocker</code> que foi baixada:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">REPOSITORY    TAG     IMAGE ID      CREATED       SIZE
+modelo-linear latest  ce4703adbb16  2 hours ago   901MB
+rocker/r-ver  3.6.3   b1dcbafd194d  11 hours ago  656MB
+</code></pre><p>Agora vamos colocar nosso container para rodar:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker run -d -p 8080:8080 modelo-linear
+</code></pre><p>O comando <code>run</code> inicia o container, o comando <code>-d</code> serve para rodar o container em segundo plano, se tirarmos essa parte a aplicação vai inicializar e abrir no terminal, não é o que queremos. O comando <code>-p</code> serve para dizer como o container de comunica, conectando a porta interna do container com a externo da sua máquina, aqui usamos <code>8080:8080</code>. E por fim o nome do container <code>modelo-linear</code>.</p>
+<p>Use o comando seguinte para ver os containers que estão rodando:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker ps
+</code></pre><p>Se tudo deu certo até aqui você verá algo assim:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">CONTAINER ID  IMAGE         COMMAND                 CREATED
+6d2ce98af45a  modelo-linear &quot;R -e source('API.R')&quot;  11 seconds ago
+
+STATUS        PORTS                   NAMES
+Up 7 seconds  0.0.0.0:8080-&gt;8080/tcp  peaceful_driscoll
+</code></pre><p>Agora você pode abrir o firefox que já vem instalado no Ubuntu e digitar na pesquisa:</p>
+<ul>
+<li><code>http://localhost:8080/__swagger__/</code></li>
+</ul>
+<p>E novamente veremos nossa aplicação rodando com <code>swagger</code>:</p>
+<p><img src="fig7.png#center" alt=""></p>
+<p>Aqui você pode testar novamente sua aplicação, colocar alguns valores e usar o <code>post</code>. Lembre-se que estamos rodando o modelo criado na <a href="https://icaroagostino.github.io/post/plumber">parte 1</a> sem instalar <code>R</code> ou pacotes na nossa máquina virtual, está tudo rodando isoladamente dentro de um container.</p>
+<p><img src="https://media.giphy.com/media/ChzfTLSi47FYc/giphy.gif#center" alt=""></p>
+<p><strong>Mas e agora, como salvar e guardar esse container para no futuro subir para uma cloud?</strong></p>
+<h2 id="utilizando-o-docker-hub-e-subindo-nossa-imagem">Utilizando o Docker Hub e subindo nossa imagem</h2>
+<p>Lembra que visitamos a página do <code>docker hub</code> para ver as imagens disponíveis, você vai precisar criar uma conta como já falei anteriormente. Após criar sua conta, clique <code>Create</code>, você vai agora colocar um nome no seu repositório (sugiro utilizar <code>modelo-linear</code> como fizemos antes), a descrição é opcional e devemos escolher deixar publico ou privado. Por fim clique em <code>Create &amp; Build</code>.</p>
+<p><img src="fig8.png#center" alt=""></p>
+<p>Agora de volta ao terminal precisamos renomear nossa imagem com o nosso ID do <code>docker hub</code>, a seguir vou fazer o exemplo com a minha conta e você pode replicar para a sua trocando por seu ID, para renomear usamos o seguinte:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker tag modelo-linear icaroagostino/modelo-linear
+</code></pre><p>Utilizando <code>sudo docker images</code> podemos ver que temos duas imagens uma com seu ID no começo e outra não, elas tem o mesmo <code>IMAGE ID</code> e não ocupam duas vezes o mesmo tamanho, na verdade o <code>docker</code> faz referencia de uma imagem para a outra.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">REPOSITORY                  TAG     IMAGE ID      CREATED       SIZE
+icaroagostino/modelo-linear latest  ce4703adbb16  2 hours ago   901MB
+modelo-linear               latest  ce4703adbb16  2 hours ago   901MB
+rocker/r-ver                3.6.3   b1dcbafd194d  11 hours ago  656MB
+</code></pre><p>Agora por fim vamos subir nosso container para o <code>docker hub</code>, utilizando o comando <code>push</code>:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker push icaroagostino/modelo-linear
+</code></pre><p>Após o processo terminar podemos voltar a página do <code>docker hub</code>, na aba tags podemos ver que nossa container já está hospedado:</p>
+<p><img src="fig9.png#center" alt=""></p>
+<p>Podemos baixar nossa imagem de container em qualquer computador, servidor ou cloud com <code>docker</code> utilizando o comando <code>pull</code>, o próprio <code>docker hub</code> já te diz o comando para fazer isso utilizando:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker pull icaroagostino/modelo-linear
+</code></pre><p>Pronto, agora temos nosso modelo dentro de um container e hospedado na nuvem pronto para usar em outros locais. Na próxima parte desse tutorial vamos colocar esse container para rodar na cloud da Amazon (AWS) utilizando uma máquina gratuita, que será acessível de qualquer local da internet.</p>
+<p>Para aprender a mexer mais no <code>docker</code> sugiro sempre ir na documentação oficial do projeto, que é bastante clara e objetiva: <a href="https://docs.docker.com/">https://docs.docker.com/</a></p>
+<h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
+<p>O papo hoje foi bem mais denso e longo, se você está vendo esse tutorial na semana que ele foi escrito a próxima parte será postada provavelmente no dia 27/04/2020, foi editar essa parte para ficar linkado a parte seguinte assim que sair. Se esse tutorial está sendo útil para você e foi possível executar tudo, ou mesmo se teve algum problema me marca em um tweet, meu user é <code>@icaroagostino</code>. Você pode me seguir nas minhas redes (nos botões a seguir), se quiser interagir comigo o twitter é a plataforma que mais uso para se comunicar com a comunidade de <code>R</code>.</p>
+<div style="text-align: center;">
+	<a style="margin-right: 5px" href="https://twitter.com/icaroagostino" target="_blank" rel="noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+
+	<a style="margin-right: 5px; margin-left: 5px" href="https://github.com/icaroagostino" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+
+	<a style="margin-right: 5px; margin-left: 5px" href="http://www.linkedin.com/in/icaroagostino" target="_blank" rel="noopener" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+	
+</div>
+<p>Os dados utilizados nesse exemplo são públicos, para mais detalhes baixem os scripts <a href="https://github.com/icaroagostino/tutoriaisBlog/tree/master/docker/">neste</a> repositório.</p>
+<blockquote>
+<p><code>R</code> é uma linguagem de programação open source. Todos os recursos, bibliotecas, dados e implementações são gratuitos e desenvolvidos pela comunidade.</p>
+<p>Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo sugiro o tutorial básico desenvolvido pelo pessoal do curso-r: <a href="http://material.curso-r.com/instalacao/">http://material.curso-r.com/instalacao/</a></p>
+</blockquote>
+<hr>
+<p>Até o próximo post, bons estudos em <code>R</code> :D</p>
+<p>Você pode compartilhar esse post nas redes sociais utilizando os botões no fim dessa página.</p>
+<p><img src="https://media1.tenor.com/images/5998dc6b4576b29ba1d61a084f3d79d0/tenor.gif#center" alt=""></p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/post/plumber/">
+                  <span class="button__text">Rodando modelos [R] na nuvem - parte 1: Criando APIs</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        
+
+
+<style>
+#share-buttons {text-align:center;}
+#share-buttons > div {
+  display:inline-block;
+  margin:1px 10px;
+  padding:3px;
+}
+
+#share-buttons > div > svg {height: 16px; fill: #5e5d5d; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+</style>
+
+<span style="color: #5e5d5d;">Compartilhe em: </span><div id="share-buttons">
+
+<div class="twitter" title="Compartilhe no Twitter" onclick="window.open('http://twitter.com/share?url=https://icaroagostino.github.io\/post\/docker\/&text=Rodando modelos [R] na nuvem - parte 2: Containers com Docker!');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+
+<div class="linkedin" title="Compartilhe no Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=https://icaroagostino.github.io\/post\/docker\/&title=Rodando modelos [R] na nuvem - parte 2: Containers com Docker!');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+
+<div class="facebook" title="Compartilhe no Facebook" onclick="window.open('http://www.facebook.com/share.php?u=https://icaroagostino.github.io\/post\/docker\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+</div>
+
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="http://icaroagostino.github.io/blog" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Ícaro Agostino</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme: <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+        </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

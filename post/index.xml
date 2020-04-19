@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Rodando modelos [R] na nuvem - parte 2: Containers com Docker!</title>
+      <link>/post/docker/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/docker/</guid>
+      <description>Parte 2: Rodando aplicações em containers Esse tutorial é a segunda parte da serie Rodando modelos [R] na nuvem, na primeira parte aprendemos como crias APIs com o pacote plumber (se você ainda não leu clique aqui). Nessa parte vamos aprender a como colocar nossa aplicação em containers utilizando Docker. E na parte final vamos subir esse container para a cloud da Amazon (AWS).
+O foco aqui será abordar o conceito de conteiner, assim como a parte prática.</description>
+    </item>
     
     <item>
       <title>Rodando modelos [R] na nuvem - parte 1: Criando APIs</title>
@@ -17,8 +27,8 @@
       <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/post/plumber/</guid>
-      <description>Cover Photo by Lukas from Pexels
-Parte 1: Criando API&#39;s com o pacote plumber Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&#39;s com o pacote plumber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS).</description>
+      <description>Parte 1: Criando API&#39;s com o pacote plumber Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&#39;s com o pacote plumber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS).
+Nesse post vamos aprender como transformar um modelo estatístico/ML em uma API utilizando R com o pacote plumber.</description>
     </item>
     
     <item>

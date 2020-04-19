@@ -6,8 +6,8 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="Cover Photo by Lukas from Pexels
-Parte 1: Criando API&#39;s com o pacote plumber Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&#39;s com o pacote plumber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS)."/>
+<meta name="description" content="Parte 1: Criando API&#39;s com o pacote plumber Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&#39;s com o pacote plumber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS).
+Nesse post vamos aprender como transformar um modelo estatístico/ML em uma API utilizando R com o pacote plumber."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/post/plumber/" />
@@ -65,11 +65,11 @@ Parte 1: Criando API&#39;s com o pacote plumber Essa sequência de tutoriais vai
     
       
         
-          <li><a href="/post">Posts</a></li>
+          <li><a href="/post">Posts  </a></li>
         
       
         
-          <li><a href="/sobre">Sobre Mim</a></li>
+          <li><a href="/sobre">Sobre</a></li>
         
       
         
@@ -87,11 +87,11 @@ Parte 1: Criando API&#39;s com o pacote plumber Essa sequência de tutoriais vai
   <ul class="menu__inner menu__inner--mobile">
     
       
-        <li><a href="/post">Posts</a></li>
+        <li><a href="/post">Posts  </a></li>
       
     
       
-        <li><a href="/sobre">Sobre Mim</a></li>
+        <li><a href="/sobre">Sobre</a></li>
       
     
       
@@ -167,8 +167,7 @@ Parte 1: Criando API&#39;s com o pacote plumber Essa sequência de tutoriais vai
     
 
     <div class="post-content">
-      <p><a href="https://www.pexels.com/photo/person-writing-on-notebook-669615/">Cover Photo by Lukas from Pexels</a></p>
-<h1 id="parte-1-criando-apis-com-o-pacote-plumber"><strong>Parte 1: Criando API's com o pacote plumber</strong></h1>
+      <h1 id="parte-1-criando-apis-com-o-pacote-plumber"><strong>Parte 1: Criando API's com o pacote plumber</strong></h1>
 <p>Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API's com o pacote <code>plumber</code>. <strong>Na parte 2</strong> vamos entender como colocar uma API dentro de um contêiner utilizando <code>docker</code>. E na <strong>parte final</strong> vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (<a href="https://aws.amazon.com/">AWS</a>).</p>
 <p><img src="fig1.jpg#center" alt=""></p>
 <p>Nesse post vamos aprender como transformar um modelo estatístico/ML em uma API utilizando <code>R</code> com o pacote <code>plumber</code>. Esse é um passo intermediário entre o desenvolvimento local de um modelo e a fase de produção, quando colocamos o modelo para rodar em um sistema real, ficando disponível para receber requisições de predições. Tudo que aprendermos aqui serve para outros tipos de aplicações, no futuro vou fazer um post para ensinar a rodar uma aplicação <code>shiny</code> na nuvem.</p>
@@ -346,7 +345,7 @@ tail(cov_br_conf[,6:9])
 <p>As APIs do <a href="https://developer.spotify.com/documentation/web-api/"><strong>Spotify</strong></a> e do <a href="https://openrouteservice.org/dev/#/api-docs"><strong>Open Route Service</strong></a> precisam de chaves de acesso, você deve criar um cadastro que dará acesso a uma chave pessoal gratuitamente. Encorajo você a tentar aprender a mexer nessas outras APIs, clicando nos nomes delas nesse parágrafo. Você irá para as documentações, basta entender como fazer a requisição e escrever o código em <code>R</code> utilizando <code>httr</code>.</p>
 <p>O modelo que criamos nesse tutorial, e depois convertemos para API é bem simples e inicial, crie modelos mais complexos, assim como APIs mais complexas com múltiplas saídas e tipos de requisições.</p>
 <h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
-<p>Se você está vendo esse tutorial na semana que eu escrevi, a continuação dele, onde abordaremos o <code>Docker</code> será provavelmente postada no dia 21 desse mês. Você pode me seguir nas minhas redes (nos botões a seguir), se quiser interagir comigo o twitter é a plataforma que mais uso para se comunicar com a comunidade de <code>R</code>.</p>
+<p>A continuação desse tutorial, onde abordaremos o <code>Docker</code> está disponível clicando <a href="https://icaroagostino.github.io/post/docker/">aqui</a>. Você pode me seguir nas minhas redes (nos botões a seguir), se quiser interagir comigo o twitter é a plataforma que mais uso para se comunicar com a comunidade de <code>R</code>.</p>
 <div style="text-align: center;">
 	<a style="margin-right: 5px" href="https://twitter.com/icaroagostino" target="_blank" rel="noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
 
@@ -374,6 +373,13 @@ tail(cov_br_conf[,6:9])
             <hr />
           </div>
           <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/post/docker/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Rodando modelos [R] na nuvem - parte 2: Containers com Docker!</span>
+                </a>
+              </span>
             
             
               <span class="button next">
