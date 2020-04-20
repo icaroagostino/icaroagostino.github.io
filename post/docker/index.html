@@ -191,7 +191,7 @@ O foco aqui será abordar o conceito de conteiner, assim como a parte prática."
 <p>Além disso, é importante destacar que apesar do Windows ser o OS predominante nos computadores pessoais, a esmagadora maioria dos servidores é em <code>Linux</code>, isso significa que se você está interessado em colocar seus modelos em <code>R</code> para rodar em ambientes clouds em produção, mais cedo ou mais tarde você vai esbarrar com a necessidade de aprender a mexer um pouco com <code>Linux</code>, não é nada muito complicado, também passei por essa experiencia de ser um usuário de Windows tendo que aprender <code>Linux</code> pra dar o próximo passo em direção ao ambiente cloud.</p>
 <p><img src="fig4.png#center" alt=""></p>
 <p>Para rodar um OS tipo <code>Linux</code> vamos utilizar <strong>VirtualBox</strong> que é gratuito, esse programa vai permitir rodar um sistema <code>Linux</code> virtualizado sem a necessidade de sair do windows, basicamente a máquina virtual vai ser um programa como outro qualquer em que você roda um sistema operacional inteiro dentro dela. Como distribuição, nesse tutorial vamos utilizar o OS <strong>Ubuntu</strong>, sendo um dos amigáveis para quem não é usuário de <code>Linux</code>. Aqui eu vou sugerir seguir o tutorial da WikiHow: <a href="https://pt.wikihow.com/Instalar-o-Ubuntu-no-VirtualBox">Instalando Ubuntu no Windows</a>. Nesse tutorial você vai ver todos os passos de como virtualizar uma máquina Ubuntu.</p>
-<p>Esse tutorial vai seguir a linha principal da utilização do <em>VirtualBox</em>_ com <code>Ubuntu</code> rodando no Windows. Essa é uma ótima forma de aprender um pouco de <code>Linux</code> sem precisar migrar de sistema =)</p>
+<p>Esse tutorial vai seguir a linha principal da utilização do <strong>VirtualBox</strong> com <code>Ubuntu</code> rodando no Windows. Essa é uma ótima forma de aprender um pouco de <code>Linux</code> sem precisar migrar de sistema =)</p>
 <h2 id="instalando-docker">Instalando Docker</h2>
 <p>Se você está no Windows Pro ou Enterprise o docker deve ser instalado pelo link que indiquei acima ou <a href="https://hub.docker.com/editions/community/docker-ce-desktop-windows/">aqui</a>. Se você usa Mac siga esse tutorial <a href="https://docs.docker.com/docker-for-mac/install/">aqui</a>. Como não uso nenhum desses sistemas, não tenho como indicar o passo a passo para a instalação nessas plataformas, mas pelo que vi é como instalar um programa comum.</p>
 <p>Após instalar o <code>Ubuntu</code> no VirtualBox e inicializar o sistema você estará num ambiente como esse:</p>
@@ -206,15 +206,15 @@ O foco aqui será abordar o conceito de conteiner, assim como a parte prática."
 </code></pre><p>Com o <code>git</code> instalado e os pacote atualizados podemos instalar o <code>docker</code>, para isso use o comando:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">sudo apt install docker.io
 </code></pre><p>Pronto, você já está com tudo necessário para começar a criar containers =)</p>
-<h2 id="entendo-e-criando-containers">Entendo e criando containers</h2>
+<h2 id="entendendo-e-criando-containers">Entendendo e criando containers</h2>
 <p>Agora com tudo instalado, podemos criar nossos containers. Para isso precisamos do nossos arquivos. Para evitar ter que configurar todo o <code>R</code> em um sistema que estamos usando apenas para criar o container, podemos baixar os arquivos do <strong>GitHub</strong> com nosso modelo desenvolvido na <a href="https://icaroagostino.github.io/post/plumber">parte 1</a>. Peguei o mesmo modelo que configuramos como uma API e deixei tudo pronto para a criação do container.</p>
 <p>Ainda com o terminal aberto digite o comando a seguir para baixar os arquivos:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">sudo git clone https://github.com/icaroagostino/tutoriaisBlog
-</code></pre><p>Agora o <code>git</code> clonou os nossos arquivos para sua máquina pessoal provavelmente na sua pasta <code>/home</code>. Agora vamos navegar para a pasta que está os aquivos necessários, digite no terminal:</p>
+</code></pre><p>Agora o <code>git</code> clonou os nossos arquivos para sua máquina pessoal, provavelmente na sua pasta <code>/home</code>. Agora vamos navegar para a pasta que está os aquivos necessários, digite no terminal:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">cd tutoriaisBlog/docker
-</code></pre><p>Agora estamos no diretório correto, para entender quais arquivos vamos trabalhar abra o gerenciador de arquivos do <code>Ubuntu</code> entre na pasta <code>tutoriaisBlog -&gt; docker</code>, la teremos os seguintes arquivos:</p>
+</code></pre><p>Agora estamos no diretório correto. Para entender quais arquivos vamos trabalhar abra o gerenciador de arquivos do <code>Ubuntu</code> entre na pasta <code>tutoriaisBlog -&gt; docker</code>, la teremos os seguintes arquivos:</p>
 <p><img src="fig6.png#center" alt=""></p>
-<p>Dois desses arquivos são da <a href="https://icaroagostino.github.io/post/plumber">parte 1</a> do nosso tutorial, a novidade aqui é o <code>Dockerfile</code>. Se abrirmos esse arquivo, vermos o seguinte:</p>
+<p>Dois desses arquivos são da <a href="https://icaroagostino.github.io/post/plumber">parte 1</a> do nosso tutorial, a novidade aqui é o <code>Dockerfile</code>. Se abrirmos esse arquivo, veremos o seguinte:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">FROM rocker/r-ver:3.6.3
 
 RUN apt-get update -qq &amp;&amp; apt-get install -y \
@@ -229,10 +229,10 @@ COPY API.R modelo.R ./
 EXPOSE 8080
 
 ENTRYPOINT [&quot;R&quot;, &quot;-e&quot;, &quot;source('API.R')&quot;]
-</code></pre><p>O <code>Dockerfile</code> é o arquivo que define a construção do nosso container, vamos passar por todas as linhas desse arquivo explicando para que fique claro a criação de container utilizando <code>Docker</code>. Não precisa executar nada nos próximos parágrafos, aqui vai ser só a explicação da estrutura desse arquivo para que você possa replicar no futuro, se quiser pular a criação direto clique <a href="#criando-o-container">aqui</a></p>
+</code></pre><p>O <code>Dockerfile</code> é o arquivo que define a construção do nosso container, vamos passar por todas as linhas desse arquivo explicando para que fique claro a criação de containers utilizando <code>Docker</code>. Não precisa executar nada nos próximos parágrafos, aqui vamos apenas explicar a estrutura desse arquivo para que você possa replicar no futuro, se quiser pular a explicação do <code>Dockerfile</code>, e ir direto para a construção do container clique <a href="#criando-o-container">aqui</a>.</p>
 <h3 id="entendendo-a-estrutura-de-um-container">Entendendo a estrutura de um container</h3>
-<p>A primeira linha é a imagem base pra criação do nosso container, aqui podemos começar com uma imagem básica de um sistema operacional e depois e instalando o que precisamos por cima. Pra nossa sorte temos diversas imagens já pronta contendo algumas ferramentas já instaladas. No nosso caso vamos instalar uma das imagens da <a href="https://hub.docker.com/u/rocker"><strong>rocker</strong></a>, que é comunidade que mantem imagens de container configuradas com diversas versões de <code>R</code> e pacotes já configuradas.</p>
-<p>Todas essas imagens de container ficam disponíveis gratuitamente para baixar no <code>docker hub</code>, que funciona como um <code>GitHub</code> só que para containers. Acesse a página do <code>rocker</code> no <code>docker hub</code> para ver as possibilidades:</p>
+<p>A primeira linha é a imagem base para a criação do nosso container. Aqui podemos começar com uma imagem básica de um sistema operacional e depois ir instalando o que precisamos por cima. Para nossa sorte temos diversas imagens já prontas contendo algumas ferramentas já instaladas. No nosso caso vamos instalar uma das imagens da <a href="https://hub.docker.com/u/rocker"><strong>rocker</strong></a>, que é a comunidade que mantem imagens de container configuradas com diversas versões de <code>R</code> e pacotes já instaladas.</p>
+<p>Todas essas imagens de containers ficam disponíveis gratuitamente para baixar no <code>docker hub</code>, que funciona como um <code>GitHub</code> só que para containers. Acesse a página do <code>rocker</code> no <code>docker hub</code> para ver as possibilidades:</p>
 <p>Link: <a href="https://hub.docker.com/u/rocker">https://hub.docker.com/u/rocker</a></p>
 <p><img src="rocker.png#center" alt=""></p>
 <p>Temos diversas imagens disponível, desde de <code>R</code> base com apenas a linguagem, imagens com <code>tidyverse</code>, <code>shiny</code> e outras versões. Aproveite que você esta na página do <code>docker hub</code> e faça um cadastro, vamos precisar no final para subir nosso container para o <code>docker hub</code>.</p>
@@ -241,19 +241,19 @@ ENTRYPOINT [&quot;R&quot;, &quot;-e&quot;, &quot;source('API.R')&quot;]
 </code></pre><p>Logo estamos falando pro <code>docker</code> criar nossa imagem com base na imagem já pronta da <code>rocker</code>, isso é um grande atalho, permitindo construir imagens com aplicações utilizando imagens já configuradas. E claro, temos containers com outras linguagem como <code>Python</code>, ou com aplicações já prontas como banco de dados.</p>
 <p>O comando seguinte do nosso <code>Dockerfile</code> é para instalar algumas dependências no <code>linux</code> que roda dentro do nosso container. Na sequencia vamos rodar um comando para instalar o pacote <code>plumber</code>:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">RUN R -e &quot;install.packages('plumber')&quot;
-</code></pre><p>O próximo passo é copiar os nossos arquivos para dentro do container:</p>
+</code></pre><p>O próximo passo é copiar os nossos arquivos para dentro do container, em uma aplicação futura você provavelmente terá outros arquivos, com outras estruturas, basta colocar os nomes dos arquivos assim como fiz a seguir, não esquecendo de deixar o <code>./</code> no final:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">COPY API.R modelo.R ./
 </code></pre><p>Agora temos nossos arquivos dentro do container, vamos então expor uma porta para que possamos acessar nossa aplicação dentro do container (lembra que na <a href="https://icaroagostino.github.io/post/plumber">parte 1</a> desse tutorial escolhemos a porta 8080 para acessar nossa aplicação):</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">EXPOSE 8080
 </code></pre><p>E por fim vamos definir o que o container vai fazer quando ele for inciado:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">ENTRYPOINT [&quot;R&quot;, &quot;-e&quot;, &quot;source('API.R')&quot;]
-</code></pre><p>Ufa!, terminamos de entender o básico da estrutura de criação de containers, essa parte do tutorial poderia ser pulada, já que eu configurei esse arquivo previamente e apenas executar, mas acredito que essa breve explicação pode auxiliar você no futuro quando for criar seu próprio com outras necessidades, baseadas em outras imagens, com outras portas e etc.</p>
+</code></pre><p>Ufa! terminamos de entender o básico da estrutura de criação de containers, essa parte do tutorial poderia ser pulada, já que eu configurei esse arquivo previamente e poderia só ensinar a execução, mas acredito que essa breve explicação pode auxiliar você no futuro quando for criar seu próprio container com outras necessidades, baseadas em outras imagens, com outras portas e etc.</p>
 <h3 id="criando-o-container">Criando o container</h3>
 <p>Finalmente vamos criar nosso container, e esse passo é realmente muito simples, de volta ao terminal (certifique-se que ele está rodando na pasta certa, se você fechou e reabriu deve usar o comando <code>cd tutoriaisBlog/docker</code>).</p>
 <p>Agora basta digitar o próximo comando (se atente para o ponto no final da linha):</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker build -t modelo-linear .
 </code></pre><p>Aqui o processo é simples de explicar, o <code>docker</code> vai utilizar o aquivo <code>Dockerfile</code> que está na pasta a acabamos de explicar. Esse arquivo passa uma sequencia de instruções para criação da imagem, esse processo pode demorar alguns minutos. Seja paciente, pois o tempo que gastamos aqui criando o container vamos poupar todas as vezes que precisarmos iniciar nossa aplicação que já vai estar pronta e configurada.</p>
-<p>O <code>docker</code> traz essa vantagem, pois aqui estamos isolando nossa aplicação em container com todas as dependências corretamente, sem sequer precisar instalar o <code>R</code> na máquina virtual, da mesma forma que não precisaremos instalar a linguagem e os pacotes na cloud na parte final.</p>
+<p>O <code>docker</code> traz essa vantagem, pois aqui estamos isolando nossa aplicação em um container com todas as dependências corretamente, sem sequer precisar instalar o <code>R</code> na máquina virtual, da mesma forma que não precisaremos instalar a linguagem e os pacotes na cloud na parte final.</p>
 <p>Após passar o processo de criação podemos ver nossa imagem e colocar ela para rodar. Para ver a lista de imagens use o comando:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker images
 </code></pre><p>Aqui podemos ver duas imagens, a nossa e a da <code>rocker</code> que foi baixada:</p>
@@ -262,7 +262,7 @@ modelo-linear latest  ce4703adbb16  2 hours ago   901MB
 rocker/r-ver  3.6.3   b1dcbafd194d  11 hours ago  656MB
 </code></pre><p>Agora vamos colocar nosso container para rodar:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker run -d -p 8080:8080 modelo-linear
-</code></pre><p>O comando <code>run</code> inicia o container, o comando <code>-d</code> serve para rodar o container em segundo plano, se tirarmos essa parte a aplicação vai inicializar e abrir no terminal, não é o que queremos. O comando <code>-p</code> serve para dizer como o container de comunica, conectando a porta interna do container com a externo da sua máquina, aqui usamos <code>8080:8080</code>. E por fim o nome do container <code>modelo-linear</code>.</p>
+</code></pre><p>O comando <code>run</code> inicia o container, o comando <code>-d</code> serve para rodar o container em segundo plano, se tirarmos essa parte a aplicação vai inicializar e abrir no terminal, não é o que queremos. O comando <code>-p</code> serve para dizer como o container de comunica, conectando a porta interna do container com a externa da sua máquina, aqui usamos <code>8080:8080</code>. E por fim o nome do container <code>modelo-linear</code>.</p>
 <p>Use o comando seguinte para ver os containers que estão rodando:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker ps
 </code></pre><p>Se tudo deu certo até aqui você verá algo assim:</p>
@@ -281,7 +281,7 @@ Up 7 seconds  0.0.0.0:8080-&gt;8080/tcp  peaceful_driscoll
 <p><img src="https://media.giphy.com/media/ChzfTLSi47FYc/giphy.gif#center" alt=""></p>
 <p><strong>Mas e agora, como salvar e guardar esse container para no futuro subir para uma cloud?</strong></p>
 <h2 id="utilizando-o-docker-hub-e-subindo-nossa-imagem">Utilizando o Docker Hub e subindo nossa imagem</h2>
-<p>Lembra que visitamos a página do <code>docker hub</code> para ver as imagens disponíveis, você vai precisar criar uma conta como já falei anteriormente. Após criar sua conta, clique <code>Create</code>, você vai agora colocar um nome no seu repositório (sugiro utilizar <code>modelo-linear</code> como fizemos antes), a descrição é opcional e devemos escolher deixar publico ou privado. Por fim clique em <code>Create &amp; Build</code>.</p>
+<p>Lembra que visitamos a página do <code>docker hub</code> para ver as imagens disponíveis, você vai precisar criar uma conta como já falei anteriormente. Após criar sua conta, clique <code>Create</code>, você vai agora colocar um nome no seu repositório (sugiro utilizar <code>modelo-linear</code> como fizemos antes), a descrição é opcional e podemos escolher deixar público ou privado. Por fim, clique em <code>Create</code>.</p>
 <p><img src="fig8.png#center" alt=""></p>
 <p>Agora de volta ao terminal precisamos renomear nossa imagem com o nosso ID do <code>docker hub</code>, a seguir vou fazer o exemplo com a minha conta e você pode replicar para a sua trocando por seu ID, para renomear usamos o seguinte:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker tag modelo-linear icaroagostino/modelo-linear
@@ -291,6 +291,7 @@ icaroagostino/modelo-linear latest  ce4703adbb16  2 hours ago   901MB
 modelo-linear               latest  ce4703adbb16  2 hours ago   901MB
 rocker/r-ver                3.6.3   b1dcbafd194d  11 hours ago  656MB
 </code></pre><p>Agora por fim vamos subir nosso container para o <code>docker hub</code>, utilizando o comando <code>push</code>:</p>
+<p><em>Não esqueça de trocar o meu nome de usuário pelo seu.</em></p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">sudo docker push icaroagostino/modelo-linear
 </code></pre><p>Após o processo terminar podemos voltar a página do <code>docker hub</code>, na aba tags podemos ver que nossa container já está hospedado:</p>
 <p><img src="fig9.png#center" alt=""></p>
@@ -299,7 +300,7 @@ rocker/r-ver                3.6.3   b1dcbafd194d  11 hours ago  656MB
 </code></pre><p>Pronto, agora temos nosso modelo dentro de um container e hospedado na nuvem pronto para usar em outros locais. Na próxima parte desse tutorial vamos colocar esse container para rodar na cloud da Amazon (AWS) utilizando uma máquina gratuita, que será acessível de qualquer local da internet.</p>
 <p>Para aprender a mexer mais no <code>docker</code> sugiro sempre ir na documentação oficial do projeto, que é bastante clara e objetiva: <a href="https://docs.docker.com/">https://docs.docker.com/</a></p>
 <h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
-<p>O papo hoje foi bem mais denso e longo, se você está vendo esse tutorial na semana que ele foi escrito a próxima parte será postada provavelmente no dia 27/04/2020, foi editar essa parte para ficar linkado a parte seguinte assim que sair. Se esse tutorial está sendo útil para você e foi possível executar tudo, ou mesmo se teve algum problema me marca em um tweet, meu user é <code>@icaroagostino</code>. Você pode me seguir nas minhas redes (nos botões a seguir), se quiser interagir comigo o twitter é a plataforma que mais uso para se comunicar com a comunidade de <code>R</code>.</p>
+<p>O papo hoje foi bem mais denso e longo, se você está vendo esse tutorial na semana que ele foi escrito a próxima parte será postada provavelmente no dia 27/04/2020. Assim que sair vou editar essa parte para ficar linkado a parte seguinte. Se esse tutorial está sendo útil para você e foi possível executar tudo, ou mesmo se teve algum problema me marque em um tweet, meu user é <code>@icaroagostino</code>. Você pode me seguir nas minhas redes (nos botões a seguir), se quiser interagir comigo o twitter é a plataforma que mais uso para se comunicar com a comunidade de <code>R</code>.</p>
 <div style="text-align: center;">
 	<a style="margin-right: 5px" href="https://twitter.com/icaroagostino" target="_blank" rel="noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
 
