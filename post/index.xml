@@ -17,8 +17,8 @@
       <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/post/docker/</guid>
-      <description>Parte 2: Rodando aplicações em containers Esse tutorial é a segunda parte da serie Rodando modelos [R] na nuvem, na primeira parte aprendemos como crias APIs com o pacote plumber (se você ainda não leu clique aqui). Nessa parte vamos aprender a como colocar nossa aplicação em containers utilizando Docker. E na parte final vamos subir esse container para a cloud da Amazon (AWS).
-O foco aqui será abordar o conceito de conteiner, assim como a parte prática.</description>
+      <description>Parte 2: Rodando aplicações em containers Esse tutorial é a segunda parte da série Rodando modelos [R] na nuvem, na primeira parte aprendemos como criar APIs com o pacote plumber (se você ainda não leu clique aqui). Nessa parte vamos aprender a como colocar nossa aplicação em containers utilizando Docker. E na parte final vamos subir esse container para a cloud da Amazon (AWS).
+O foco aqui será abordar o conceito de container, assim como a parte prática.</description>
     </item>
     
     <item>
