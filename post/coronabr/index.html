@@ -6,7 +6,7 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="O pacote CoronaBr [R] Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API covid19api (você pode acessar clicando aqui), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessante têm organizado os dados em maior granularidade, permitindo visualizar a situação por estados com foco no Brasil, como é o caso da iniciativa do Brasil."/>
+<meta name="description" content="O pacote coronabr [R] Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API covid19api (você pode acessar clicando aqui), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessantes têm organizado os dados em maior granularidade, permitindo visualizar a situação por estados com foco no Brasil, como é o caso da iniciativa do Brasil."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/post/coronabr/" />
@@ -166,9 +166,9 @@
     
 
     <div class="post-content">
-      <h1 id="o-pacote-coronabr-r"><strong>O pacote CoronaBr [R]</strong></h1>
-<p>Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API <a href="https://covid19api.com/">covid19api</a> (você pode acessar clicando <a href="https://icaroagostino.github.io/post/rmd-cov19/">aqui</a>), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessante têm organizado os dados em maior granularidade, permitindo visualizar a situação por estados com foco no Brasil, como é o caso da iniciativa do <a href="https://brasil.io/dataset/covid19/caso/">Brasil.io</a>.</p>
-<p>Recentemente um grupo de pesquisadores desenvolveu o pacote <a href="https://liibre.github.io/coronabr/index.html"><code>coronabr</code></a> que simplesmente centraliza diversos dos recursos que comentei. O pacote permite de forma simples e prática buscar dados de diversas fontes, baixar esses dados atualizados diretamente para sua seção do <code>R</code> já formatado como <code>data.frame</code> e prontos para sua análise. Além disso, essa ferramenta fornece visualizações gráficas com mapas e tendências, e já se encontra disponível para download e utilização no GitHub =)</p>
+      <h1 id="o-pacote-coronabr-r"><strong>O pacote coronabr [R]</strong></h1>
+<p>Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API <a href="https://covid19api.com/">covid19api</a> (você pode acessar clicando <a href="https://icaroagostino.github.io/post/rmd-cov19/">aqui</a>), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessantes têm organizado os dados em maior granularidade, permitindo visualizar a situação por estados com foco no Brasil, como é o caso da iniciativa do <a href="https://brasil.io/dataset/covid19/caso/">Brasil.io</a>.</p>
+<p>Recentemente um grupo de pesquisadores desenvolveu o pacote <a href="https://liibre.github.io/coronabr/index.html"><code>coronabr</code></a> que simplesmente centraliza diversos dos recursos que comentei. O pacote permite de forma simples e prática buscar dados de diversas fontes, baixar esses dados atualizados diretamente para sua seção do <code>R</code> já formatados como <code>data.frame</code> e prontos para sua análise. Além disso, essa ferramenta fornece visualizações gráficas com mapas e tendências, e já se encontra disponível para download e utilização no GitHub =)</p>
 <p>Os pesquisadores responsáveis pelo pacote são: <a href="http://www.twitter.com/mortarasara">Sara Mortara</a>, <a href="https://twitter.com/SanchezTapiaA">Andrea Sánchez-Tapia</a> e <a href="https://twitter.com/kguidonimartins">Karlo Guidoni Martins</a>, clicando <a href="https://liibre.github.io/coronabr/about.html">aqui</a> você pode saber um pouco mais sobre eles.</p>
 <p>Nas próximas seções vamos instalar o pacote <code>coronabr</code>, testar as principais funções e gerar algumas visualizações.</p>
 <h2 id="instalando-__coronabr__-e-baixando-dados">Instalando <strong>coronabr</strong> e baixando dados</h2>
@@ -176,23 +176,24 @@
 <pre><code class="language-visual-basic" data-lang="visual-basic">install.packages('remotes') # remotes
 
 remotes::install_github(&quot;liibre/coronabr&quot;) # coronabr
-</code></pre><p>No momento da instalação talvez seja requerido a atualização dos pacotes que são deponências para o <code>coronabr</code>, sugiro selecionar a opção <code>CRAN packages only</code>.</p>
+</code></pre><p>No momento da instalação talvez seja requerido a atualização dos pacotes que são dependências para o <code>coronabr</code>, sugiro selecionar a opção <code>CRAN packages only</code>.</p>
 <p>Após a instalação vamos carregar o pacote e baixar os dados do Brasil por estado.</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">library(coronabr) # carregando pacote
 
 dados &lt;- get_corona_br(by_uf = TRUE) # baixando dados
 View(dados) # vizualizando dados
-</code></pre><p>Usando a função <code>View()</code> podemos ver que os dados já estão organizados em <code>data.frame</code> contendo diversas informações interessantes, como tava de mortalidade por região por exemplo.</p>
+</code></pre><p>Usando a função <code>View()</code> podemos ver que os dados já estão organizados em <code>data.frame</code> contendo diversas informações interessantes, como por exemplo a taxa de mortalidade por região.</p>
 <p><img src="dados.png#center" alt=""></p>
 <p>Temos outras funções que baixam dados de diferentes fontes, segundo o site do projeto essas são as possibilidades:</p>
 <p><a href="https://liibre.github.io/coronabr/reference/get_corona_minsaude.html"><code>get_corona_minsaude()</code></a>: Extrai dados de COVID-19 para o Brasil da página do Ministério da Saúde</p>
 <p><a href="https://liibre.github.io/coronabr/reference/get_corona_br.html"><code>get_corona_br()</code></a>: Extrai dados de coronavírus para o Brasil de Brasil.io</p>
 <p><a href="https://liibre.github.io/coronabr/reference/format_corona_br.html"><code>format_corona_br()</code></a>: Preenche as datas vazias nos dados de COVID-19 do Brasil.io</p>
 <p><a href="https://liibre.github.io/coronabr/reference/get_corona_jhu.html"><code>get_corona_jhu()</code></a>: Extrai dados mundiais de coronavírus</p>
-<p>Clicando nas funções acima você direcionado ao site oficial com o help completo da função, contendo descrição dos argumentos.</p>
+<p>Clicando nas funções acima você será direcionado para o site oficial com o help completo da função, contendo a descrição dos argumentos.</p>
 <h2 id="gráficos-e-mapas-com-o-pacote-__coronabr__">Gráficos e mapas com o pacote <strong>coronabr</strong></h2>
-<p>Agora com nossos dados já baixados vamos gerar alguns gráficos de forma bem simples. O primeiro é o histórico de todos os estados, para isso usamos a função:</p>
-<pre><code class="language-visual-basic" data-lang="visual-basic">plot_uf(dados)
+<p>Agora com nossos dados já baixados vamos gerar alguns gráficos de forma bem simples. O primeiro é o histórico de todos os estados, para isso usamos as funções:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">format_corona_br(dados)
+plot_uf(dados)
 </code></pre><p><img src="plot_uf.png#center" alt=""></p>
 <p>Você pode customizar bastante o gráfico, selecionando o tipo de dado por casos confirmados ou mortes, mostrar dados proporcionais a população, entre outras possibilidades.</p>
 <p>Outro gráfico interessante é um mapa mostrando a dispersão dos casos pelo Brasil, com a possibilidade de gerar esse gráfico como uma animação:</p>
@@ -200,13 +201,13 @@ View(dados) # vizualizando dados
 </code></pre><p><img src="map.gif#center" alt=""></p>
 <p>Também é possível gerar animações dos gráficos de tendências:</p>
 <p><img src="casos.gif#center" alt=""></p>
-<p>Infelizmente para esse último caso eu não consegui alterar a proporção do gráfico, prejudicando um pouco a vizualização das datas. Vale ressaltar que o pacote está em constante desenvolvimento, provavelemnte logo eles permitirão de forma simples mexer nessa opção.</p>
+<p>Infelizmente para esse último caso eu não consegui alterar a proporção do gráfico, prejudicando um pouco a visualização das datas. Vale ressaltar que o pacote está em constante desenvolvimento, provavelmente logo eles permitirão de forma simples alterar essa opção.</p>
 <p>Lembrando que existem outras possibilidades de gráficos derivados das outras fontes de dados =)</p>
 <h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
 <p>O pacote <code>coronabr</code> é bem direto ao ponto e eficiente, facilitando o fluxo de buscar dados atualizados de diferentes fontes e permitir a geração de gráficos, mapas e animações. Vale lembrar que você pode usar o pacote para baixar os dados já em <code>data.frame</code> e criar modelos preditivos.</p>
-<p>Parabéns aos criadores do <code>coronabr</code>, acredito que essa ferramenta será muito útil para pesquisadores brasileiros =)</p>
+<p>Parabéns aos criadores do <code>coronabr</code>, acredito que essa ferramenta será muito útil para pesquisadores brasileiros na busca de entender como combater esse problema =)</p>
 <p>Não deixe de visitar o site oficial do pacote, lá você terá todas as informações: <a href="https://liibre.github.io/coronabr/index.html">https://liibre.github.io/coronabr/index.html</a></p>
-<p>Se esse post foi útil para você me marque em um tweet, meu user é <a href="https://twitter.com/icaroagostino"><code>@icaroagostino</code></a>. Você pode me seguir nas minhas redes (nos botões a seguir), se quiser interagir comigo o twitter é a plataforma que mais uso para se comunicar com a comunidade de <code>R</code>.</p>
+<p>Se esse post foi útil para você me marque em um tweet, meu user é <a href="https://twitter.com/icaroagostino"><code>@icaroagostino</code></a>. Você pode me seguir nas minhas redes (nos botões a seguir). Se quiser interagir comigo o twitter é a plataforma que mais uso para se comunicar com a comunidade de <code>R</code>.</p>
 <div style="text-align: center;">
 	<a style="margin-right: 5px" href="https://twitter.com/icaroagostino" target="_blank" rel="noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
 
@@ -218,7 +219,7 @@ View(dados) # vizualizando dados
 <hr>
 <blockquote>
 <p><code>R</code> é uma linguagem de programação open source. Todos os recursos, bibliotecas, dados e implementações são gratuitos e desenvolvidos pela comunidade.</p>
-<p>Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo sugiro o tutorial básico desenvolvido pelo pessoal do curso-r: <a href="http://material.curso-r.com/instalacao/">http://material.curso-r.com/instalacao/</a></p>
+<p>Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo, sugiro o tutorial básico desenvolvido pelo pessoal do curso-r: <a href="http://material.curso-r.com/instalacao/">http://material.curso-r.com/instalacao/</a></p>
 </blockquote>
 <hr>
 <p>Até o próximo post, bons estudos em <code>R</code> :D</p>
