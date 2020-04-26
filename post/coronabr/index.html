@@ -6,7 +6,7 @@
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="description" content="O pacote CoronaBr [R] Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API covid19api (você pode acessar clicando aqui), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessante têm organizado dados em maior granularidade, permitindo visualizar a situação por estado com foco no Brasil, como é o caso da iniciativa do Brasil."/>
+<meta name="description" content="O pacote CoronaBr [R] Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API covid19api (você pode acessar clicando aqui), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessante têm organizado os dados em maior granularidade, permitindo visualizar a situação por estados com foco no Brasil, como é o caso da iniciativa do Brasil."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/post/coronabr/" />
@@ -167,8 +167,8 @@
 
     <div class="post-content">
       <h1 id="o-pacote-coronabr-r"><strong>O pacote CoronaBr [R]</strong></h1>
-<p>Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API <a href="https://covid19api.com/">covid19api</a> (você pode acessar clicando <a href="https://icaroagostino.github.io/post/rmd-cov19/">aqui</a>), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessante têm organizado dados em maior granularidade, permitindo visualizar a situação por estado com foco no Brasil, como é o caso da iniciativa do <a href="https://brasil.io/dataset/covid19/caso/">Brasil.io</a>.</p>
-<p>Recentemente um grupo de pesquisadores desenvolveu o pacote <a href="https://liibre.github.io/coronabr/index.html"><code>coronabr</code></a> que simplesmente centraliza diversos dos recursos que comentei, permitindo de forma simples e prática buscar dados de diversas fontes, baixar esses dados atualizados diretamente para sua seção do <code>R</code> já formatado como <code>data.frame</code> pronto para sua análise. Além disso o pacote fornece visualizações gráficas com mapas e tendências. O pacote já se encontra disponível para utilização no GitHub =)</p>
+<p>Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API <a href="https://covid19api.com/">covid19api</a> (você pode acessar clicando <a href="https://icaroagostino.github.io/post/rmd-cov19/">aqui</a>), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessante têm organizado os dados em maior granularidade, permitindo visualizar a situação por estados com foco no Brasil, como é o caso da iniciativa do <a href="https://brasil.io/dataset/covid19/caso/">Brasil.io</a>.</p>
+<p>Recentemente um grupo de pesquisadores desenvolveu o pacote <a href="https://liibre.github.io/coronabr/index.html"><code>coronabr</code></a> que simplesmente centraliza diversos dos recursos que comentei. O pacote permite de forma simples e prática buscar dados de diversas fontes, baixar esses dados atualizados diretamente para sua seção do <code>R</code> já formatado como <code>data.frame</code> e prontos para sua análise. Além disso, essa ferramenta fornece visualizações gráficas com mapas e tendências, e já se encontra disponível para download e utilização no GitHub =)</p>
 <p>Os pesquisadores responsáveis pelo pacote são: <a href="http://www.twitter.com/mortarasara">Sara Mortara</a>, <a href="https://twitter.com/SanchezTapiaA">Andrea Sánchez-Tapia</a> e <a href="https://twitter.com/kguidonimartins">Karlo Guidoni Martins</a>, clicando <a href="https://liibre.github.io/coronabr/about.html">aqui</a> você pode saber um pouco mais sobre eles.</p>
 <p>Nas próximas seções vamos instalar o pacote <code>coronabr</code>, testar as principais funções e gerar algumas visualizações.</p>
 <h2 id="instalando-__coronabr__-e-baixando-dados">Instalando <strong>coronabr</strong> e baixando dados</h2>
@@ -194,13 +194,13 @@ View(dados) # vizualizando dados
 <p>Agora com nossos dados já baixados vamos gerar alguns gráficos de forma bem simples. O primeiro é o histórico de todos os estados, para isso usamos a função:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">plot_uf(dados)
 </code></pre><p><img src="plot_uf.png#center" alt=""></p>
-<p>Você pode customizar bastante o gráfico, como filtrando estados específicos, o tipo de dado por casos confirmados ou mortes, mostrar dados proporcionais a população, entre outras possibilidades.</p>
-<p>Um gráfico interessante é um mapa mostrando a dispersão dos casos pelo Brasil, com a possibilidade de gerar essa gráfico como uma animação:</p>
+<p>Você pode customizar bastante o gráfico, selecionando o tipo de dado por casos confirmados ou mortes, mostrar dados proporcionais a população, entre outras possibilidades.</p>
+<p>Outro gráfico interessante é um mapa mostrando a dispersão dos casos pelo Brasil, com a possibilidade de gerar esse gráfico como uma animação:</p>
 <pre><code class="language-visual-basic" data-lang="visual-basic">map_corona_br(dados, anim = TRUE)
 </code></pre><p><img src="map.gif#center" alt=""></p>
 <p>Também é possível gerar animações dos gráficos de tendências:</p>
 <p><img src="casos.gif#center" alt=""></p>
-<p>Infelizmente para esse último caso eu não consegui alterar a proporção do gráfico, prejudicando um pouco a vizualização das datas. Porém o pacote está em constante desenvolvimento, provavelemnte logo eles permitirão de forma simples mexer nessa opção.</p>
+<p>Infelizmente para esse último caso eu não consegui alterar a proporção do gráfico, prejudicando um pouco a vizualização das datas. Vale ressaltar que o pacote está em constante desenvolvimento, provavelemnte logo eles permitirão de forma simples mexer nessa opção.</p>
 <p>Lembrando que existem outras possibilidades de gráficos derivados das outras fontes de dados =)</p>
 <h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
 <p>O pacote <code>coronabr</code> é bem direto ao ponto e eficiente, facilitando o fluxo de buscar dados atualizados de diferentes fontes e permitir a geração de gráficos, mapas e animações. Vale lembrar que você pode usar o pacote para baixar os dados já em <code>data.frame</code> e criar modelos preditivos.</p>
