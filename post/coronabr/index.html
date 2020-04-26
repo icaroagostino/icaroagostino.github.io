@@ -192,7 +192,7 @@ View(dados) # vizualizando dados
 <p>Clicando nas funções acima você será direcionado para o site oficial com o help completo da função, contendo a descrição dos argumentos.</p>
 <h2 id="gráficos-e-mapas-com-o-pacote-__coronabr__">Gráficos e mapas com o pacote <strong>coronabr</strong></h2>
 <p>Agora com nossos dados já baixados vamos gerar alguns gráficos de forma bem simples. O primeiro é o histórico de todos os estados, para isso usamos as funções:</p>
-<pre><code class="language-visual-basic" data-lang="visual-basic">format_corona_br(dados)
+<pre><code class="language-visual-basic" data-lang="visual-basic">dados &lt;- format_corona_br(dados)
 plot_uf(dados)
 </code></pre><p><img src="plot_uf.png#center" alt=""></p>
 <p>Você pode customizar bastante o gráfico, selecionando o tipo de dado por casos confirmados ou mortes, mostrar dados proporcionais a população, entre outras possibilidades.</p>
@@ -200,7 +200,8 @@ plot_uf(dados)
 <pre><code class="language-visual-basic" data-lang="visual-basic">map_corona_br(dados, anim = TRUE)
 </code></pre><p><img src="map.gif#center" alt=""></p>
 <p>Também é possível gerar animações dos gráficos de tendências:</p>
-<p><img src="casos.gif#center" alt=""></p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">plot_uf(dados, anim = TRUE)
+</code></pre><p><img src="casos.gif#center" alt=""></p>
 <p>Infelizmente para esse último caso eu não consegui alterar a proporção do gráfico, prejudicando um pouco a visualização das datas. Vale ressaltar que o pacote está em constante desenvolvimento, provavelmente logo eles permitirão de forma simples alterar essa opção.</p>
 <p>Lembrando que existem outras possibilidades de gráficos derivados das outras fontes de dados =)</p>
 <h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
