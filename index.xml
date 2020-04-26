@@ -6,10 +6,19 @@
     <description>Recent content on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Testando o pacote CoronaBr [R]</title>
+      <link>/post/coronabr/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/coronabr/</guid>
+      <description>O pacote CoronaBr [R] Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API covid19api (você pode acessar clicando aqui), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessante têm organizado dados em maior granularidade, permitindo visualizar a situação por estado com foco no Brasil, como é o caso da iniciativa do Brasil.</description>
+    </item>
     
     <item>
       <title>Rodando modelos [R] na nuvem - parte 2: Containers com Docker!</title>
@@ -27,7 +36,7 @@ O foco aqui será abordar o conceito de container, assim como a parte prática.<
       <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>/post/plumber/</guid>
-      <description>Parte 1: Criando API&#39;s com o pacote plumber Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&#39;s com o pacote plumber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS).
+      <description>Parte 1: Criando API&amp;rsquo;s com o pacote plumber Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&amp;rsquo;s com o pacote plumber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS).
 Nesse post vamos aprender como transformar um modelo estatístico/ML em uma API utilizando R com o pacote plumber.</description>
     </item>
     
@@ -85,13 +94,13 @@ Nesse post vamos demonstrar de forma simplificada como ajustar um modelo de prev
     </item>
     
     <item>
-      <title>Sobre Mim</title>
+      <title>Sobre</title>
       <link>/sobre/</link>
       <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
       
       <guid>/sobre/</guid>
       <description>Olá, Meu nome é Ícaro, atualmente sou Doutorando em Eng. de Produção pela UFSC, Pesquisador no Laboratório de Sistemas Produtivos e Logísticos Inteligentes (ProLogIS) e estou em período sanduíche como Pesquisador Visitante no Bremer Institut für Produktion und Logistik GmbH (BIBA) na Alemanha.
-Sou grande entusiasta da linguagem R e tenho desenvolvido diversas aplicações em Simulação, Forecasting, Construção de API&#39;s e Modelagem estatística em geral. Você pode encontrar alguns dos meus projetos no github.</description>
+Sou grande entusiasta da linguagem R e tenho desenvolvido diversas aplicações em Simulação, Forecasting, Construção de API&amp;rsquo;s e Modelagem estatística em geral. Você pode encontrar alguns dos meus projetos no github.</description>
     </item>
     
     <item>

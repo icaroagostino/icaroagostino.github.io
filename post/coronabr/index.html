@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Testando o pacote CoronaBr [R] :: Ícaro Agostino — Forecasting, Simulção e Otimização</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="O pacote CoronaBr [R] Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API covid19api (você pode acessar clicando aqui), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessante têm organizado dados em maior granularidade, permitindo visualizar a situação por estado com foco no Brasil, como é o caso da iniciativa do Brasil."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/post/coronabr/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Testando o pacote CoronaBr [R]"/>
+<meta name="twitter:description" content="coronabr é um pacote de R para fazer download e visualizar os dados dos casos diários de coronavírus (COVID-19) disponibilizados por diferentes fontes"/>
+
+
+
+<meta property="og:title" content="Testando o pacote CoronaBr [R]" />
+<meta property="og:description" content="coronabr é um pacote de R para fazer download e visualizar os dados dos casos diários de coronavírus (COVID-19) disponibilizados por diferentes fontes" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/coronabr/" />
+<meta property="article:published_time" content="2020-04-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-28T00:00:00+00:00" /><meta property="og:site_name" content="Ícaro Agostino" />
+
+
+
+
+
+
+  </head>
+  <body class="">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="http://icaroagostino.github.io/blog" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Ícaro Agostino</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/post">Posts  </a></li>
+        
+      
+        
+          <li><a href="/sobre">Sobre</a></li>
+        
+      
+        
+          <li><a href="/curriculum"> Curriculum</a></li>
+        
+      
+        
+          <li><a href="/archive">  Archive</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/post">Posts  </a></li>
+      
+    
+      
+        <li><a href="/sobre">Sobre</a></li>
+      
+    
+      
+        <li><a href="/curriculum"> Curriculum</a></li>
+      
+    
+      
+        <li><a href="/archive">  Archive</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h2 class="post-title"><a href="/post/coronabr/">Testando o pacote CoronaBr [R]</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-04-28
+        </span>
+
+        
+          
+        
+      
+
+      <span class="post-author">— Written by Ícaro</span>
+      
+        <span class="post-read-time">— 4 min read</span>
+      
+    </div>
+
+    
+
+    
+      
+        <img src="/img/coronabr.png" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      <h1 id="o-pacote-coronabr-r"><strong>O pacote CoronaBr [R]</strong></h1>
+<p>Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API <a href="https://covid19api.com/">covid19api</a> (você pode acessar clicando <a href="https://icaroagostino.github.io/post/rmd-cov19/">aqui</a>), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessante têm organizado dados em maior granularidade, permitindo visualizar a situação por estado com foco no Brasil, como é o caso da iniciativa do <a href="https://brasil.io/dataset/covid19/caso/">Brasil.io</a>.</p>
+<p>Recentemente um grupo de pesquisadores desenvolveu o pacote <a href="https://liibre.github.io/coronabr/index.html"><code>coronabr</code></a> que simplesmente centraliza diversos dos recursos que comentei, permitindo de forma simples e prática buscar dados de diversas fontes, baixar esses dados atualizados diretamente para sua seção do <code>R</code> já formatado como <code>data.frame</code> pronto para sua análise. Além disso o pacote fornece visualizações gráficas com mapas e tendências. O pacote já se encontra disponível para utilização no GitHub =)</p>
+<p>Os pesquisadores responsáveis pelo pacote são: <a href="http://www.twitter.com/mortarasara">Sara Mortara</a>, <a href="https://twitter.com/SanchezTapiaA">Andrea Sánchez-Tapia</a> e <a href="https://twitter.com/kguidonimartins">Karlo Guidoni Martins</a>, clicando <a href="https://liibre.github.io/coronabr/about.html">aqui</a> você pode saber um pouco mais sobre eles.</p>
+<p>Nas próximas seções vamos instalar o pacote <code>coronabr</code>, testar as principais funções e gerar algumas visualizações.</p>
+<h2 id="instalando-__coronabr__-e-baixando-dados">Instalando <strong>coronabr</strong> e baixando dados</h2>
+<p>O pacote está disponível no GitHub, isso significa que precisamos instalar via o pacote <code>remotes</code>. Caso você já tenha o pacote <code>remotes</code> pode pular essa etapa. No código abaixo instalamos o <code>remotes</code> e na sequência o <code>coronabr</code>:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">install.packages('remotes') # remotes
+
+remotes::install_github(&quot;liibre/coronabr&quot;) # coronabr
+</code></pre><p>No momento da instalação talvez seja requerido a atualização dos pacotes que são deponências para o <code>coronabr</code>, sugiro selecionar a opção <code>CRAN packages only</code>.</p>
+<p>Após a instalação vamos carregar o pacote e baixar os dados do Brasil por estado.</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">library(coronabr) # carregando pacote
+
+dados &lt;- get_corona_br(by_uf = TRUE) # baixando dados
+View(dados) # vizualizando dados
+</code></pre><p>Usando a função <code>View()</code> podemos ver que os dados já estão organizados em <code>data.frame</code> contendo diversas informações interessantes, como tava de mortalidade por região por exemplo.</p>
+<p><img src="dados.png#center" alt=""></p>
+<p>Temos outras funções que baixam dados de diferentes fontes, segundo o site do projeto essas são as possibilidades:</p>
+<p><a href="https://liibre.github.io/coronabr/reference/get_corona_minsaude.html"><code>get_corona_minsaude()</code></a>: Extrai dados de COVID-19 para o Brasil da página do Ministério da Saúde</p>
+<p><a href="https://liibre.github.io/coronabr/reference/get_corona_br.html"><code>get_corona_br()</code></a>: Extrai dados de coronavírus para o Brasil de Brasil.io</p>
+<p><a href="https://liibre.github.io/coronabr/reference/format_corona_br.html"><code>format_corona_br()</code></a>: Preenche as datas vazias nos dados de COVID-19 do Brasil.io</p>
+<p><a href="https://liibre.github.io/coronabr/reference/get_corona_jhu.html"><code>get_corona_jhu()</code></a>: Extrai dados mundiais de coronavírus</p>
+<p>Clicando nas funções acima você direcionado ao site oficial com o help completo da função, contendo descrição dos argumentos.</p>
+<h2 id="gráficos-e-mapas-com-o-pacote-__coronabr__">Gráficos e mapas com o pacote <strong>coronabr</strong></h2>
+<p>Agora com nossos dados já baixados vamos gerar alguns gráficos de forma bem simples. O primeiro é o histórico de todos os estados, para isso usamos a função:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">plot_uf(dados)
+</code></pre><p><img src="plot_uf.png#center" alt=""></p>
+<p>Você pode customizar bastante o gráfico, como filtrando estados específicos, o tipo de dado por casos confirmados ou mortes, mostrar dados proporcionais a população, entre outras possibilidades.</p>
+<p>Um gráfico interessante é um mapa mostrando a dispersão dos casos pelo Brasil, com a possibilidade de gerar essa gráfico como uma animação:</p>
+<pre><code class="language-visual-basic" data-lang="visual-basic">map_corona_br(dados, anim = TRUE)
+</code></pre><p><img src="map.gif#center" alt=""></p>
+<p>Também é possível gerar animações dos gráficos de tendências:</p>
+<p><img src="casos.gif#center" alt=""></p>
+<p>Infelizmente para esse último caso eu não consegui alterar a proporção do gráfico, prejudicando um pouco a vizualização das datas. Porém o pacote está em constante desenvolvimento, provavelemnte logo eles permitirão de forma simples mexer nessa opção.</p>
+<p>Lembrando que existem outras possibilidades de gráficos derivados das outras fontes de dados =)</p>
+<h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
+<p>O pacote <code>coronabr</code> é bem direto ao ponto e eficiente, facilitando o fluxo de buscar dados atualizados de diferentes fontes e permitir a geração de gráficos, mapas e animações. Vale lembrar que você pode usar o pacote para baixar os dados já em <code>data.frame</code> e criar modelos preditivos.</p>
+<p>Parabéns aos criadores do <code>coronabr</code>, acredito que essa ferramenta será muito útil para pesquisadores brasileiros =)</p>
+<p>Não deixe de visitar o site oficial do pacote, lá você terá todas as informações: <a href="https://liibre.github.io/coronabr/index.html">https://liibre.github.io/coronabr/index.html</a></p>
+<p>Se esse post foi útil para você me marque em um tweet, meu user é <a href="https://twitter.com/icaroagostino"><code>@icaroagostino</code></a>. Você pode me seguir nas minhas redes (nos botões a seguir), se quiser interagir comigo o twitter é a plataforma que mais uso para se comunicar com a comunidade de <code>R</code>.</p>
+<div style="text-align: center;">
+	<a style="margin-right: 5px" href="https://twitter.com/icaroagostino" target="_blank" rel="noopener" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+
+	<a style="margin-right: 5px; margin-left: 5px" href="https://github.com/icaroagostino" target="_blank" rel="noopener" title="Github"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+
+	<a style="margin-right: 5px; margin-left: 5px" href="http://www.linkedin.com/in/icaroagostino" target="_blank" rel="noopener" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+	
+</div>
+<hr>
+<blockquote>
+<p><code>R</code> é uma linguagem de programação open source. Todos os recursos, bibliotecas, dados e implementações são gratuitos e desenvolvidos pela comunidade.</p>
+<p>Se você tem interesse de aprender a instalar o R e os passos básicos para iniciar nesse mundo sugiro o tutorial básico desenvolvido pelo pessoal do curso-r: <a href="http://material.curso-r.com/instalacao/">http://material.curso-r.com/instalacao/</a></p>
+</blockquote>
+<hr>
+<p>Até o próximo post, bons estudos em <code>R</code> :D</p>
+<p>Você pode compartilhar esse post nas redes sociais utilizando os botões no fim dessa página.</p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/post/docker/">
+                  <span class="button__text">Rodando modelos [R] na nuvem - parte 2: Containers com Docker!</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        
+
+
+<style>
+#share-buttons {text-align:center;}
+#share-buttons > div {
+  display:inline-block;
+  margin:1px 10px;
+  padding:3px;
+}
+
+#share-buttons > div > svg {height: 16px; fill: #5e5d5d; margin-top: 10px;}
+#share-buttons > div:hover {cursor: pointer;}
+#share-buttons > div.twitter:hover > svg {fill: #55ACEE;}
+#share-buttons > div.linkedin:hover > svg {fill: #0077b5;}
+#share-buttons > div.facebook:hover > svg {fill: #3B5998;}
+#share-buttons > div.twitter > svg {height: 20px; margin-top: 8px;}
+#share-buttons > div.linkedin > svg {height: 19px; margin-top: 7px;}
+#share-buttons > div.facebook > svg {height: 18px; margin-top: 9px;}
+</style>
+
+<span style="color: #5e5d5d;">Compartilhe em: </span><div id="share-buttons">
+
+<div class="twitter" title="Compartilhe no Twitter" onclick="window.open('http://twitter.com/share?url=https://icaroagostino.github.io\/post\/coronabr\/&text=Testando o pacote CoronaBr [R]');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+
+<div class="linkedin" title="Compartilhe no Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=https://icaroagostino.github.io\/post\/coronabr\/&title=Testando o pacote CoronaBr [R]');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+
+<div class="facebook" title="Compartilhe no Facebook" onclick="window.open('http://www.facebook.com/share.php?u=https://icaroagostino.github.io\/post\/coronabr\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
+</div>
+
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="http://icaroagostino.github.io/blog" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">Ícaro Agostino</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 Powered by <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span>
+        <span>Theme: <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+        </div>
+    
+  </div>
+</footer>
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
