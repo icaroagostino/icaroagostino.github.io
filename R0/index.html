@@ -385,7 +385,8 @@ plot(Germany.1918) # Exibindo dados</code></pre>
 <p>Para estimar o R0 antes é necessario ajustar uma distribuição Gama, o pacote oferece a seguinte implementação:</p>
 <pre class="r"><code>mGT &lt;- generation.time(&quot;gamma&quot;, c(3, 1.5)) # Parametros gama 3 e 1.5</code></pre>
 <p>Para o caso do corona os parametros sugeridos são 3.16, 1.52 pelo artigo no link a seguir, esses parametros foram usados no estudo recente do imperial college.</p>
-<p>Estudo com os paramtros: <a href="https://mrc-ide.github.io/covid19-short-term-forecasts/index.html" class="uri">https://mrc-ide.github.io/covid19-short-term-forecasts/index.html</a> Estudo do imperial college: <a href="https://www.medrxiv.org/content/10.1101/2020.03.10.20033852v1.full.pdf" class="uri">https://www.medrxiv.org/content/10.1101/2020.03.10.20033852v1.full.pdf</a></p>
+<p>Estudo com os paramtros: <a href="https://mrc-ide.github.io/covid19-short-term-forecasts/index.html" class="uri">https://mrc-ide.github.io/covid19-short-term-forecasts/index.html</a></p>
+<p>Estudo do imperial college: <a href="https://www.medrxiv.org/content/10.1101/2020.03.10.20033852v1.full.pdf" class="uri">https://www.medrxiv.org/content/10.1101/2020.03.10.20033852v1.full.pdf</a></p>
 <div id="estimando-o-r0" class="section level3">
 <h3>Estimando o R0</h3>
 <p>Agora podemos estimar o R0 com a função <code>estimate.R</code>, a implementação oferece 5 alternativas de estimação:</p>
