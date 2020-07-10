@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Minha participação (virtual) no useR! 2020</title>
+      <link>/post/user2020/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/user2020/</guid>
+      <description>useR! 2020 - European Hub Munique Depois de um longo período sem posts, hoje queria comentar (e divulgar) parte da minha pesquisa de doutorado utilizando R. Sou doutorando em Eng. Produção pela UFSC, e atualmente também sou pesquisador visitante na Universidade de Bremen (na Alemanha), existe uma parceria entre as universidade e eu tô fazendo parte da minha pesquisa aqui.
+Como um grande entusiasta de R surgiu a oportunidade de participar do useR!</description>
+    </item>
     
     <item>
       <title>Rodando modelos [R] na nuvem - parte 3: AWS</title>
