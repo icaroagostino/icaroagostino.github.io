@@ -7,7 +7,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="useR! 2020 - European Hub Munique Depois de um longo período sem posts, hoje queria comentar (e divulgar) parte da minha pesquisa de doutorado utilizando R. Sou doutorando em Eng. Produção pela UFSC, e atualmente também sou pesquisador visitante na Universidade de Bremen (na Alemanha), existe uma parceria entre as universidade e eu tô fazendo parte da minha pesquisa aqui.
-Como um grande entusiasta de R surgiu a oportunidade de participar do useR!"/>
+Como um entusiasta de R surgiu a oportunidade de participar do useR!"/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/post/user2020/" />
@@ -169,20 +169,20 @@ Como um grande entusiasta de R surgiu a oportunidade de participar do useR!"/>
     <div class="post-content">
       <h1 id="user-2020---european-hub-munique">useR! 2020 - European Hub Munique</h1>
 <p>Depois de um longo período sem posts, hoje queria comentar (e divulgar) parte da minha pesquisa de doutorado utilizando <code>R</code>. Sou doutorando em Eng. Produção pela <strong>UFSC</strong>, e atualmente também sou pesquisador visitante na <strong>Universidade de Bremen</strong> (na Alemanha), existe uma parceria entre as universidade e eu tô fazendo parte da minha pesquisa aqui.</p>
-<p>Como um grande entusiasta de <code>R</code> surgiu a oportunidade de participar do <strong>useR! 2020</strong>, que seria realizado na cidade de <strong>Munique</strong>, aqui do lado de onde eu moro, além de estar perto seria a oportunidade perfeita para conhecer mais gente dessa comunidade, já que o evento costuma atrair pessoas de várias partes do mundo.</p>
+<p>Como um entusiasta de <code>R</code> surgiu a oportunidade de participar do <strong>useR! 2020</strong>, que seria realizado na cidade de <strong>Munique</strong>, aqui do lado de onde eu moro, além de estar perto seria a oportunidade perfeita para conhecer mais gente dessa comunidade, já que o evento costuma atrair pessoas de várias partes do mundo.</p>
 <p>Mas aí veio a pandemia e como já esperado o evento está sendo realizado online. O lado bom é que ele se tornou gratuito e aberto a qualquer um que queira assistir no YouTube (<a href="https://www.youtube.com/channel/UC_R5smHVXRYGhZYDJsnXTwg/videos">link</a>) as transmissões ao vivo que também ficarão gravadas.</p>
 <h2 id="scheduling-em-sistemas-distribuídos-de-manufatura">Scheduling em sistemas distribuídos de manufatura</h2>
-<p>Minha pesquisa de doutorado está relacionado ao projeto maior chamado <a href="http://www.fastenmanufacturing.eu/"><strong>FASTEN</strong></a>, nesse projeto estamos desenvolvendo uma plataforma completa para operar <strong>sistemas distribuídos</strong> de manufatura que utilizam <strong>impressão 3d</strong> e <strong>robôs</strong>. A ideia central é ter pequenos centros de produção que se aproveitem dessas novas tecnologias e possam produzir em menor escala próximo ao cliente final, assim tornando tudo mais <strong>rápido</strong> e <strong>responsivo</strong> à mudanças.</p>
+<p>Minha pesquisa de doutorado está relacionado a um projeto maior chamado <a href="http://www.fastenmanufacturing.eu/"><strong>FASTEN</strong></a>, nesse projeto estamos desenvolvendo uma plataforma completa para operar <strong>sistemas distribuídos</strong> de manufatura que utilizam <strong>impressão 3d</strong> e <strong>robôs</strong>. A ideia central é ter pequenos centros de produção que se aproveitem dessas novas tecnologias e possam produzir em menor escala próximo ao cliente final, assim tornando tudo mais <strong>rápido</strong> e <strong>responsivo</strong> à mudanças.</p>
 <p><img src="fasten.png#center" alt=""></p>
 <p><a href="http://www.fastenmanufacturing.eu/">Photo by Fasten</a></p>
 <p>Meu grupo de pesquisa lida com a parte da <strong>inteligência</strong> do sistema, onde devemos aproveitar dados providos em tempo real para controlar esse sistema distribuído de manufatura, e a minha contribuição dentro disso tudo foi desenvolver um modelo capaz de alocar as ordens de produção de forma dinâmica e otimizada conforme elas chegassem no sistema, utilizando dados em tempo real e aplicações externas.</p>
-<p>Em sistemas produtivos isso é chamado de <em>Scheduling</em>, quando você decide quando e como uma operação deve ser executada.</p>
+<p><em>Em sistemas produtivos isso é chamado de Scheduling, quando você decide quando e como uma operação deve ser executada.</em></p>
 <h2 id="otimizador-operacional-para-scheduling-dinâmico">Otimizador operacional para scheduling dinâmico</h2>
-<p>O modelo de desenvolvido realiza a otimização com base em um algoritmo de busca exaustiva considerando todas as opções disponíveis. Os dados são consumidos em tempo de execução provenientes de um sistema de Internet das Coisas (IoT), e por uma API externa de código aberto do Open Route Service para estimar dinamicamente tempos de transporte entre vários locais de produção e o cliente.</p>
+<p>O modelo de desenvolvido realiza a otimização com base em um <strong>algoritmo de busca exaustiva</strong> considerando todas as opções disponíveis. Os dados são consumidos em tempo de execução provenientes de um sistema de <strong>Internet das Coisas (IoT)</strong>, e por uma API externa de código aberto do <a href="https://openrouteservice.org/">Open Route Service</a> para estimar dinamicamente tempos de transporte entre vários locais de produção e o cliente.</p>
 <p>O modelo (em <code>R</code> claro), utilizou as bibliotecas <code>dplyr</code> para manipulação de dados, <code>httr</code> para comunicações HPPT, <code>plumber</code> para desenvolvimento da API e <code>jsonlite</code> para manipulação de arquivos .json. A aplicação foi implementada utilizando a arquitetura REST e a estrutura swagger. Tudo roda dentro de um <strong>Docker</strong> em um ambiente de produção.</p>
 <p><img src="arq.png#center" alt=""></p>
-<p><em>obs.: se você tiver interesse nesse assunto de APIs, Docker e Nuvem utilizando <code>R</code>, aquino blog tem uma sequência de posts que cobre o assunto passp a passo, só clicar <a href="https://icaroagostino.github.io/post/plumber/"><strong>aqui</strong></a>.</em></p>
-<p>O modelo realiza uma otimização local para cada ordem de produção para uma unidade SRAM, utilizando as entradas de dados:</p>
+<p><em>obs.: se você tiver interesse nesse assunto de APIs, Docker e Nuvem utilizando <code>R</code>, aquino blog tem uma sequência de posts que cobre o assunto passo a passo, só clicar <a href="https://icaroagostino.github.io/post/plumber/"><strong>aqui</strong></a>.</em></p>
+<p>O modelo realiza uma <strong>otimização local</strong> para cada ordem de produção para decidir em que unidade produtiva a ordem será <strong>executada</strong> e entregue no menor tempo possível, utilizando as entradas de dados:</p>
 <ul>
 <li>Tempos de fila</li>
 <li>Tempos de preparação</li>
@@ -190,17 +190,18 @@ Como um grande entusiasta de R surgiu a oportunidade de participar do useR!"/>
 <li>Tempos de transporte</li>
 </ul>
 <p>A função objetiva deve minimizar o tempo total de resposta:</p>
+<p><img src="eq.png#center" alt=""></p>
 <p>A integração do modelo com as principais tecnologias relacionadas são mostradas neste diagrama:</p>
 <p><img src="model.png#center" alt=""></p>
 <h2 id="participação-online">Participação Online</h2>
-<p>Infelizmente não foi dessa vez que tive a experiência de participar presencialmente de uma conferencia focada em <code>R</code>, mas tenho certeza que haverão outras oportunidades no futuro. Minha apresentação foi submetida como <em>lightning talk</em>, que tinha o limite de 5 minutos, então não deu pra entrar em tantos detalhes de modelagem, mas pra quem quiser ver o vídeo:</p>
+<p>Infelizmente não foi dessa vez que tive a experiência de participar presencialmente de uma conferencia focada em <code>R</code>, mas tenho certeza que haverão outras oportunidades no futuro. Minha apresentação foi submetida como <em>lightning talk</em>, que tinha o limite de 5 minutos, então não deu pra entrar em tantos detalhes da modelagem, mas pra quem quiser ver o vídeo:</p>
 <p><em>disclaimer: meu inglês deu umas falhadas nessa gravação, acho que tava meio nervoso hehe =)</em></p>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/8wXRir49b9w" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<h2 id="chegamos-ao-fim">Chegamos ao fim</h2>
+<h2 id="até-mais-o">Até mais o/</h2>
 <p>Bom, essa é uma pesquisa que ainda está em desenvolvimento, então por enquanto ainda não consigo deixar o código público. Atualmente estou trabalhando em uma publicação mais completa abordando todo o modelo em detalhes, assim que sair divulgarei toda a implementação com código no GitHub =).</p>
 <p>Se quiser trocar uma ideia sobre esse assunto ou qualquer outro relacionado a <code>R</code> o twitter é a plataforma que mais uso para me comunicar com a galera da comunidade. Aproveito e deixo minhas outras redes também.</p>
 <div style="text-align: center;">
