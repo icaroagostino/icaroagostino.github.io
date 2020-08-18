@@ -6,10 +6,20 @@
     <description>Recent content on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Materiais gratuitos para aprender R em 2020</title>
+      <link>/post/learnr/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/learnr/</guid>
+      <description>Post em desenvolvimento Um roadmap de materiais para aprender R em 2020 Uma das coisas mais legais da comunidade que utiliza R é a geração de muitos materiais e tutorias com exemplos reproduzíveis. Ao longos dos últimos meses utilizando R para uma serie de diferentes aplicações, comecei a coletar links e materiais que poderiam ser interessantes para aprendizado e consulta.
+Então nesse post trago uma seleção de materiais, todos gratuitos e em sua maioria livros online produzidos por pessoas relevantes no cenário do R no Brasil e no mundo.</description>
+    </item>
     
     <item>
       <title>Minha participação (virtual) no useR! 2020</title>
@@ -120,16 +130,6 @@ Nesse post vamos demonstrar de forma simplificada como ajustar um modelo de prev
       <guid>/sobre/</guid>
       <description>Olá, Meu nome é Ícaro, atualmente sou Doutorando em Eng. de Produção pela UFSC, Pesquisador no Laboratório de Sistemas Produtivos e Logísticos Inteligentes (ProLogIS) e estou em período sanduíche como Pesquisador Visitante no Bremer Institut für Produktion und Logistik GmbH (BIBA) na Alemanha.
 Sou grande entusiasta da linguagem R e tenho desenvolvido diversas aplicações em Simulação, Forecasting, Construção de API&amp;rsquo;s e Modelagem estatística em geral. Você pode encontrar alguns dos meus projetos no github.</description>
-    </item>
-    
-    <item>
-      <title>[Em desenvolvimento] Materiais gratuitos para aprender R em 2020</title>
-      <link>/post/learnr/</link>
-      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/learnr/</guid>
-      <description>Post em desenvolvimento Um roadmap de materiais para aprender R em 2020 Uma das coisas mais legais da comunidade que utiliza R é a geração de muitos materiais e tutorias com exemplos reproduziveis. Ao longos dos ultimos meses utilizando R para uma serie de diferentes aplicações, comecei a coletar links e materiais que poderiam ser interessantes para aprendizado e consulta.
-Então nesse post trago uma seleção de materiais, todos gratuitos e em sua maioria livros online produzidos por pessoas relevantes no cenário do R no Brasil e no mundo.</description>
     </item>
     
     <item>

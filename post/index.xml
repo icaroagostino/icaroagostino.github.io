@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Materiais gratuitos para aprender R em 2020</title>
+      <link>/post/learnr/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/learnr/</guid>
+      <description>Post em desenvolvimento Um roadmap de materiais para aprender R em 2020 Uma das coisas mais legais da comunidade que utiliza R é a geração de muitos materiais e tutorias com exemplos reproduzíveis. Ao longos dos últimos meses utilizando R para uma serie de diferentes aplicações, comecei a coletar links e materiais que poderiam ser interessantes para aprendizado e consulta.
+Então nesse post trago uma seleção de materiais, todos gratuitos e em sua maioria livros online produzidos por pessoas relevantes no cenário do R no Brasil e no mundo.</description>
+    </item>
     
     <item>
       <title>Minha participação (virtual) no useR! 2020</title>
@@ -101,16 +111,6 @@ Para demonstrar os conceitos discutidos aqui vamos simular alguns cenários util
       <description>Cover Photo by Lum3n.com from Pexels
 Previsão com modelos ARIMA Existem muitos conceitos relacionados a previsão, cientificamente falando uma das formas mais bem fundamentadas é a previsão baseada em séries temporais, em que você observa uma variável ao longo do tempo, em intervalos constantes, a partir disso consegue extrair padrões e extrapolar esses padrões para o futuro.
 Nesse post vamos demonstrar de forma simplificada como ajustar um modelo de previsão utilizando a família de modelos Autorregressivos Integrados de Médias Móveis (ARIMA) em R para para previsão de séries temporais utilizando o pacote forecast.</description>
-    </item>
-    
-    <item>
-      <title>[Em desenvolvimento] Materiais gratuitos para aprender R em 2020</title>
-      <link>/post/learnr/</link>
-      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/learnr/</guid>
-      <description>Post em desenvolvimento Um roadmap de materiais para aprender R em 2020 Uma das coisas mais legais da comunidade que utiliza R é a geração de muitos materiais e tutorias com exemplos reproduziveis. Ao longos dos ultimos meses utilizando R para uma serie de diferentes aplicações, comecei a coletar links e materiais que poderiam ser interessantes para aprendizado e consulta.
-Então nesse post trago uma seleção de materiais, todos gratuitos e em sua maioria livros online produzidos por pessoas relevantes no cenário do R no Brasil e no mundo.</description>
     </item>
     
   </channel>
