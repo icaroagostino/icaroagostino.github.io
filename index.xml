@@ -6,10 +6,23 @@
     <description>Recent content on Ícaro Agostino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Aug 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Oct 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Combinando Algoritmo Genético e Simulação em R!</title>
+      <link>/post/sbo/</link>
+      <pubDate>Tue, 27 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sbo/</guid>
+      <description>Photo by Vitaly Vlasov from Pexels
+Neste post apresento a implementação de uma abordagem do tipo Otimização baseada em Simulação combinando Algoritmo Genético e Simulação de Eventos Discretos, e demonstro uma aplicação para balanceamento de linhas de produção. Antes de tudo vamos entender o que é essa abordagem e como pode ser utilizada.
+Todo o código desse post está disponível em github.com/icaroagostino/SBO
+Vamos começar&amp;hellip;
+Otimização baseada em Simulação (SBO) Otimização baseada em simulação (do inglês simulation-based optimization - SBO) é uma estratégia que combina os pontos fortes dos algoritmos de otimização com métodos de simulação.</description>
+    </item>
     
     <item>
       <title>Materiais gratuitos para aprender R em 2020</title>
@@ -131,19 +144,6 @@ Nesse post vamos demonstrar de forma simplificada como ajustar um modelo de prev
       <guid>/sobre/</guid>
       <description>Olá, Meu nome é Ícaro, atualmente sou Doutorando em Eng. de Produção pela UFSC, Pesquisador no Laboratório de Sistemas Produtivos e Logísticos Inteligentes (ProLogIS) e estou em período sanduíche como Pesquisador Visitante no Bremer Institut für Produktion und Logistik GmbH (BIBA) na Alemanha.
 Sou grande entusiasta da linguagem R e tenho desenvolvido diversas aplicações em Simulação, Forecasting, Construção de API&amp;rsquo;s e Modelagem estatística em geral. Você pode encontrar alguns dos meus projetos no github.</description>
-    </item>
-    
-    <item>
-      <title>Combinando Algoritmo Genético e Simulação em R! [em desenvolvimento]</title>
-      <link>/post/sbo/</link>
-      <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/sbo/</guid>
-      <description>Photo by Vitaly Vlasov from Pexels
-[em desenvolvimento] Neste post apresento a implementação de uma abordagem do tipo Otimização baseada em Simulação combinando Algoritmo Genético e Simulação de Eventos Discretos, e demonstro uma aplicação para balanceamento de linhas de produção. Antes de tudo vamos entender o que é essa aborgadem e como pode ser utilizada.
-Todo o código desse post está disponivel em github.com/icaroagostino/SBO
-Vamos começar&amp;hellip;
-Otimização baseada em Simulação (SBO) Otimização baseada em simulação (do inglês simulation-based optimization - SBO) é uma estrategia que combina os pontos fortes dos algoritmos de otimização com métodos de simulação.</description>
     </item>
     
     <item>

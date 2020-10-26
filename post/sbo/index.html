@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     
-      <title>Combinando Algoritmo Genético e Simulação em R! [em desenvolvimento] :: Ícaro Agostino — Forecasting, Simulação e Otimização</title>
+      <title>Combinando Algoritmo Genético e Simulação em R! :: Ícaro Agostino — Forecasting, Simulação e Otimização</title>
     
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <meta name="description" content="Photo by Vitaly Vlasov from Pexels
-[em desenvolvimento] Neste post apresento a implementação de uma abordagem do tipo Otimização baseada em Simulação combinando Algoritmo Genético e Simulação de Eventos Discretos, e demonstro uma aplicação para balanceamento de linhas de produção. Antes de tudo vamos entender o que é essa aborgadem e como pode ser utilizada.
-Todo o código desse post está disponivel em github.com/icaroagostino/SBO
+Neste post apresento a implementação de uma abordagem do tipo Otimização baseada em Simulação combinando Algoritmo Genético e Simulação de Eventos Discretos, e demonstro uma aplicação para balanceamento de linhas de produção. Antes de tudo vamos entender o que é essa abordagem e como pode ser utilizada.
+Todo o código desse post está disponível em github.com/icaroagostino/SBO
 Vamos começar&amp;hellip;
-Otimização baseada em Simulação (SBO) Otimização baseada em simulação (do inglês simulation-based optimization - SBO) é uma estrategia que combina os pontos fortes dos algoritmos de otimização com métodos de simulação."/>
+Otimização baseada em Simulação (SBO) Otimização baseada em simulação (do inglês simulation-based optimization - SBO) é uma estratégia que combina os pontos fortes dos algoritmos de otimização com métodos de simulação."/>
 <meta name="keywords" content=""/>
 <meta name="robots" content="noodp"/>
 <link rel="canonical" href="/post/sbo/" />
@@ -32,12 +32,12 @@ Otimização baseada em Simulação (SBO) Otimização baseada em simulação (d
 
 
 
-<meta property="og:title" content="Combinando Algoritmo Genético e Simulação em R! [em desenvolvimento]" />
+<meta property="og:title" content="Combinando Algoritmo Genético e Simulação em R!" />
 <meta property="og:description" content="Otimização baseado em Simulação em R. Nesse post apresento uma abordagem híbrida que combina algoritmo genético e simulação de eventos discretos para otimização de um problema industrial." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/post/sbo/" />
-<meta property="article:published_time" content="2019-10-26T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-10-26T00:00:00+00:00" /><meta property="og:site_name" content="Ícaro Agostino" />
+<meta property="article:published_time" content="2020-10-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-27T00:00:00+00:00" /><meta property="og:site_name" content="Ícaro Agostino" />
 
 
 
@@ -142,11 +142,11 @@ Otimização baseada em Simulação (SBO) Otimização baseada em simulação (d
   
 
   <div class="post">
-    <h2 class="post-title"><a href="/post/sbo/">Combinando Algoritmo Genético e Simulação em R! [em desenvolvimento]</a></h2>
+    <h2 class="post-title"><a href="/post/sbo/">Combinando Algoritmo Genético e Simulação em R!</a></h2>
     <div class="post-meta">
       
         <span class="post-date">
-          2019-10-26
+          2020-10-27
         </span>
 
         
@@ -170,17 +170,16 @@ Otimização baseada em Simulação (SBO) Otimização baseada em simulação (d
 
     <div class="post-content">
       <p><a href="https://www.pexels.com/pt-br/foto/apontando-close-codificacao-comodo-1342460/">Photo by Vitaly Vlasov from Pexels</a></p>
-<h1 id="em-desenvolvimento">[em desenvolvimento]</h1>
 <p>Neste post apresento a implementação de uma abordagem do tipo <strong>Otimização
 baseada em Simulação</strong> combinando <strong>Algoritmo Genético</strong> e <strong>Simulação de Eventos Discretos</strong>, e demonstro uma aplicação para balanceamento de
-linhas de produção. Antes de tudo vamos entender o que é essa aborgadem e como pode ser utilizada.</p>
-<p>Todo o código desse post está disponivel em <a href="https://github.com/icaroagostino/SBO"><strong>github.com/icaroagostino/SBO</strong></a></p>
+linhas de produção. Antes de tudo vamos entender o que é essa abordagem e como pode ser utilizada.</p>
+<p>Todo o código desse post está disponível em <a href="https://github.com/icaroagostino/SBO"><strong>github.com/icaroagostino/SBO</strong></a></p>
 <p><em>Vamos começar&hellip;</em></p>
 <p><img src="https://media1.tenor.com/images/0e8e43de3db05b87ae105476796854ff/tenor.gif#center" alt=""></p>
 <h1 id="otimização-baseada-em-simulação-sbo"><strong>Otimização baseada em Simulação (SBO)</strong></h1>
-<p><strong>Otimização baseada em simulação</strong> (do inglês <em>simulation-based optimization - SBO</em>) é uma estrategia que combina os pontos fortes dos algoritmos de otimização com métodos de simulação. Usualmente abordagens de otimização são adotadas para resolver problemas complexos que podem ser descritos matematicamente, mas falham, em muitos casos, em testar suas soluções em um ambiente realista que consiga considerar caracteristicas probabilisticas que são observadas na realidade.</p>
-<p>Aí que entra a <strong>simulação</strong> para resolver esse problema, modelos de simulação são capazes de representar a realidade de forma muito mais &ldquo;fiel&rdquo;, porém não são muito uteis para resolver problemas em que precisamos definir parametros otimos.</p>
-<p>Dessa forma, <strong>combinar</strong> os dois métodos é uma das solução mais sofisticadas que temos atualmente para resolver problemas de otimazação, tendo como base a simulação para avaliar de forma interativa e estocastica nossas possiveis soluções.</p>
+<p><strong>Otimização baseada em simulação</strong> (do inglês <em>simulation-based optimization - SBO</em>) é uma estratégia que combina os pontos fortes dos algoritmos de otimização com métodos de simulação. Usualmente abordagens de otimização são adotadas para resolver problemas complexos que podem ser descritos matematicamente, mas falham, em muitos casos, em testar suas soluções em um ambiente realista que consiga considerar características probabilísticas que são observadas na realidade.</p>
+<p>Aí que entra a <strong>simulação</strong> para resolver esse problema, modelos de simulação são capazes de representar a realidade de forma muito mais &ldquo;fiel&rdquo;, porém não são muito úteis para resolver problemas em que precisamos definir parâmetros ótimos.</p>
+<p>Dessa forma, <strong>combinar</strong> os dois métodos é uma das solução mais sofisticadas que temos atualmente para resolver problemas de otimização, tendo como base a simulação para avaliar de forma interativa e estocástica nossas possíveis soluções.</p>
 
 
 
@@ -192,8 +191,8 @@ linhas de produção. Antes de tudo vamos entender o que é essa aborgadem e com
 <p>Aqui a <strong>função objetivo</strong> comumente vista nas abordagens tradicionais é <strong>substituída pelo modelo de simulação</strong>, dessa forma iterativamente a abordagem SBO integra os dois métodos em cada ciclo de otimização.</p>
 <p>Para esse post vamos adotar o <strong>Algoritmo Genético</strong> como método de otimização e a <strong>Simulação de Eventos Discretos</strong> como abordagem de simulação. Serão utilizados os pacotes <code>Simmer</code> e <code>GA</code>, ambos serão integrados de forma que cada conjunto de soluções gerados pela Otimização seja testado em um ambiente simulado que representa um
 possível estado do sistema.</p>
-<h3 id="algoritmos-genéticos-ga">Algoritmos Genéticos (GA</h3>
-<p>Nessa aplicação o coração da abordagem é o algoritmo genético (GA), se trata de uma heurística de otimização estocástica inspirada nos princípios básicos da evolução biológica e da seleção natural. De forma simplificada, precisamos visualizar uma solução possível para um problema como um individuo, que na inicialização do GA pode ser gerado aleatoriamente ou utilizando algum <em>benchmark</em>, um conjunto de individuos é uma população.</p>
+<h3 id="algoritmos-genéticos-ga">Algoritmos Genéticos (GA)</h3>
+<p>Nessa aplicação o coração da abordagem é o algoritmo genético (GA), se trata de uma heurística de otimização estocástica inspirada nos princípios básicos da evolução biológica e da seleção natural. De forma simplificada, precisamos visualizar uma solução possível para um problema como um indivíduo, que na inicialização do GA pode ser gerado aleatoriamente ou utilizando algum <em>benchmark</em>, um conjunto de indivíduos é uma população.</p>
 
 
 
@@ -202,16 +201,16 @@ possível estado do sistema.</p>
 </p>
 
 
-<p>A adequação de cada indivíduo é avaliada por uma <strong>função objetivo</strong> e apenas os indivíduos mais aptos se reproduzem, passando a sua informação genética aos seus descendentes por meios dos operadores  de  <strong>mutação</strong>  e  de  <strong>cruzamento</strong>. Importante lembrar que na nossa abordagem, a avaliação é feita por meio da <strong>simulação</strong> em substituição de uma equação matematica estatica.</p>
+<p>A adequação de cada indivíduo é avaliada por uma <strong>função objetivo</strong> e apenas os indivíduos mais aptos se reproduzem, passando a sua informação genética aos seus descendentes por meio dos operadores  de  <strong>mutação</strong>  e  de  <strong>cruzamento</strong>. Importante lembrar que na nossa abordagem, a avaliação é feita por meio da <strong>simulação</strong> em substituição de uma equação matemática estática.</p>
 <p>Assim, com o operador de <strong>seleção</strong>, o GA imita o comportamento dos organismos naturais num ambiente competitivo, no qual apenas os mais qualificados e a sua descendência sobrevivem. O cruzamento forma novos resultados de duas soluções “progenitoras” através da combinação de parte da informação genética de cada um.</p>
-<p>A <strong>mutação</strong> é um operador genético que altera, de forma geral e aleatória, os valores dos genes de uma solução, permitindo escapar de ótimos locais. O processo de evolução   termina com base em  alguns critérios de <strong>convergência</strong>. Alternativamente, o GA é  interrompido quando um número suficientemente grande de gerações passou sem qualquer melhoria no valor da função objetivo, ou quando uma estatística populacional atinge um limite pré-definido.</p>
-<p>Tudo isso fica mais claro em um <strong>exemplo</strong>, então nas seções seguintes vamos criar um ambiente de <strong>simulação</strong>, definir as <strong>variaveis de decisão</strong>, conectar tudo e rodar.</p>
+<p>A <strong>mutação</strong> é um operador genético que altera, de forma geral e aleatória, os valores dos genes de uma solução, permitindo escapar de ótimos locais. O processo de evolução termina com base em  alguns critérios de <strong>convergência</strong>. Alternativamente, o GA é interrompido quando um número suficientemente grande de gerações passou sem qualquer melhoria no valor da função objetivo, ou quando uma estatística populacional atinge um limite pré-definido.</p>
+<p>Tudo isso fica mais claro em um <strong>exemplo</strong>, então nas seções seguintes vamos criar um ambiente de <strong>simulação</strong>, definir as <strong>variáveis de decisão</strong>, conectar tudo e rodar.</p>
 <h3 id="criando-um-ambiente-de-simulação-com-simmer">Criando um ambiente de Simulação com <code>Simmer</code></h3>
 <p>O pacote <code>Simmer</code> implementado em <code>R</code> fornece um framework para
 simulação de eventos discretos com alta performance, implementado em
 <code>C++</code>. O pacote funciona como uma API executando scripts de <code>R</code>, além
 disso o pacote possui funções implementadas para computação paralela
-permitndo múltiplas rodadas de simulação em diferentes núcleos.</p>
+permitindo múltiplas rodadas de simulação em diferentes núcleos.</p>
 <p>Como caso teste para demonstrar a abordagem vamos implementar o caso
 relatado por <a href="https://doi.org/10.1016/j.asoc.2014.02.005">Marichelvam, Prabaharan e Yang
 (2014)</a>, se trata de uma linha de produção de peças metálicas. O processo de produção
@@ -226,7 +225,7 @@ Cada etapa possui um número diferente de máquinas paralelas e idênticas.</p>
 
 
 <blockquote>
-<p>O problema a ser resolvido nesse caso é o de balancemento da produção, ou seja definir de forma otimizada quantas máquina em cada processo devem ser alocadas.</p>
+<p>O problema a ser resolvido nesse caso é o de balancemento da produção, ou seja definir de forma otimizada quantas máquinas em cada processo devem ser alocadas.</p>
 </blockquote>
 <p>No <code>R</code> é preciso instalar as bibliotecas necessárias utilizando a função
 <code>install.packages(c(&quot;simmer&quot;, &quot;simmer.plot&quot;, &quot;GA&quot;))</code>. Após isso vamos
@@ -298,13 +297,13 @@ plotagem de estatísticas e trajetórias.</p>
 paralelas em cada etapa não é adequada para a demanda atual, formando
 fila excessiva na etapa Bending e subutilizando as demais etapas. A
 utilização média dos recursos para esse cenário foi de <strong>72.71%</strong>.</p>
-<h3 id="utilizando-algoritimo-genético-com-o-pacote-ga">Utilizando algoritimo genético com o pacote <code>GA</code></h3>
+<h3 id="utilizando-algoritmo-genético-com-o-pacote-ga">Utilizando algoritmo genético com o pacote <code>GA</code></h3>
 <p>O pacote <code>GA</code> implementado em <code>R</code> fornece uma coleção de funções de
 propósito geral para otimização usando algoritmos genéticos. A
-otimização utilizando algoritimo genético pode ser executada
+otimização utilizando algoritmo genético pode ser executada
 sequencialmente ou em paralelo para maior performance.</p>
 <p>Para solucionar esse problema de balanceamento vamos utilizar Otimização
-baseada em Simulação, integrando algoritimo genético ao ambiente de
+baseada em Simulação, integrando algoritmo genético ao ambiente de
 simulação implementado. Vamos carregar o pacote <code>GA</code> e integrar a
 simulação.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">    <span style="color:#75715e"># carregando pacote</span>
@@ -339,11 +338,10 @@ no fim retorna a utilização média dos recursos.</p>
       <span style="color:#75715e"># Retorna a utilização média dos recursos</span>
       <span style="color:#a6e22e">return</span>(util[[2]] <span style="color:#f92672">%&gt;%</span> mean)
     }
-</code></pre></div><p>Se você estiver utilizando a versão <code>dplyr</code> 1.0 ou maior rode o código a aseguir para
-desativar os avisos da função <code>summarise()</code> ao longo da otimização:</p>
+</code></pre></div><p>Se você estiver utilizando a versão <code>dplyr</code> 1.0 ou maior, execute o código a aseguir para desativar os avisos da função <code>summarise()</code> ao longo da otimização:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">options</span>(dplyr.summarise.inform <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
-</code></pre></div><p>Após o encapsulamento do cenário de simulação como uma função basta
-parametrizar o algoritimo genético e executar a otimização. Aqui vamos
+</code></pre></div><p>Após o encapsulamento do cenário de simulação como uma função, basta
+parametrizar o algoritmo genético e executar a otimização. Aqui vamos
 assumir os seguintes parâmetros arbitrários:</p>
 <ul>
 <li>Tamanho da população: 10</li>
@@ -359,7 +357,7 @@ simulação que representa um estado possível do cenário real, retornando
 a utilização média dos recursos como KPI a ser maximizado. Em cada
 geração teremos 10 soluções possíveis, os melhores indivíduos de cada
 iteração sofrerão crossover e mutação gerando uma nova geração de
-soluções. Ao fim de 20 iteração a melhor solução será retornada
+soluções. Ao fim de 20 iterações a melhor solução será retornada
 maximizando a utilização dos recursos.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">    GA <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ga</span>(type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;real-valued&#34;</span>,
              fitness <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">simular</span>(x[1],x[2],x[3],x[4],x[5]),
@@ -414,12 +412,12 @@ Simulação foi capaz de maximizar a utilização média dos recursos, se
 apresentando como uma solução robusta capaz de lidar com a
 estocasticidade do sistema. A utilização média dos recursos nesse novo
 cenário foi de <strong>98.73%</strong>.</p>
-<p>O exemplo ilustrado demonstra a facilidade de integração de simulação e
+<p>O exemplo ilustrado demonstra a facilidade de integração da simulação e
 otimização utilizando <code>R</code>, podendo se estender a cenários mais
-complexos, desde que tenhamos váriaveis de decisão e um KPI da simulação
-a ser máximizado ou mínimizado.</p>
+complexos, desde que tenhamos variáveis de decisão e um KPI da simulação
+a ser maximizado ou minimizado.</p>
 <h2 id="aplicação-em-um-artigo">Aplicação em um artigo</h2>
-<p>As implementações desse exemplo geraram uma publicação no congresso <strong>ENEGEP 2020</strong> que ocorreu online em outubro desse ano. Aproveito para deixar os link para a versão final do artigo, os slides e vídeo da minha participação =).</p>
+<p>As implementações desse exemplo geraram uma publicação no congresso <strong>ENEGEP 2020</strong> que ocorreu online em outubro desse ano. Aproveito para deixar os links para a versão final do artigo, os slides e o vídeo da minha participação =).</p>
 <ul>
 <li><strong>Artigo</strong>: <a href="http://www.abepro.org.br/biblioteca/TN_STO_344_1765_40002.pdf">SBO para balanceamento de Flow Shop híbrido: Implementação e aplicação em R</a></li>
 <li><strong>Slides da apresentação</strong>: <a href="https://docs.google.com/presentation/d/e/2PACX-1vQj5gJ-TVwyKali481iEe6giBJJx7LBUtXlvx1p7GZ2tNa3RIAznz5sTZXPUIfUiH1tgsLaB_RDMumC/pub?start=false&amp;loop=false&amp;delayms=3000">google slides</a></li>
@@ -430,9 +428,9 @@ a ser máximizado ou mínimizado.</p>
   <iframe src="https://www.youtube.com/embed/kZyk-G7TWyA" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<p>Bom, como falei no inicio do post toda essa aplicação está com código aberto nesse repositorio do Github <a href="https://github.com/icaroagostino/SBO"><strong>icaroagostino/SBO</strong></a>. O código é bem simples pois aproveita as implementações dos pacotes <code>GA</code> e <code>Simmer</code>, e também é bem generico possibilitando extender para outras aplicações.</p>
+<p>Bom, como falei no inicio do post toda essa aplicação está com código aberto nesse repositório do Github <a href="https://github.com/icaroagostino/SBO"><strong>icaroagostino/SBO</strong></a>. O código é bem simples pois aproveita as implementações dos pacotes <code>GA</code> e <code>Simmer</code>, e também é bem genérico possibilitando extender para outras aplicações.</p>
 <h3 id="referências">Referências</h3>
-<p>Se quiser se aprofundar eu sugiro como recurso inicial os artigo originais dos dois pacotes, vocês vão encontrar explicações teóricas, detalhes de implementações e muito mais.</p>
+<p>Se quiser se aprofundar eu sugiro como recurso inicial os artigos originais dos dois pacotes, vocês vão encontrar explicações teóricas, detalhes de implementação e muito mais.</p>
 <ul>
 <li>Simmer: <a href="https://doi.org/10.18637/jss.v090.i02">https://doi.org/10.18637/jss.v090.i02</a></li>
 <li>GA: <a href="http://www.jstatsoft.org/v53/i04/">http://www.jstatsoft.org/v53/i04/</a></li>
@@ -490,13 +488,13 @@ a ser máximizado ou mínimizado.</p>
           </div>
           <div class="pagination__buttons">
             
-              <span class="button previous">
-                <a href="/post/arima/">
-                  <span class="button__icon">←</span>
-                  <span class="button__text">Prevendo o futuro com modelos ARIMA</span>
+            
+              <span class="button next">
+                <a href="/post/learnr/">
+                  <span class="button__text">Materiais gratuitos para aprender R em 2020</span>
+                  <span class="button__icon">→</span>
                 </a>
               </span>
-            
             
           </div>
         </div>
@@ -539,9 +537,9 @@ a ser máximizado ou mínimizado.</p>
 
 <span style="color: #5e5d5d;">Compartilhe em: </span><div id="share-buttons">
 
-<div class="twitter" title="Compartilhe no Twitter" onclick="window.open('http://twitter.com/share?url=https://icaroagostino.github.io\/post\/sbo\/&text=Combinando Algoritmo Genético e Simulação em R! [em desenvolvimento]');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
+<div class="twitter" title="Compartilhe no Twitter" onclick="window.open('http://twitter.com/share?url=https://icaroagostino.github.io\/post\/sbo\/&text=Combinando Algoritmo Genético e Simulação em R!');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></div>
 
-<div class="linkedin" title="Compartilhe no Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=https://icaroagostino.github.io\/post\/sbo\/&title=Combinando Algoritmo Genético e Simulação em R! [em desenvolvimento]');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
+<div class="linkedin" title="Compartilhe no Linkedin" onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=https://icaroagostino.github.io\/post\/sbo\/&title=Combinando Algoritmo Genético e Simulação em R!');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></div>
 
 <div class="facebook" title="Compartilhe no Facebook" onclick="window.open('http://www.facebook.com/share.php?u=https://icaroagostino.github.io\/post\/sbo\/');"><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></div>
 </div>
