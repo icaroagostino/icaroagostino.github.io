@@ -114,5 +114,18 @@ Previsão com modelos ARIMA Existem muitos conceitos relacionados a previsão, c
 Nesse post vamos demonstrar de forma simplificada como ajustar um modelo de previsão utilizando a família de modelos Autorregressivos Integrados de Médias Móveis (ARIMA) em R para para previsão de séries temporais utilizando o pacote forecast.</description>
     </item>
     
+    <item>
+      <title>Combinando Algoritmo Genético e Simulação em R! [em desenvolvimento]</title>
+      <link>/post/sbo/</link>
+      <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sbo/</guid>
+      <description>Photo by Vitaly Vlasov from Pexels
+[em desenvolvimento] Neste post apresento a implementação de uma abordagem do tipo Otimização baseada em Simulação combinando Algoritmo Genético e Simulação de Eventos Discretos, e demonstro uma aplicação para balanceamento de linhas de produção. Antes de tudo vamos entender o que é essa aborgadem e como pode ser utilizada.
+Todo o código desse post está disponivel em github.com/icaroagostino/SBO
+Vamos começar&amp;hellip;
+Otimização baseada em Simulação (SBO) Otimização baseada em simulação (do inglês simulation-based optimization - SBO) é uma estrategia que combina os pontos fortes dos algoritmos de otimização com métodos de simulação.</description>
+    </item>
+    
   </channel>
 </rss>
