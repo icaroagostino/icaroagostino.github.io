@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ícaro Agostino</title>
+    <link>/</link>
+    <description>Recent content on Ícaro Agostino</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Combinando Algoritmo Genético e Simulação em R!</title>
+      <link>/post/sbo/</link>
+      <pubDate>Tue, 27 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/sbo/</guid>
+      <description>Photo by Vitaly Vlasov from Pexels
+Neste post apresento a implementação de uma abordagem do tipo Otimização baseada em Simulação combinando Algoritmo Genético e Simulação de Eventos Discretos, e demonstro uma aplicação para balanceamento de linhas de produção. Antes de tudo vamos entender o que é essa abordagem e como pode ser utilizada.
+Todo o código desse post está disponível em github.com/icaroagostino/SBO
+Vamos começar&amp;hellip;
+Otimização baseada em Simulação (SBO) Otimização baseada em simulação (do inglês simulation-based optimization - SBO) é uma estratégia que combina os pontos fortes dos algoritmos de otimização com métodos de simulação.</description>
+    </item>
+    
+    <item>
+      <title>Materiais gratuitos para aprender R em 2020</title>
+      <link>/post/learnr/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/learnr/</guid>
+      <description>Photo by Pixabay from Pexels
+Um roadmap de materiais para aprender R em 2020 Uma das coisas mais legais da comunidade que utiliza R é a geração de muitos materiais e tutoriais com exemplos reproduzíveis. Ao longo dos últimos meses utilizando R para uma série de diferentes aplicações, comecei a coletar links e materiais que poderiam ser interessantes para aprendizado e consulta.
+Então nesse post apresento uma seleção de materiais, todos gratuitos e em sua maioria livros online produzidos por pessoas relevantes no cenário do R no Brasil e no mundo.</description>
+    </item>
+    
+    <item>
+      <title>Minha participação (virtual) no useR! 2020</title>
+      <link>/post/user2020/</link>
+      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/user2020/</guid>
+      <description>useR! 2020 - European Hub Munique Depois de um longo período sem posts, hoje queria comentar (e divulgar) parte da minha pesquisa de doutorado utilizando R. Sou doutorando em Eng. Produção pela UFSC, e atualmente também sou pesquisador visitante na Universidade de Bremen (na Alemanha), existe uma parceria entre as universidades e eu tô fazendo parte da minha pesquisa aqui.
+Como um entusiasta de R surgiu a oportunidade de participar do useR!</description>
+    </item>
+    
+    <item>
+      <title>Rodando modelos [R] na nuvem - parte 3: AWS</title>
+      <link>/post/aws/</link>
+      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/aws/</guid>
+      <description>Parte 3: Rodando aplicações na AWS Esse tutorial é a terceira parte da série Rodando modelos [R] na nuvem, na primeira parte aprendemos como criar APIs com o pacote plumber (se você ainda não leu clique aqui). Na segunda parte aprendemos a colocar nossa aplicação em containers utilizando Docker (se você ainda não leu clique aqui). E nessa parte final vamos subir esse container para a cloud da Amazon (AWS).</description>
+    </item>
+    
+    <item>
+      <title>Testando o pacote CoronaBr [R]</title>
+      <link>/post/coronabr/</link>
+      <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/coronabr/</guid>
+      <description>O pacote coronabr [R] Diversas iniciativas têm facilitado o acesso a dados relativos aos casos de COVID-19 ao redor do mundo. Eu mesmo fiz um post aqui no blog ensinando a usar a API covid19api (você pode acessar clicando aqui), que permite acessar dados relativos aos casos, mortes e recuperados por país. Outras iniciativas interessantes têm organizado os dados em maior granularidade, permitindo visualizar a situação por estados com foco no Brasil, como é o caso da iniciativa do Brasil.</description>
+    </item>
+    
+    <item>
+      <title>Rodando modelos [R] na nuvem - parte 2: Containers com Docker!</title>
+      <link>/post/docker/</link>
+      <pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/docker/</guid>
+      <description>Parte 2: Rodando aplicações em containers Esse tutorial é a segunda parte da série Rodando modelos [R] na nuvem, na primeira parte aprendemos como criar APIs com o pacote plumber (se você ainda não leu clique aqui). Nessa parte vamos aprender a como colocar nossa aplicação em containers utilizando Docker. E na parte final vamos subir esse container para a cloud da Amazon (AWS).
+O foco aqui será abordar o conceito de container, assim como a parte prática.</description>
+    </item>
+    
+    <item>
+      <title>Rodando modelos [R] na nuvem - parte 1: Criando APIs</title>
+      <link>/post/plumber/</link>
+      <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/plumber/</guid>
+      <description>Parte 1: Criando API&amp;rsquo;s com o pacote plumber Essa sequência de tutoriais vai ser dividida em 3 partes, aqui vamos aprender a construir API&amp;rsquo;s com o pacote plumber. Na parte 2 vamos entender como colocar uma API dentro de um contêiner utilizando docker. E na parte final vamos abordar como colocar sua aplicação dockerizada para rodar na nuvem utilizando a Amazon Web Service (AWS).
+Nesse post vamos aprender como transformar um modelo estatístico/ML em uma API utilizando R com o pacote plumber.</description>
+    </item>
+    
+    <item>
+      <title>Prevendo o futuro com Redes Neurais Artificiais</title>
+      <link>/post/ann/</link>
+      <pubDate>Sat, 04 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/ann/</guid>
+      <description>Photo by Soumil Kumar from Pexels
+Previsão com Redes Neurais Artificiais Uma das abordagens que mais tem despertado interesse para previsão são as Redes Neurais Artificiais, em que você treina um modelo bio-inspirado capaz de aprender padrões não lineares e fazer predições.
+Nesse post vamos demonstrar de forma simplificada como treinar um modelo de previsão utilizando Redes Neurais Artificiais Autorregressivas (NNAR) em R para para previsão de séries temporais. Existem diversas arquiteturas de Redes Neurais disponíveis, nesse tutorial vamos utilizar a implementação feed-forward utilizando o pacote forecast.</description>
+    </item>
+    
+    <item>
+      <title>Relatório dinâmico com Rmarkdown: COVID-19 no Brasil</title>
+      <link>/post/rmd-cov19/</link>
+      <pubDate>Sun, 29 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rmd-cov19/</guid>
+      <description>Cover Photo by Lukas from Pexels
+Criando relatórios dinâmicos em R Nesse post vamos aprender a criar relatórios dinâmicos em R utilizando Rmarkdown. Para isso vamos consultar dados online utilizando uma API externa e utilizar esses dados para de forma automática gerar um relatório em .html ou .pdf.
+Se você trabalha em uma empresa e precisa por exemplo fazer relatórios de vendas semanais, usar o Rmarkdown para gerar relatórios dinâmicos pode facilitar sua vida, mesmo que você não tenha uma API para consultar os dados automaticamente, é possível automatizar da mesma forma leitura de planilhas e outros tipos de arquivos.</description>
+    </item>
+    
+    <item>
+      <title>O Problema de Monty Hall</title>
+      <link>/post/monty-hall/</link>
+      <pubDate>Fri, 27 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/monty-hall/</guid>
+      <description>Cover Photo by fotografierende from Pexels
+O Problema de Monty Hall Nesse post vamos abordar um aspecto interessante sobre probabilidades, especificamente o problema de Monty Hall, também conhecido por paradoxo de Monty Hall, trata-se de um problema matemático e um paradoxo que surgiu a partir de um concurso televisivo dos Estados Unidos chamado Let’s Make a Deal, exibido na década de 1970.[1]
+Para demonstrar os conceitos discutidos aqui vamos simular alguns cenários utilizando funções básicas em R.</description>
+    </item>
+    
+    <item>
+      <title>Prevendo o futuro com modelos ARIMA</title>
+      <link>/post/arima/</link>
+      <pubDate>Mon, 23 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/arima/</guid>
+      <description>Cover Photo by Lum3n.com from Pexels
+Previsão com modelos ARIMA Existem muitos conceitos relacionados a previsão, cientificamente falando uma das formas mais bem fundamentadas é a previsão baseada em séries temporais, em que você observa uma variável ao longo do tempo, em intervalos constantes, a partir disso consegue extrair padrões e extrapolar esses padrões para o futuro.
+Nesse post vamos demonstrar de forma simplificada como ajustar um modelo de previsão utilizando a família de modelos Autorregressivos Integrados de Médias Móveis (ARIMA) em R para para previsão de séries temporais utilizando o pacote forecast.</description>
+    </item>
+    
+    <item>
+      <title>Curriculum</title>
+      <link>/curriculum/</link>
+      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/curriculum/</guid>
+      <description>Linkedin  Resumo Atualmente sou Doutorando em Eng. de Produção pela Universidade Federal de Santa Catarina (UFSC). Lá sou Pesquisador no Laboratório de Sistemas Produtivos e Logísticos Inteligentes (ProLogIS). Atualmente estou em período sanduíche como Pesquisador Visitante no Bremer Institut für Produktion und Logistik GmbH (BIBA) na Alemanha. Tenho experiência na área de Engenharia de Produção, com ênfase em Previsão Aplicada, Modelagem Estatística, Simulação de Eventos Discretos e Métodos Quantitativos para tomada de Decisão.</description>
+    </item>
+    
+    <item>
+      <title>Sobre</title>
+      <link>/sobre/</link>
+      <pubDate>Sun, 22 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/sobre/</guid>
+      <description>Olá, Meu nome é Ícaro, atualmente sou Doutorando em Eng. de Produção pela UFSC, Pesquisador no Laboratório de Sistemas Produtivos e Logísticos Inteligentes (ProLogIS) e estou em período sanduíche como Pesquisador Visitante no Bremer Institut für Produktion und Logistik GmbH (BIBA) na Alemanha.
+Sou grande entusiasta da linguagem R e tenho desenvolvido diversas aplicações em Simulação, Forecasting, Construção de API&amp;rsquo;s e Modelagem estatística em geral. Você pode encontrar alguns dos meus projetos no github.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Archive</title>
+      <link>/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/archive/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
